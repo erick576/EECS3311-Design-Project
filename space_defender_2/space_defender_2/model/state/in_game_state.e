@@ -26,10 +26,16 @@ feature
 			Result := true
 		end
 
-    display (game_info : GAME_INFO) : STRING
+    in_setup : BOOLEAN
+        -- Is this state in setup or not?
+  		do
+			Result := false
+		end
+
+    display : STRING
       -- Display current state
       do
       	Result := "In Game"
       end
-      
+
 end

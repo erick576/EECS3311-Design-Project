@@ -77,7 +77,7 @@ feature -- queries
 	out : STRING
 		do
 			create Result.make_empty
-			Result.append (app.current_state.display (game_info))
+			Result.append (app.current_state.display)
 		end
 
 end

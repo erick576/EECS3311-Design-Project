@@ -26,7 +26,13 @@ feature
 			Result := false
 		end
 
-    display (game_info : GAME_INFO) : STRING
+    in_setup : BOOLEAN
+        -- Is this state in setup or not?
+  		do
+			Result := true
+		end
+
+    display : STRING
       -- Display current state
       do
       	Result := "Armour Setup"

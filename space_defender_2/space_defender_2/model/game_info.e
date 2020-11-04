@@ -177,14 +177,14 @@ feature -- Set Messages
 
 	not_playing_message : STRING = "Welcome to Space Defender Version 2."
 
-feature -- Setters
+feature -- Setters for messages
 
 	set_error_message (s : STRING)
 		do
 			error_message := s
 		end
 
-	set_state_mesage (s : STRING)
+	set_state_message (s : STRING)
 		do
 			state_message := s
 		end
@@ -199,7 +199,7 @@ feature -- Setters
 			status_message := s
 		end
 
-	set_stagte_specific_message (s : STRING)
+	set_state_specific_message (s : STRING)
 		do
 			state_specific_message := s
 		end
@@ -218,6 +218,43 @@ feature -- Setters
 --		do
 --			--TODO
 --		end
+
+feature -- Setters for boolean queries
+
+	set_in_normal_mode (b : BOOLEAN)
+		do
+			in_normal_mode := b
+		end
+
+	set_is_alive (b : BOOLEAN)
+		do
+			is_alive := b
+		end
+
+	set_is_error (b : BOOLEAN)
+		do
+			is_error := b
+		end
+
+	set_in_game (b : BOOLEAN)
+		do
+			in_game := b
+		end
+
+	set_is_valid_operation (b : BOOLEAN)
+		do
+			is_valid_operation := b
+		end
+
+	set_valid_operation_count (i : INTEGER)
+		do
+			valid_operation_count := i
+		end
+	set_error_count (i : INTEGER)
+		do
+			error_count := i
+		end
+
 
 feature -- Getters
 

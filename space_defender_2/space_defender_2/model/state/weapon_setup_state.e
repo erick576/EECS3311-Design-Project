@@ -26,10 +26,32 @@ feature
 			Result := false
 		end
 
-    display (game_info : GAME_INFO) : STRING
+    in_setup : BOOLEAN
+        -- Is this state in setup or not?
+  		do
+			Result := true
+		end
+
+    display : STRING
       -- Display current state
       do
-      	Result := "Weapon Setup"
+		create Result.make_empty
+      	game_info.set_state_message (game_info.state_weapon_setup)
+      	game_info.set_state_specific_message (game_info.weapon_setup_message)
+
+      	if game_info.is_error then
+      		game_info.set_status_message (game_info.error_status)
+      		Result.append (game_info.display_state)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_error)
+
+      	else
+      		game_info.set_status_message (game_info.ok_status)
+      		Result.append (game_info.display_state)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_state_specific)
+      	end
+
       end
 
 end
