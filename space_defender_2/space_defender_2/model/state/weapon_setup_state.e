@@ -7,4 +7,29 @@ note
 class
 	WEAPON_SETUP_STATE
 
+inherit
+	STATE
+
+create
+	make
+
+feature
+    set_choice (i : INTEGER)
+  	  -- Set choice value
+  	  do
+  	  	choice := i
+  	  end
+
+  	in_game : BOOLEAN
+  	  	-- Is this state in_game or not?
+  		do
+			Result := false
+		end
+
+    display (game_info : GAME_INFO) : STRING
+      -- Display current state
+      do
+      	Result := "Weapon Setup"
+      end
+
 end

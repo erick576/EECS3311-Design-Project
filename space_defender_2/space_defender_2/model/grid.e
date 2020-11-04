@@ -7,4 +7,12 @@ note
 class
 	GRID
 
+create
+	make
+
+feature
+	make
+		do
+		end
+
 end

@@ -7,4 +7,12 @@ note
 class
 	STARFIGHTER
 
+create
+	make
+
+feature
+	make
+		do
+		end
+
 end

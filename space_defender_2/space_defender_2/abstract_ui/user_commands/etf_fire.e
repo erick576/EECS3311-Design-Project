@@ -6,15 +6,15 @@ note
 
 class
 	ETF_FIRE
-inherit 
+inherit
 	ETF_FIRE_INTERFACE
 create
 	make
-feature -- command 
+feature -- command
 	fire
     	do
 			-- perform some update on the model state
-			model.default_update
+--			model.default_update
 			etf_cmd_container.on_change.notify ([Current])
     	end
 
