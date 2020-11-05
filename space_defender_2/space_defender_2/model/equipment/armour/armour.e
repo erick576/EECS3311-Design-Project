@@ -4,7 +4,14 @@ note
 	date: "$Date$"
 	revision: "$Revision$"
 
-class
+deferred class
 	ARMOUR
+
+inherit
+	EQUIPMENT
+
+feature -- Attributes
+
+	type_name : STRING
 
 end

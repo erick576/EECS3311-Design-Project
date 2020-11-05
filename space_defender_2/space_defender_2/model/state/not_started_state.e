@@ -32,6 +32,23 @@ feature
 			Result := false
 		end
 
+	in_setup_select : BOOLEAN
+  	    -- Is this state eligible for state setup?
+  		do
+			Result := false
+		end
+
+	in_bounds (i : INTEGER) : BOOLEAN
+	  -- Is the selected in the equipment selected bounds?
+	  do
+	  		Result := false
+	  end
+
+	setup_select (i : INTEGER)
+	  -- Select the equipment only for setup states
+	  do
+	  end
+
     display : STRING
       -- Display current state
       do

@@ -7,4 +7,30 @@ note
 class
 	ENGINE_ARMOURED
 
+inherit
+	ENGINE
+
+create
+	make
+
+feature -- Initialization
+	make
+		do
+			health := 50
+			energy := 100
+			health_regen := 0
+			energy_regen := 3
+			armour := 3
+			vision := 6
+			move := 4
+			move_cost := 5
+
+			-- Irrelevant to Engine
+			projectile_damage := 0
+			projectile_health_cost := 0
+			projectile_energy_cost := 0
+
+			type_name := "Armoured"
+		end
+
 end

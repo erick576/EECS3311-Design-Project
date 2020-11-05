@@ -4,7 +4,21 @@ note
 	date: "$Date$"
 	revision: "$Revision$"
 
-class
+deferred class
 	EQUIPMENT
+
+feature -- Attributes
+
+	health : INTEGER
+	energy : INTEGER
+	health_regen : INTEGER
+	energy_regen : INTEGER
+	armour : INTEGER
+	vision : INTEGER
+	move : INTEGER
+	move_cost : INTEGER
+	projectile_damage : INTEGER
+	projectile_health_cost : INTEGER
+	projectile_energy_cost : INTEGER
 
 end

@@ -28,6 +28,36 @@ feature
 
 			valid_operation_count := 0
 			error_count := 0
+
+			create weapons.make_empty
+
+			weapons.force (create {WEAPON_STANDARD}.make, weapons.count + 1)
+			weapons.force (create {WEAPON_SPREAD}.make, weapons.count + 1)
+			weapons.force (create {WEAPON_SNIPE}.make, weapons.count + 1)
+			weapons.force (create {WEAPON_ROCKET}.make, weapons.count + 1)
+			weapons.force (create {WEAPON_SPLITTER}.make, weapons.count + 1)
+
+			create armours.make_empty
+
+			armours.force (create {ARMOUR_NONE}.make, armours.count + 1)
+			armours.force (create {ARMOUR_LIGHT}.make, armours.count + 1)
+			armours.force (create {ARMOUR_MEDIUM}.make, armours.count + 1)
+			armours.force (create {ARMOUR_HEAVY}.make, armours.count + 1)
+
+			create engines.make_empty
+
+			engines.force (create {ENGINE_STANDARD}.make, engines.count + 1)
+			engines.force (create {ENGINE_LIGHT}.make, engines.count + 1)
+			engines.force (create {ENGINE_ARMOURED}.make, engines.count + 1)
+
+--			create powers.make_empty
+
+--			powers.force (create {RECALL}.make, powers.count + 1)
+--			powers.force (create {REPAIR}.make, powers.count + 1)
+--			powers.force (create {OVERCHARGE}.make, powers.count + 1)
+--			powers.force (create {DEPLOY_DRONES}.make, powers.count + 1)
+--			powers.force (create {ORBITAL_STRIKE}.make, powers.count + 1)
+
 		end
 
 feature -- Atrributes
@@ -40,6 +70,11 @@ feature -- Atrributes
 
 	valid_operation_count : INTEGER
 	error_count : INTEGER
+
+	weapons : ARRAY[WEAPON]
+	armours : ARRAY[ARMOUR]
+	engines : ARRAY[ENGINE]
+--	powers : ARRAY[POWER]
 
 	grid: GRID
 		local
@@ -130,7 +165,7 @@ feature -- Set Messages
   5:Splitter (A single mine projectile is placed in front of the Starfighter)
     Health:0, Energy:100, Regen:0/10, Armour:0, Vision:0, Move:0, Move Cost:5,
     Projectile Damage:150, Projectile Cost:70 (energy)
-  Weapon Selected:TODO
+  Weapon Selected:
 	]"
 
 	armour_setup_message : STRING =
@@ -143,7 +178,7 @@ feature -- Set Messages
     Health:100, Energy:0, Regen:3/0, Armour:5, Vision:0, Move:0, Move Cost:3
   4:Heavy
     Health:200, Energy:0, Regen:4/0, Armour:10, Vision:0, Move:-1, Move Cost:5
-  Armour Selected:TODO
+  Armour Selected:
 	]"
 
 	engine_setup_message : STRING =
@@ -154,7 +189,7 @@ feature -- Set Messages
     Health:0, Energy:30, Regen:0/1, Armour:0, Vision:15, Move:10, Move Cost:1
   3:Armoured
     Health:50, Energy:100, Regen:0/3, Armour:3, Vision:6, Move:4, Move Cost:5
-  Engine Selected:TODO
+  Engine Selected:
 	]"
 
 	power_setup_message : STRING =
@@ -167,13 +202,10 @@ feature -- Set Messages
   Power Selected:TODO
 	]"
 
-	setup_summary_message : STRING =
-	"[
-  Weapon Selected:TODO
-  Armour Selected:TODO
-  Engine Selected:TODO
-  Power Selected:TODO
-	]"
+	setup_summary_weapon_message : STRING = "Weapon Selected:"
+	setup_summary_armour_message : STRING = "Armour Selected:"
+	setup_summary_engine_message : STRING = "Engine Selected:"
+	setup_summary_power_message : STRING = "Power Selected:TODO"
 
 	not_playing_message : STRING = "Welcome to Space Defender Version 2."
 

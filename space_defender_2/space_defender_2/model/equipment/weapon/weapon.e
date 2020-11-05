@@ -4,7 +4,21 @@ note
 	date: "$Date$"
 	revision: "$Revision$"
 
-class
+deferred class
 	WEAPON
+
+inherit
+	EQUIPMENT
+
+-- Possibly Need Grid Access
+feature -- Command
+
+	-- Weapon Specific Projectile Movement
+	projectile_movement
+		deferred end
+
+feature -- Attributes
+
+	type_name : STRING
 
 end
