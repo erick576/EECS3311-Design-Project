@@ -34,6 +34,8 @@ feature -- command
 				model.game_info.set_is_valid_operation (true)
 				model.app.current_state.set_choice (1)
 				model.app.execute_transition
+
+				-- Set Inputs into grid information to hold
 			end
 
 			etf_cmd_container.on_change.notify ([Current])
