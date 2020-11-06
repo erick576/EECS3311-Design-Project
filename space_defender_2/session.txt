@@ -1,6 +1,3 @@
 play(5, 10, 1, 1, 1, 1, 1)
-setup_select(2)
-setup_next(4)
-setup_back(5)
-play(5, 10, 1 ,1 , 1, 1,1)
-setup_next(4)
+setup_next(5)
+abort

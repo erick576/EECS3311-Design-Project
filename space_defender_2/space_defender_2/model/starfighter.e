@@ -32,7 +32,7 @@ feature -- Initialization
 			weapon_selected := create {WEAPON_STANDARD}.make
 			armour_selected := create {ARMOUR_NONE}.make
 			engine_selected := create {ENGINE_STANDARD}.make
---			power_selected := game_info.powers.at (1)
+			power_selected := create {RECALL}.make
 
 		end
 
@@ -58,7 +58,7 @@ feature -- Attributes
 	weapon_selected : WEAPON
 	armour_selected : ARMOUR
 	engine_selected : ENGINE
---	power_selected : POWER
+	power_selected : POWER
 
 feature -- Commands
 
@@ -84,10 +84,10 @@ feature -- Setters for Setting State
 			engine_selected := engine
 		end
 
---	set_power (power : POWER)
---		do
---			power_selected := power
---		end
+	set_power (power : POWER)
+		do
+			power_selected := power
+		end
 
 feature -- Exit Game
 

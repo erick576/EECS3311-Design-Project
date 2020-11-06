@@ -56,6 +56,11 @@ feature {NONE} -- Initialization
 			app.put_transition (6, 5, 3)
 			app.put_transition (7, 6, 3)
 
+			app.put_transition (1, 2, 4)
+			app.put_transition (1, 3, 4)
+			app.put_transition (1, 4, 4)
+			app.put_transition (1, 5, 4)
+			app.put_transition (1, 6, 4)
 			app.put_transition (1, 7, 4)
 		end
 

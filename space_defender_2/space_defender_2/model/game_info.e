@@ -50,13 +50,13 @@ feature
 			engines.force (create {ENGINE_LIGHT}.make, engines.count + 1)
 			engines.force (create {ENGINE_ARMOURED}.make, engines.count + 1)
 
---			create powers.make_empty
+			create powers.make_empty
 
---			powers.force (create {RECALL}.make, powers.count + 1)
---			powers.force (create {REPAIR}.make, powers.count + 1)
---			powers.force (create {OVERCHARGE}.make, powers.count + 1)
---			powers.force (create {DEPLOY_DRONES}.make, powers.count + 1)
---			powers.force (create {ORBITAL_STRIKE}.make, powers.count + 1)
+			powers.force (create {RECALL}.make, powers.count + 1)
+			powers.force (create {REPAIR}.make, powers.count + 1)
+			powers.force (create {OVERCHARGE}.make, powers.count + 1)
+			powers.force (create {DEPLOY_DRONES}.make, powers.count + 1)
+			powers.force (create {ORBITAL_STRIKE}.make, powers.count + 1)
 
 		end
 
@@ -74,7 +74,7 @@ feature -- Atrributes
 	weapons : ARRAY[WEAPON]
 	armours : ARRAY[ARMOUR]
 	engines : ARRAY[ENGINE]
---	powers : ARRAY[POWER]
+	powers : ARRAY[POWER]
 
 	grid: GRID
 		local
@@ -199,13 +199,13 @@ feature -- Set Messages
   3:Overcharge (up to 50 health): Gain 2*health spent energy, can go over max energy. Energy regen will not be in effect if over cap.
   4:Deploy Drones (100 energy): Clear all projectiles.
   5:Orbital Strike (100 energy): Deal 100 damage to all enemies, affected by armour.
-  Power Selected:TODO
+  Power Selected:
 	]"
 
 	setup_summary_weapon_message : STRING = "Weapon Selected:"
 	setup_summary_armour_message : STRING = "Armour Selected:"
 	setup_summary_engine_message : STRING = "Engine Selected:"
-	setup_summary_power_message : STRING = "Power Selected:TODO"
+	setup_summary_power_message : STRING = "Power Selected:"
 
 	not_playing_message : STRING = "Welcome to Space Defender Version 2."
 

@@ -80,10 +80,10 @@ feature
 	      	Result.append (game_info.display_state_specific)
 	      	Result.append (starfighter.engine_selected.type_name)
 	     	Result.append ("%N")
-	     	
+
 	      	game_info.set_state_specific_message (game_info.setup_summary_power_message)
 	      	Result.append (game_info.display_state_specific)
---	      	Result.append (starfighter.power_selected.type_name)	
+	      	Result.append (starfighter.power_selected.type_name)
       	end
 
       end

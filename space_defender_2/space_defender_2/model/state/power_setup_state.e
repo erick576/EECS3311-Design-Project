@@ -42,13 +42,13 @@ feature
 	  -- Is the selected in the equipment selected bounds?
 	  do
 	  		Result := true
---	  		Result := i >= 1 and i <= game_info.powers.count
+	  		Result := i >= 1 and i <= game_info.powers.count
 	  end
 
 	setup_select (i : INTEGER)
 	  -- Select the equipment only for setup states
 	  do
---	  		starfighter.set_power (game_info.powers.at (i))
+	  		starfighter.set_power (game_info.powers.at (i))
 	  end
 
     display : STRING
@@ -69,7 +69,7 @@ feature
       		Result.append (game_info.display_state)
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_state_specific)
---	      	Result.append (starfighter.power_selected.type_name)
+	      	Result.append (starfighter.power_selected.type_name)
       	end
 
       end
