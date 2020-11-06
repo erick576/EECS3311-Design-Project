@@ -4,7 +4,10 @@ note
 	date: "$Date$"
 	revision: "$Revision$"
 
-class
+deferred class
 	FRIENDLY_PROJECTILE
+
+inherit
+	PROJECTILE
 
 end
