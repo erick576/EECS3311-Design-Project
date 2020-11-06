@@ -107,32 +107,32 @@ feature {NONE} -- Attribute Messages
 
 feature -- Set Messages
 
-	play_error_1 : STRING = "Already in setup mode."
-	play_error_2 : STRING = "Already in a game. Please abort to start a new one."
-	play_error_3 : STRING = "Threshold values are not non-decreasing."
+	play_error_1 : STRING = "  Already in setup mode."
+	play_error_2 : STRING = "  Already in a game. Please abort to start a new one."
+	play_error_3 : STRING = "  Threshold values are not non-decreasing."
 
-	setup_next_error_1 : STRING = "Command can only be used in setup mode."
+	setup_next_error_1 : STRING = "  Command can only be used in setup mode."
 
-	setup_back_error_1 : STRING = "Command can only be used in setup mode."
+	setup_back_error_1 : STRING = "  Command can only be used in setup mode."
 
-	setup_select_error_1 : STRING = "Command can only be used in setup mode (excluding summary in setup)."
-	setup_select_error_2 : STRING = "Menu option selected out of range."
+	setup_select_error_1 : STRING = "  Command can only be used in setup mode (excluding summary in setup)."
+	setup_select_error_2 : STRING = "  Menu option selected out of range."
 
-	abort_error_1 : STRING = "Command can only be used in setup mode or in game."
+	abort_error_1 : STRING = "  Command can only be used in setup mode or in game."
 
-	move_error_1 : STRING = "Command can only be used in game."
-	move_error_2 : STRING = "Cannot move outside of board."
-	move_error_3 : STRING = "Already there."
-	move_error_4 : STRING = "Out of movement range."
-	move_error_5 : STRING = "Not enough resources to move."
+	move_error_1 : STRING = "  Command can only be used in game."
+	move_error_2 : STRING = "  Cannot move outside of board."
+	move_error_3 : STRING = "  Already there."
+	move_error_4 : STRING = "  Out of movement range."
+	move_error_5 : STRING = "  Not enough resources to move."
 
-	pass_error_1 : STRING = "Command can only be used in game."
+	pass_error_1 : STRING = "  Command can only be used in game."
 
-	fire_error_1 : STRING = "Command can only be used in game."
-	fire_error_2 : STRING = "Not enough resources to fire."
+	fire_error_1 : STRING = "  Command can only be used in game."
+	fire_error_2 : STRING = "  Not enough resources to fire."
 
-	special_error_1 : STRING = "Command can only be used in game."
-	special_error_2 : STRING = "Not enough resources to use special."
+	special_error_1 : STRING = "  Command can only be used in game."
+	special_error_2 : STRING = "  Not enough resources to use special."
 
 	state_not_started : STRING = "state:not started"
 	state_weapon_setup : STRING = "state:weapon setup"
@@ -148,66 +148,70 @@ feature -- Set Messages
 	ok_status : STRING = "ok"
 	error_status : STRING = "error"
 
-	weapon_setup_message : STRING =
-	"[
-  1:Standard (A single projectile is fired in front)
-    Health:10, Energy:10, Regen:0/1, Armour:0, Vision:1, Move:1, Move Cost:1,
-    Projectile Damage:70, Projectile Cost:5 (energy)
-  2:Spread (Three projectiles are fired in front, two going diagonal)
-    Health:0, Energy:60, Regen:0/2, Armour:1, Vision:0, Move:0, Move Cost:2,
-    Projectile Damage:50, Projectile Cost:10 (energy)
-  3:Snipe (Fast and high damage projectile, but only travels via teleporting)
-    Health:0, Energy:100, Regen:0/5, Armour:0, Vision:10, Move:3, Move Cost:0,
-    Projectile Damage:1000, Projectile Cost:20 (energy)
-  4:Rocket (Two projectiles appear behind to the sides of the Starfighter and accelerates)
-    Health:10, Energy:0, Regen:10/0, Armour:2, Vision:2, Move:0, Move Cost:3,
-    Projectile Damage:100, Projectile Cost:10 (health)
-  5:Splitter (A single mine projectile is placed in front of the Starfighter)
-    Health:0, Energy:100, Regen:0/10, Armour:0, Vision:0, Move:0, Move Cost:5,
-    Projectile Damage:150, Projectile Cost:70 (energy)
-  Weapon Selected:
-	]"
+	weapon_setup_message : STRING
+		do
+			Create Result.make_empty
+			Result.append ("  " + "1:Standard (A single projectile is fired in front)" + "%N")
+			Result.append ("    " + "Health:10, Energy:10, Regen:0/1, Armour:0, Vision:1, Move:1, Move Cost:1," + "%N")
+			Result.append ("    " + "Projectile Damage:70, Projectile Cost:5 (energy)" + "%N")
+			Result.append ("  " + "2:Spread (Three projectiles are fired in front, two going diagonal)" + "%N")
+			Result.append ("    " + "Health:0, Energy:60, Regen:0/2, Armour:1, Vision:0, Move:0, Move Cost:2," + "%N")
+			Result.append ("    " + "Projectile Damage:50, Projectile Cost:10 (energy)" + "%N")
+			Result.append ("  " + "3:Snipe (Fast and high damage projectile, but only travels via teleporting)" + "%N")
+			Result.append ("    " + "Health:0, Energy:100, Regen:0/5, Armour:0, Vision:10, Move:3, Move Cost:0," + "%N")
+			Result.append ("    " + "Projectile Damage:1000, Projectile Cost:20 (energy)" + "%N")
+			Result.append ("  " + "4:Rocket (Two projectiles appear behind to the sides of the Starfighter and accelerates)" + "%N")
+			Result.append ("    " + "Health:10, Energy:0, Regen:10/0, Armour:2, Vision:2, Move:0, Move Cost:3," + "%N")
+			Result.append ("    " + "Projectile Damage:100, Projectile Cost:10 (health)" + "%N")
+			Result.append ("  " + "5:Splitter (A single mine projectile is placed in front of the Starfighter)" + "%N")
+			Result.append ("    " + "Health:0, Energy:100, Regen:0/10, Armour:0, Vision:0, Move:0, Move Cost:5," + "%N")
+			Result.append ("    " + "Projectile Damage:150, Projectile Cost:70 (energy)" + "%N")
+			Result.append ("  " + "Weapon Selected:")
+		end
 
-	armour_setup_message : STRING =
-	"[
-  1:None
-    Health:50, Energy:0, Regen:1/0, Armour:0, Vision:0, Move:1, Move Cost:0
-  2:Light
-    Health:75, Energy:0, Regen:2/0, Armour:3, Vision:0, Move:0, Move Cost:1
-  3:Medium
-    Health:100, Energy:0, Regen:3/0, Armour:5, Vision:0, Move:0, Move Cost:3
-  4:Heavy
-    Health:200, Energy:0, Regen:4/0, Armour:10, Vision:0, Move:-1, Move Cost:5
-  Armour Selected:
-	]"
+	armour_setup_message : STRING
+		do
+			create Result.make_empty
+			Result.append ("  " + "1:None" + "%N")
+			Result.append ("    " + "Health:50, Energy:0, Regen:1/0, Armour:0, Vision:0, Move:1, Move Cost:0" + "%N")
+			Result.append ("  " + "2:Light" + "%N")
+			Result.append ("    " + "Health:75, Energy:0, Regen:2/0, Armour:3, Vision:0, Move:0, Move Cost:1" + "%N")
+			Result.append ("  " + "3:Medium" + "%N")
+			Result.append ("    " + "Health:100, Energy:0, Regen:3/0, Armour:5, Vision:0, Move:0, Move Cost:3" + "%N")
+			Result.append ("  " + "4:Heavy" + "%N")
+			Result.append ("    " + "Health:200, Energy:0, Regen:4/0, Armour:10, Vision:0, Move:-1, Move Cost:5" + "%N")
+			Result.append ("  " + "Armour Selected:")
+		end
 
-	engine_setup_message : STRING =
-	"[
-  1:Standard
-    Health:10, Energy:60, Regen:0/2, Armour:1, Vision:12, Move:8, Move Cost:2
-  2:Light
-    Health:0, Energy:30, Regen:0/1, Armour:0, Vision:15, Move:10, Move Cost:1
-  3:Armoured
-    Health:50, Energy:100, Regen:0/3, Armour:3, Vision:6, Move:4, Move Cost:5
-  Engine Selected:
-	]"
+	engine_setup_message : STRING
+		do
+			create Result.make_empty
+			Result.append ("  " + "1:Standard" + "%N")
+			Result.append ("    " + "Health:10, Energy:60, Regen:0/2, Armour:1, Vision:12, Move:8, Move Cost:2" + "%N")
+			Result.append ("  " + "2:Light" + "%N")
+			Result.append ("    " + "Health:0, Energy:30, Regen:0/1, Armour:0, Vision:15, Move:10, Move Cost:1" + "%N")
+			Result.append ("  " + "3:Armoured" + "%N")
+			Result.append ("    " + "Health:50, Energy:100, Regen:0/3, Armour:3, Vision:6, Move:4, Move Cost:5" + "%N")
+			Result.append ("  " + "Engine Selected:")
+		end
 
-	power_setup_message : STRING =
-	"[
-  1:Recall (50 energy): Teleport back to spawn.
-  2:Repair (50 energy): Gain 50 health, can go over max health. Health regen will not be in effect if over cap.
-  3:Overcharge (up to 50 health): Gain 2*health spent energy, can go over max energy. Energy regen will not be in effect if over cap.
-  4:Deploy Drones (100 energy): Clear all projectiles.
-  5:Orbital Strike (100 energy): Deal 100 damage to all enemies, affected by armour.
-  Power Selected:
-	]"
+	power_setup_message : STRING
+		do
+			create Result.make_empty
+			Result.append ("  " + "1:Recall (50 energy): Teleport back to spawn." + "%N")
+			Result.append ("  " + "2:Repair (50 energy): Gain 50 health, can go over max health. Health regen will not be in effect if over cap." + "%N")
+			Result.append ("  " + "3:Overcharge (up to 50 health): Gain 2*health spent energy, can go over max energy. Energy regen will not be in effect if over cap." + "%N")
+			Result.append ("  " + "4:Deploy Drones (100 energy): Clear all projectiles." + "%N")
+			Result.append ("  " + "5:Orbital Strike (100 energy): Deal 100 damage to all enemies, affected by armour." + "%N")
+			Result.append ("  " + "Power Selected:")
+		end
 
-	setup_summary_weapon_message : STRING = "Weapon Selected:"
-	setup_summary_armour_message : STRING = "Armour Selected:"
-	setup_summary_engine_message : STRING = "Engine Selected:"
-	setup_summary_power_message : STRING = "Power Selected:"
+	setup_summary_weapon_message : STRING = "  Weapon Selected:"
+	setup_summary_armour_message : STRING = "  Armour Selected:"
+	setup_summary_engine_message : STRING = "  Engine Selected:"
+	setup_summary_power_message : STRING = "  Power Selected:"
 
-	not_playing_message : STRING = "Welcome to Space Defender Version 2."
+	not_playing_message : STRING = "  Welcome to Space Defender Version 2."
 
 feature -- Setters for messages
 
@@ -294,9 +298,9 @@ feature -- Getters
 		do
 			if in_game then
 				-- TODO
-				Result := state_message + ", " + mode_message + ", " + status_message
+				Result := "  " + state_message + ", " + mode_message + ", " + status_message
 			else
-				Result := state_message + ", " + mode_message + ", " + status_message
+				Result := "  " + state_message + ", " + mode_message + ", " + status_message
 			end
 		end
 
