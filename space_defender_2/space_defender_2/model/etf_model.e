@@ -20,7 +20,7 @@ feature {NONE} -- Initialization
 	make
 			-- Initialization for `Current'.
 		do
-			create grid.make
+			create grid.make (0, 0, 0, 0, 0, 0, 0)
 			create game_info.make
 			create starfighter.make
 

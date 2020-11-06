@@ -36,6 +36,7 @@ feature -- command
 				model.app.execute_transition
 
 				-- Set Inputs into grid information to hold
+				model.grid.make (row, column, g_threshold, f_threshold, c_threshold, i_threshold, p_threshold)
 			end
 
 			etf_cmd_container.on_change.notify ([Current])
