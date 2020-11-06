@@ -24,7 +24,7 @@ feature
 			is_alive := true
 			is_error := false
 			in_game := false
-			is_valid_operation := true
+			is_valid_operation := false
 
 			valid_operation_count := 0
 			error_count := 0
