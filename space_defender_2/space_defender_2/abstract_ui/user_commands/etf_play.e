@@ -27,11 +27,12 @@ feature -- command
 				model.game_info.set_error_message (model.game_info.play_error_2)
 			elseif not ((g_threshold <= f_threshold) and (f_threshold <= c_threshold) and (c_threshold <= i_threshold) and (i_threshold <= p_threshold)) then
 				model.game_info.set_is_error (true)
+				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.play_error_3)
 			else
 				-- Play Go to Weapon Setup State
 				model.game_info.set_is_error (false)
-				model.game_info.set_is_valid_operation (true)
+				model.game_info.set_is_valid_operation (false)
 				model.app.current_state.set_choice (1)
 				model.app.execute_transition
 

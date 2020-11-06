@@ -28,7 +28,7 @@ feature -- command
 			else
 				model.app.current_state.setup_select (value)
 				model.game_info.set_is_error (false)
-				model.game_info.set_is_valid_operation (true)
+				model.game_info.set_is_valid_operation (false)
 			end
 
 			etf_cmd_container.on_change.notify ([Current])

@@ -62,6 +62,11 @@ feature
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_error)
 
+      	elseif game_info.is_valid_operation then
+      		game_info.set_status_message (game_info.ok_status)
+      		Result.append (game_info.display_state)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_operation)
       	else
       		game_info.set_status_message (game_info.ok_status)
       		Result.append (game_info.display_state)

@@ -213,6 +213,9 @@ feature -- Set Messages
 
 	not_playing_message : STRING = "  Welcome to Space Defender Version 2."
 
+	abort_setup_operation_message : STRING = "  Exited from setup mode."
+	abort_game_operation_message : STRING = "  Exited from game."
+
 feature -- Setters for messages
 
 	set_error_message (s : STRING)
@@ -238,6 +241,11 @@ feature -- Setters for messages
 	set_state_specific_message (s : STRING)
 		do
 			state_specific_message := s
+		end
+
+	set_operation_message (s : STRING)
+		do
+			operation_message := s
 		end
 
 --	set_game_over_message (s : STRING)
