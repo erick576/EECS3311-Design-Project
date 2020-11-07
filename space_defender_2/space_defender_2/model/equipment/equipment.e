@@ -18,7 +18,6 @@ feature -- Attributes
 	move : INTEGER
 	move_cost : INTEGER
 	projectile_damage : INTEGER
-	projectile_health_cost : INTEGER
-	projectile_energy_cost : INTEGER
+	projectile_cost : INTEGER
 
 end

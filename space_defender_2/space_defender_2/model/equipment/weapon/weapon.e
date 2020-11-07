@@ -20,5 +20,7 @@ feature -- Command
 feature -- Attributes
 
 	type_name : STRING
+	is_projectile_cost_health : BOOLEAN
+	projectile_cost_type_name : STRING
 
 end

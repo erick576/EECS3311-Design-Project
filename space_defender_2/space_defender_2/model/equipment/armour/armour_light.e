@@ -27,8 +27,7 @@ feature -- Initialization
 
 			-- Irrelevant to Armour
 			projectile_damage := 0
-			projectile_health_cost := 0
-			projectile_energy_cost := 0
+			projectile_cost := 0
 
 			type_name := "Light"
 		end

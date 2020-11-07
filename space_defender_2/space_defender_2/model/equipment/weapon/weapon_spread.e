@@ -26,10 +26,11 @@ feature -- Initialization
 			move := 0
 			move_cost := 2
 			projectile_damage := 50
-			projectile_health_cost := 0
-			projectile_energy_cost := 10
+			projectile_cost := 10
+			is_projectile_cost_health := false
 
 			type_name := "Spread"
+			projectile_cost_type_name := "energy"
 		end
 
 feature -- Deferred Commands

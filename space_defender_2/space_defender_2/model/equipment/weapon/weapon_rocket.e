@@ -26,10 +26,12 @@ feature -- Initialization
 			move := 0
 			move_cost := 3
 			projectile_damage := 100
-			projectile_health_cost := 10
-			projectile_energy_cost := 0
+			projectile_cost := 10
+			is_projectile_cost_health := true
 
 			type_name := "Rocket"
+			projectile_cost_type_name := "health"
+
 		end
 
 feature -- Deferred Commands

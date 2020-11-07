@@ -26,10 +26,11 @@ feature -- Initialization
 			move := 0
 			move_cost := 5
 			projectile_damage := 150
-			projectile_health_cost := 0
-			projectile_energy_cost := 70
+			projectile_cost := 70
+			is_projectile_cost_health := false
 
 			type_name := "Splitter"
+			projectile_cost_type_name := "energy"
 		end
 
 feature -- Deferred Commands

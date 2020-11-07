@@ -30,8 +30,7 @@ feature -- Initialization
 			move := 0
 			move_cost := 0
 			projectile_damage := 0
-			projectile_health_cost := 0
-			projectile_energy_cost := 0
+			projectile_cost := 0
 
 			score := 0
 
@@ -60,8 +59,7 @@ feature -- Attributes
 	move : INTEGER
 	move_cost : INTEGER
 	projectile_damage : INTEGER
-	projectile_health_cost : INTEGER
-	projectile_energy_cost : INTEGER
+	projectile_cost : INTEGER
 
 	score : INTEGER
 
@@ -125,8 +123,7 @@ feature -- Exit Game
 			move := weapon_selected.move + armour_selected.move + engine_selected.move
 			move_cost := weapon_selected.move_cost + armour_selected.move_cost + engine_selected.move_cost
 			projectile_damage :=  weapon_selected.projectile_damage + armour_selected.projectile_damage + engine_selected.projectile_damage
-			projectile_health_cost :=  weapon_selected.projectile_health_cost + armour_selected.projectile_health_cost + engine_selected.projectile_health_cost
-			projectile_energy_cost :=  weapon_selected.projectile_energy_cost + armour_selected.projectile_energy_cost + engine_selected.projectile_energy_cost
+			projectile_cost :=  weapon_selected.projectile_cost + armour_selected.projectile_cost + engine_selected.projectile_cost
 
 			score := 0
 		end
