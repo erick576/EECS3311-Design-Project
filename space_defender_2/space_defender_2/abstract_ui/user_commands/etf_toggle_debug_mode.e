@@ -14,7 +14,9 @@ feature -- command
 	toggle_debug_mode
     	do
 			-- perform some update on the model state
---			model.default_update
+
+			-- Switch To Debug Mode
+
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

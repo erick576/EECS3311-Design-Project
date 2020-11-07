@@ -17,7 +17,8 @@ feature -- Initialization
 
 	make
 		do
-			energy_cost := 100
+			cost := 100
+			is_health_cost := false
 			type_name := "Orbital Strike (100 energy): Deal 100 damage to all enemies, affected by armour."
 		end
 

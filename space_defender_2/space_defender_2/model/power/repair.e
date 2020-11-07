@@ -17,7 +17,8 @@ feature -- Initialization
 
 	make
 		do
-			energy_cost := 50
+			cost := 50
+			is_health_cost := false
 			type_name := "Repair (50 energy): Gain 50 health, can go over max health. Health regen will not be in effect if over cap."
 		end
 

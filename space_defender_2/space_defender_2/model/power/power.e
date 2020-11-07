@@ -9,7 +9,8 @@ deferred class
 
 feature -- Attributes
 
-	energy_cost : INTEGER
+	cost : INTEGER
+	is_health_cost : BOOLEAN
 	type_name : STRING
 
 	grid: GRID

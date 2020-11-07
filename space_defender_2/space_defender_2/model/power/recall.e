@@ -17,7 +17,8 @@ feature -- Initialization
 
 	make
 		do
-			energy_cost := 50
+			cost := 50
+			is_health_cost := false
 			type_name := "Recall (50 energy): Teleport back to spawn."
 		end
 

@@ -72,7 +72,8 @@ feature -- Commands
 
 	regenerate
 		do
-
+			health := health + health_regen
+			energy := energy + energy_regen
 		end
 
 feature -- Setters for Setting State

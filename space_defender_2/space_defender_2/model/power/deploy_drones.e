@@ -17,7 +17,8 @@ feature -- Initialization
 
 	make
 		do
-			energy_cost := 100
+			cost := 100
+			is_health_cost := false
 			type_name := "Deploy Drones (100 energy): Clear all projectiles."
 		end
 
