@@ -100,9 +100,6 @@ feature {NONE} -- Attribute Messages
 	state_specific_message: STRING
 	operation_message : STRING
 --	game_over_message : STRING
---	objects_display : STRING
---	grid_display : STRING
-
 
 
 feature -- Set Messages
@@ -252,16 +249,6 @@ feature -- Setters for messages
 --		do
 --			game_over_message := s
 --		end
---
---	set_grid_display
---		do
---			--TODO
---		end
---		
---	set_objects_display
---		do
---			--TODO
---		end
 
 feature -- Setters for boolean queries
 
@@ -299,14 +286,13 @@ feature -- Setters for boolean queries
 			error_count := i
 		end
 
-
 feature -- Getters
 
 	display_state : STRING
 		do
 			if in_game then
 				-- TODO
-				Result := "  " + state_message + ", " + mode_message + ", " + status_message
+				Result := "  " + state_message + "(" + valid_operation_count.out + "." + error_count.out + "), " + mode_message + ", " + status_message
 			else
 				Result := "  " + state_message + ", " + mode_message + ", " + status_message
 			end
@@ -327,14 +313,111 @@ feature -- Getters
 			Result := error_message
 		end
 
---	display_grid : STRING
---		do
---			
---		end
---	
---	display_objects: STRING
---		do
---			
---		end
+	display_grid : STRING
+		local
+			i, j, count : INTEGER
+		do
+			-- Place Starfighter on Grid
+			grid.grid_elements.put ('S', ((starfighter.row_pos - 1) * grid.col_size) + starfighter.col_pos)
 
+			-- Set Projectiles on Grid
+			-- TODO
+
+			-- Set Enemies on Grid
+			-- TODO
+
+			-- Set Vision Limits
+			count := 1
+
+			from
+				i := 1
+			until
+				i > grid.row_size
+			loop
+				from
+					j := 1
+				until
+					j > grid.col_size
+				loop
+					if not grid.can_see (starfighter, i, j) then
+						grid.grid_elements.put ('?', count)
+					end
+					j := j  + 1
+					count := count + 1
+				end
+				i := i + 1
+			end
+
+
+			-- Create Board Output
+			create Result.make_empty
+			Result.append("      ")
+			from
+				i := 1
+			until
+				i > grid.col_size
+			loop
+				if i = grid.col_size then
+					Result.append (i.out)
+				else
+					Result.append (i.out)
+
+					if i >= 9 then
+						Result.append (" ")
+					else
+						Result.append ("  ")
+					end
+				end
+
+				i := i + 1
+			end
+
+			Result.append ("%N")
+
+			count := 1
+
+			from
+				i := 1
+			until
+				i > grid.row_size
+			loop
+				Result.append ("    " + grid.grid_char_rows.at (i).out + " ")
+
+				from
+					j := 1
+				until
+					j > grid.col_size
+				loop
+					if j = grid.col_size then
+						Result.append (grid.grid_elements.at (count).out)
+					else
+						Result.append (grid.grid_elements.at (count).out + "  ")
+					end
+					j := j  + 1
+					count := count + 1
+				end
+
+				if i < grid.row_size then
+					Result.append ("%N")
+				end
+
+				i := i + 1
+			end
+		end
+
+	display_objects: STRING
+		do
+			create Result.make_empty
+			Result.append ("  Starfighter:")
+			Result.append ("%N")
+			Result.append ("    [0, S]->health:" + starfighter.curr_health.out + "/" + starfighter.health.out)
+			Result.append (", energy:" + starfighter.curr_energy.out + "/" + starfighter.energy.out)
+			Result.append (", Regen:" + starfighter.health_regen.out + "/" + starfighter.energy_regen.out + ", ")
+			Result.append ("Armour:" + starfighter.armour.out + ", " + starfighter.vision.out + ", Move:" + starfighter.move.out)
+			Result.append (", Move Cost:" + starfighter.move_cost.out + ", location:[" + starfighter.row_pos.out + "," + starfighter.col_pos.out + "]")
+			Result.append ("%N")
+			Result.append ("  Power:" + starfighter.power_selected.type_name)
+			Result.append ("%N")
+			Result.append ("  score:" + starfighter.score.out)
+		end
 end

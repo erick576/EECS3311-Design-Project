@@ -14,9 +14,9 @@ create
 	make
 
 feature -- Initialization
-	make
+	make (i : INTEGER)
 		do
---			id: INTEGER
+			id := i
 
 			health := 100
 			health_regen := 1
@@ -67,7 +67,7 @@ feature -- Commands
 
 	move (row : INTEGER ; col : INTEGER)
 		do
-			
+
 		end
 
 end

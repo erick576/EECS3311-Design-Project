@@ -9,7 +9,7 @@ deferred class
 
 feature -- Attributes
 
---	id : INTEGER
+	id : INTEGER
 
 	row_pos : INTEGER
 	col_pos : INTEGER

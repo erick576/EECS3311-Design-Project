@@ -72,8 +72,11 @@ feature
       	else
       		game_info.set_status_message (game_info.ok_status)
       		Result.append (game_info.display_state)
-	      	Result.append ("%N")
 	      	Result.append (game_info.display_state_specific)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_objects)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_grid)
       	end
 
       end

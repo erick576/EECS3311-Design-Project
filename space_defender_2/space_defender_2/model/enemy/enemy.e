@@ -9,7 +9,7 @@ deferred class
 
 feature -- Attributes
 
---	id: INTEGER
+	id: INTEGER
 
 	health : INTEGER
 	health_regen : INTEGER

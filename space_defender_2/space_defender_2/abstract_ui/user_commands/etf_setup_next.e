@@ -40,6 +40,20 @@ feature -- command
 
 				model.game_info.set_is_error (false)
 				model.game_info.set_is_valid_operation (false)
+
+				if model.app.curr_index = 7 then
+					-- Initialize Up starfighter stats
+					model.starfighter.reset
+
+					-- Reset Counts
+					model.game_info.set_valid_operation_count (0)
+					model.game_info.set_error_count (0)
+
+
+					-- Now in game
+					model.game_info.set_in_game (true)
+					model.game_info.set_is_alive (true)
+				end
 			end
 
 			etf_cmd_container.on_change.notify ([Current])

@@ -30,7 +30,7 @@ feature -- Initialization
 			create enemies.make (0)
 
 			grid_char_rows := <<'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'>>
-			create grid_elements.make_empty
+			create grid_elements.make_filled ('_', 0, row_size * col_size)
 		end
 
 feature -- Attributes
@@ -62,26 +62,33 @@ feature -- Attributes
 			Result := ma.m.game_info
 		end
 
-	starfighter: STARFIGHTER
+feature -- Helper Methods
+
+	can_see (starfighter : STARFIGHTER ; row : INTEGER ; column : INTEGER) : BOOLEAN
+		-- Is this spot in the starfighters vision ?
 		local
-			ma: ETF_MODEL_ACCESS
+			column_diff, row_diff : INTEGER
 		do
-			Result := ma.m.starfighter
+			if (starfighter.col_pos - column) >= 0 then
+				column_diff := starfighter.col_pos - column
+			else
+				column_diff := column - starfighter.col_pos
+			end
+
+			if (starfighter.row_pos - row) >= 0 then
+				row_diff := starfighter.row_pos - row
+			else
+				row_diff := row - starfighter.row_pos
+			end
+
+			if (starfighter.vision - (row_diff + column_diff)) < 0 then
+				Result := false
+			else
+				Result := true
+			end
 		end
 
 feature -- Setters
-
-feature -- Output
-
-	display_objects : STRING
-		do
-			create Result.make_empty
-		end
-
-	display_grid : STRING
-		do
-			create Result.make_empty
-		end
 
 feature -- Commands
 

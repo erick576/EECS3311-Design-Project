@@ -14,9 +14,9 @@ create
 	make
 
 feature -- Initialization
-	make
+	make (i : INTEGER)
 		do
---			id: INTEGER
+			id := i
 
 			health := 150
 			health_regen := 5

@@ -15,9 +15,9 @@ create
 
 feature -- Initialization
 
-	make (row : INTEGER ; col : INTEGER)
+	make (row : INTEGER ; col : INTEGER ; i : INTEGER)
 		do
-			--	id : INTEGER
+				id := i
 
 		    --  row_pos : INTEGER
 			--  col_pos : INTEGER

@@ -39,6 +39,10 @@ feature -- command
 
 				-- Reset the starfighter
 				model.starfighter.reset
+
+				-- Not in game anymore
+				model.game_info.set_in_game (false)
+				model.game_info.set_is_alive (true)
 			end
 
 			etf_cmd_container.on_change.notify ([Current])
