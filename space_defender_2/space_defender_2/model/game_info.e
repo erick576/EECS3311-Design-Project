@@ -410,14 +410,14 @@ feature -- Getters
 			create Result.make_empty
 			Result.append ("  Starfighter:")
 			Result.append ("%N")
-			Result.append ("    [0, S]->health:" + starfighter.curr_health.out + "/" + starfighter.health.out)
+			Result.append ("    [0,S]->health:" + starfighter.curr_health.out + "/" + starfighter.health.out)
 			Result.append (", energy:" + starfighter.curr_energy.out + "/" + starfighter.energy.out)
 			Result.append (", Regen:" + starfighter.health_regen.out + "/" + starfighter.energy_regen.out + ", ")
 			Result.append ("Armour:" + starfighter.armour.out + ", " + starfighter.vision.out + ", Move:" + starfighter.move.out)
 			Result.append (", Move Cost:" + starfighter.move_cost.out + ", location:[" + starfighter.row_pos.out + "," + starfighter.col_pos.out + "]")
 			Result.append ("%N")
-			Result.append ("  Power:" + starfighter.power_selected.type_name)
+			Result.append ("      Power:" + starfighter.power_selected.type_name)
 			Result.append ("%N")
-			Result.append ("  score:" + starfighter.score.out)
+			Result.append ("      score:" + starfighter.score.out)
 		end
 end
