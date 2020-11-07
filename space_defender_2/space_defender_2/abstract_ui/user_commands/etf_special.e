@@ -19,7 +19,7 @@ feature -- command
 				model.game_info.set_is_error (true)
 				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.special_error_1)
---			elseif  then  -- TODO IF ENOUGH RESOURCES
+--			elseif  then  -- TODO IF ENOUGH RESOURCES (Curr HEALTH OR Curr ENERGY)
 
 			else
 				-- Reset Error Count and Increment Valid Operation Count

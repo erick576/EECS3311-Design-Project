@@ -54,7 +54,6 @@ feature
       do
 		create Result.make_empty
       	game_info.set_state_message (game_info.state_in_game)
-      	-- TODO
       	game_info.set_state_specific_message ("")
 
       	if game_info.is_error then
@@ -67,7 +66,11 @@ feature
       		game_info.set_status_message (game_info.ok_status)
       		Result.append (game_info.display_state)
 	      	Result.append ("%N")
-	      	Result.append (game_info.display_operation)
+--	      	Result.append (game_info.display_operation)
+--	      	Result.append ("%N")
+	      	Result.append (game_info.display_objects)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_grid)
 
       	else
       		game_info.set_status_message (game_info.ok_status)

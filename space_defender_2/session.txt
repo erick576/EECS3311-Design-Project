@@ -1,1 +1,11 @@
-pass
+play(5, 10, 1, 1, 1, 1,1)
+setup_select(5)
+setup_next(1)
+setup_select(4)
+setup_next(1)
+setup_next(3)
+move(A, 6)
+move(A, 10)
+abort
+play(10, 30, 1, 1, 1, 1, 1)
+setup_next(5)

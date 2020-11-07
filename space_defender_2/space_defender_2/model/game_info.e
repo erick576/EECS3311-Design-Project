@@ -317,6 +317,9 @@ feature -- Getters
 		local
 			i, j, count : INTEGER
 		do
+			-- Clear grid for new turn
+			grid.grid_elements.make_filled ('_', 0, grid.row_size * grid.col_size)
+
 			-- Place Starfighter on Grid
 			grid.grid_elements.put ('S', ((starfighter.row_pos - 1) * grid.col_size) + starfighter.col_pos)
 
