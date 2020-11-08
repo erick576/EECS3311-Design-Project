@@ -85,6 +85,14 @@ feature -- command
 				-- Moving but not taken into consideration enemies and projectiles yet
 				model.starfighter.move_starfighter (row, column)
 
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+
+					-- Transition into Not Started State
+					model.app.current_state.set_choice (4)
+					model.app.execute_transition
+				end
+
 			end
 
 			etf_cmd_container.on_change.notify ([Current])

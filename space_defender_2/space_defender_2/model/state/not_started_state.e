@@ -62,6 +62,23 @@ feature
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_error)
 
+	   elseif not game_info.is_alive then
+      		game_info.set_status_message (game_info.ok_status)
+      		game_info.set_game_over_message (game_info.starfighter_is_dead)
+
+      		game_info.set_is_alive (true)
+      		game_info.set_in_game (false)
+
+      		Result.append (game_info.display_state)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_objects)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_grid)
+	      	Result.append ("%N")
+	      	Result.append (game_info.display_game_over)
+
+			starfighter.reset
+
       	elseif game_info.is_valid_operation then
       		game_info.set_status_message (game_info.ok_status)
       		Result.append (game_info.display_state)

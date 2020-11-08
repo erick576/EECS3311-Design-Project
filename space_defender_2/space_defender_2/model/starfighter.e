@@ -94,37 +94,112 @@ feature -- Commands
 
 	move_starfighter (row: INTEGER_32 ; column: INTEGER_32)
 		local
-			i : INTEGER
+			i , j , damage_with_armour: INTEGER
+			stop_starfighter : BOOLEAN
 		do
+			stop_starfighter := false
+
 			if row = row_pos and column /= col_pos then
 
 				-- Move Right
 				if column > col_pos then
 
-					from
-						i := col_pos
-					until
-						i >= column
-					loop
-						set_col_pos (col_pos + 1)
-						curr_energy := curr_energy - move_cost
-						i := i + 1
+					if stop_starfighter = false then
+						from
+							i := col_pos
+						until
+							i >= column
+						loop
+							set_col_pos (col_pos + 1)
+							curr_energy := curr_energy - move_cost
+							i := i + 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := column + 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
 				-- Move Left
 				-- column < col_pos
 				else
+					if stop_starfighter = false then
+						from
+							i := col_pos
+						until
+							i <= column
+						loop
+							set_col_pos (col_pos - 1)
+							curr_energy := curr_energy - move_cost
+							i := i - 1
 
-					from
-						i := col_pos
-					until
-						i <= column
-					loop
-						set_col_pos (col_pos - 1)
-						curr_energy := curr_energy - move_cost
-						i := i - 1
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := column - 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
-
 				end
 
 			elseif row /= row_pos and column = col_pos then
@@ -132,30 +207,103 @@ feature -- Commands
 				-- Move Up
 				if row > row_pos then
 
-					from
-						i := row_pos
-					until
-						i >= row
-					loop
-						set_row_pos (row_pos + 1)
-						curr_energy := curr_energy - move_cost
-						i := i + 1
+					if stop_starfighter = false then
+						from
+							i := row_pos
+						until
+							i >= row
+						loop
+							set_row_pos (row_pos + 1)
+							curr_energy := curr_energy - move_cost
+							i := i + 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := row + 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
 				-- Move Down
 				-- row < row_pos
 				else
 
-					from
-						i := row_pos
-					until
-						i <= row
-					loop
-						set_row_pos (row_pos - 1)
-						curr_energy := curr_energy - move_cost
-						i := i - 1
-					end
+					if stop_starfighter = false then
+						from
+							i := row_pos
+						until
+							i <= row
+						loop
+							set_row_pos (row_pos - 1)
+							curr_energy := curr_energy - move_cost
+							i := i - 1
 
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := row - 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
+					end
 				end
 
 			else
@@ -163,73 +311,294 @@ feature -- Commands
 				if row > row_pos and column > col_pos then
 
 					-- Move Up then Right
+					if stop_starfighter = false then
+						from
+							i := row_pos
+						until
+							i >= row
+						loop
+							set_row_pos (row_pos + 1)
+							curr_energy := curr_energy - move_cost
+							i := i + 1
 
-					from
-						i := row_pos
-					until
-						i >= row
-					loop
-						set_row_pos (row_pos + 1)
-						curr_energy := curr_energy - move_cost
-						i := i + 1
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := row + 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
-					from
-						i := col_pos
-					until
-						i >= column
-					loop
-						set_col_pos (col_pos + 1)
-						curr_energy := curr_energy - move_cost
-						i := i + 1
+					if stop_starfighter = false then
+						from
+							i := col_pos
+						until
+							i >= column
+						loop
+							set_col_pos (col_pos + 1)
+							curr_energy := curr_energy - move_cost
+							i := i + 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := column + 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
 				elseif row < row_pos and column > col_pos then
 
 					-- Move Down then Right
 
-					from
-						i := row_pos
-					until
-						i <= row
-					loop
-						set_row_pos (row_pos - 1)
-						curr_energy := curr_energy - move_cost
-						i := i - 1
+					if stop_starfighter = false then
+						from
+							i := row_pos
+						until
+							i <= row
+						loop
+							set_row_pos (row_pos - 1)
+							curr_energy := curr_energy - move_cost
+							i := i - 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := row - 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
-					from
-						i := col_pos
-					until
-						i >= column
-					loop
-						set_col_pos (col_pos + 1)
-						curr_energy := curr_energy - move_cost
-						i := i + 1
+					if stop_starfighter = false then
+						from
+							i := col_pos
+						until
+							i >= column
+						loop
+							set_col_pos (col_pos + 1)
+							curr_energy := curr_energy - move_cost
+							i := i + 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := column + 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
 				elseif row > row_pos and column < col_pos then
 
 					-- Move Up then Left
 
-					from
-						i := row_pos
-					until
-						i >= row
-					loop
-						set_row_pos (row_pos + 1)
-						curr_energy := curr_energy - move_cost
-						i := i + 1
+					if stop_starfighter = false then
+						from
+							i := row_pos
+						until
+							i >= row
+						loop
+							set_row_pos (row_pos + 1)
+							curr_energy := curr_energy - move_cost
+							i := i + 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := row + 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
-					from
-						i := col_pos
-					until
-						i <= column
-					loop
-						set_col_pos (col_pos - 1)
-						curr_energy := curr_energy - move_cost
-						i := i - 1
+					if stop_starfighter = false then
+						from
+							i := col_pos
+						until
+							i <= column
+						loop
+							set_col_pos (col_pos - 1)
+							curr_energy := curr_energy - move_cost
+							i := i - 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := column - 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 
 				-- row < row_pos and column < col_pos
@@ -237,27 +606,107 @@ feature -- Commands
 
 					-- Move Down then Left
 
-					from
-						i := row_pos
-					until
-						i <= row
-					loop
-						set_row_pos (row_pos - 1)
-						curr_energy := curr_energy - move_cost
-						i := i - 1
+					if stop_starfighter = false then
+						from
+							i := row_pos
+						until
+							i <= row
+						loop
+							set_row_pos (row_pos - 1)
+							curr_energy := curr_energy - move_cost
+							i := i - 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := row - 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+
+						end
 					end
 
-					from
-						i := col_pos
-					until
-						i <= column
-					loop
-						set_col_pos (col_pos - 1)
-						curr_energy := curr_energy - move_cost
-						i := i - 1
+					if stop_starfighter = false then
+						from
+							i := col_pos
+						until
+							i <= column
+						loop
+							set_col_pos (col_pos - 1)
+							curr_energy := curr_energy - move_cost
+							i := i - 1
+
+							-- Check For Collisions with friendly Projectiles
+							from
+								j := 1
+							until
+								j > grid.friendly_projectiles.count
+							loop
+								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := projectile_damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									curr_health := curr_health - damage_with_armour
+
+									if curr_health < 0 then
+										curr_health := 0
+									end
+
+									grid.friendly_projectiles.at (j).set_col (99)
+									grid.friendly_projectiles.at (j).set_row (99)
+								end
+
+								if curr_health = 0 then
+									i := column - 1
+									j := grid.friendly_projectiles.count + 1
+									stop_starfighter := true
+								end
+
+								j := j + 1
+							end
+
+							-- Check For Collisions with enemy Projectiles
+
+							-- Check with Collisions with enemies
+						end
 					end
 				end
 			end
+		end
+
+	use_fire
+		do
+			curr_energy := curr_energy - projectile_cost
 		end
 
 feature -- Setters for Setting State

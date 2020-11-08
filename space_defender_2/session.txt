@@ -1,5 +1,7 @@
 play(5, 10, 1, 1, 1, 1, 1)
 setup_next(5)
 fire
-move(C,8)
-pass
+move(C, 7)
+move(C, 1)
+fire
+move(C,7)

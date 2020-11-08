@@ -59,6 +59,7 @@ feature -- command
 				-- Perform Fire
 				model.starfighter.regenerate
 				model.grid.turn_frist_part
+				model.starfighter.use_fire
 				model.grid.fire
 			end
 

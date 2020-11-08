@@ -19,6 +19,7 @@ feature
 			create status_message.make_from_string (ok_status)
 			create state_specific_message.make_from_string (not_playing_message)
 			create operation_message.make_empty
+			create game_over_message.make_empty
 
 			in_normal_mode := true
 			is_alive := true
@@ -99,7 +100,7 @@ feature {NONE} -- Attribute Messages
 	status_message : STRING
 	state_specific_message: STRING
 	operation_message : STRING
---	game_over_message : STRING
+	game_over_message : STRING
 
 
 feature -- Set Messages
@@ -213,6 +214,8 @@ feature -- Set Messages
 	abort_setup_operation_message : STRING = "  Exited from setup mode."
 	abort_game_operation_message : STRING = "  Exited from game."
 
+	starfighter_is_dead : STRING = "  The game is over. Better luck next time!"
+
 feature -- Setters for messages
 
 	set_error_message (s : STRING)
@@ -245,10 +248,10 @@ feature -- Setters for messages
 			operation_message := s
 		end
 
---	set_game_over_message (s : STRING)
---		do
---			game_over_message := s
---		end
+	set_game_over_message (s : STRING)
+		do
+			game_over_message := s
+		end
 
 feature -- Setters for boolean queries
 
@@ -313,6 +316,11 @@ feature -- Getters
 			Result := error_message
 		end
 
+	display_game_over : STRING
+		do
+			Result := game_over_message
+		end
+
 	display_grid : STRING
 		local
 			i, j, count : INTEGER
@@ -322,6 +330,11 @@ feature -- Getters
 
 			-- Place Starfighter on Grid
 			grid.grid_elements.put ('S', ((starfighter.row_pos - 1) * grid.col_size) + starfighter.col_pos)
+
+			-- If not alive then put a X instead
+			if not is_alive then
+				grid.grid_elements.put ('X', ((starfighter.row_pos - 1) * grid.col_size) + starfighter.col_pos)
+			end
 
 			-- Set Friendly Projectiles on Grid
 			from
