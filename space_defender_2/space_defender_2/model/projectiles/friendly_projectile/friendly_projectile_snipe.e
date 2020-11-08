@@ -31,6 +31,9 @@ feature -- Initialization
 feature -- Commands
 
 	do_turn
+		-- Turn Action for a Projectile
+		local
+			j , damage_with_armour: INTEGER
 		do
 			if grid.is_in_bounds (row_pos, col_pos) then
 
@@ -38,7 +41,48 @@ feature -- Commands
 
 					col_pos := col_pos + 8
 
-					-- Collision Check TODO
+					-- Check For Collisions with friendly Projectiles
+					from
+						j := 1
+					until
+						j > grid.friendly_projectiles.count
+					loop
+						if id /= grid.friendly_projectiles.at (j).id then
+							if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
+								damage := damage + grid.friendly_projectiles.at (j).damage
+								grid.friendly_projectiles.at (j).set_row (99)
+								grid.friendly_projectiles.at (j).set_col (99)
+
+								j := grid.friendly_projectiles.count + 1
+							end
+						end
+
+						j := j + 1
+					end
+
+
+					-- Check For Collisions with enemy Projectiles
+
+					-- Check with Collisions with enemies
+
+					-- Check with Collision with starfighter
+					if row_pos = starfighter.row_pos and col_pos = starfighter.col_pos then
+
+						damage_with_armour := damage - starfighter.armour
+						if damage_with_armour < 0 then
+							damage_with_armour := 0
+						end
+
+						starfighter.set_curr_health (starfighter.curr_health - damage_with_armour)
+
+						if starfighter.curr_health < 0 then
+							starfighter.set_curr_health (0)
+						end
+
+						row_pos := 99
+						col_pos := 99
+					end
+
 				end
 
 			end

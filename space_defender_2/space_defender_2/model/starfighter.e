@@ -741,6 +741,11 @@ feature -- Setters for Setting State
 			power_selected := power
 		end
 
+	set_curr_health (curr : INTEGER)
+		do
+			curr_health := curr
+		end
+
 feature -- Exit Game
 
 	reset

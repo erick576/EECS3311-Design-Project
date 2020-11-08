@@ -97,7 +97,7 @@ feature -- command
 				end
 
 				-- Check if Died
-				if model.starfighter.curr_health = 0 then
+				if model.starfighter.curr_health = 0 and model.game_info.is_alive = true then
 					model.game_info.set_is_alive (false)
 
 					-- Transition into Not Started State

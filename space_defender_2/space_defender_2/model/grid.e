@@ -151,16 +151,20 @@ feature -- Commands
 			until
 				index_curr < projectile_id_counter
 			loop
-				if friendly_projectiles.valid_index (index_friendly) and index_curr = friendly_projectiles.at (index_friendly).id then
+				if game_info.starfighter.curr_health /= 0 then
+					if friendly_projectiles.valid_index (index_friendly) and index_curr = friendly_projectiles.at (index_friendly).id then
 
-					friendly_projectiles.at (index_friendly).do_turn
-					index_friendly := index_friendly + 1
+						friendly_projectiles.at (index_friendly).do_turn
+						index_friendly := index_friendly + 1
 
-				elseif enemy_projectiles.valid_index (index_enemy) and index_curr = enemy_projectiles.at (index_enemy).id then
+					elseif enemy_projectiles.valid_index (index_enemy) and index_curr = enemy_projectiles.at (index_enemy).id then
 
-					enemy_projectiles.at (index_enemy).do_turn
-					index_enemy := index_enemy + 1
+						enemy_projectiles.at (index_enemy).do_turn
+						index_enemy := index_enemy + 1
 
+					end
+				else
+					index_curr := projectile_id_counter - 1
 				end
 
 			index_curr := index_curr - 1
