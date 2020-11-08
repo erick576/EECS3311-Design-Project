@@ -21,11 +21,12 @@ feature -- Initialization
 			interceptor_threshold := i_threshold
 			pylon_threshold := p_threshold
 
-			projectile_counter := 0
-			ememy_counter := 0
+			projectile_id_counter := 0
+			enemy_id_counter := 0
 
 			create friendly_projectiles.make (0)
 			create enemy_projectiles.make (0)
+			create all_projectiles.make (0)
 
 			create enemies.make (0)
 
@@ -43,11 +44,12 @@ feature -- Attributes
 	interceptor_threshold : INTEGER_32
 	pylon_threshold : INTEGER_32
 
-	projectile_counter : INTEGER
-	ememy_counter : INTEGER
+	projectile_id_counter : INTEGER
+	enemy_id_counter : INTEGER
 
 	friendly_projectiles : ARRAYED_LIST[FRIENDLY_PROJECTILE]
 	enemy_projectiles : ARRAYED_LIST[ENEMY_PROJECTILE]
+	all_projectiles : ARRAYED_LIST[PROJECTILE]
 
 	enemies : ARRAYED_LIST[ENEMY]
 
@@ -88,28 +90,82 @@ feature -- Helper Methods
 			end
 		end
 
+	is_in_bounds (row : INTEGER ; column : INTEGER) : BOOLEAN
+		do
+			Result := not (row > row_size or row < 1 or column > col_size or column < 1)
+		end
+
 feature -- Setters
+
+	add_friendly_projectile_standard (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
+		do
+			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_STANDARD}.make (row, col, i, t))
+		end
+
+	add_friendly_projectile_spread (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
+		do
+			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_SPREAD}.make (row, col, i, t))
+		end
+
+	add_friendly_projectile_snipe (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
+		do
+			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_SNIPE}.make (row, col, i, t))
+		end
+
+	add_friendly_projectile_rocket (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
+		do
+			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_ROCKET}.make (row, col, i, t))
+		end
+
+	add_friendly_projectile_splitter (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
+		do
+			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_SPLITTER}.make (row, col, i, t))
+		end
+
+	increment_projectile_id_counter
+		do
+			projectile_id_counter := projectile_id_counter - 1
+		end
+
+	increment_enemy_id_counter
+		do
+			enemy_id_counter := enemy_id_counter + 1
+		end
 
 feature -- Commands
 
-	move
-		do
-
-		end
-
 	fire
 		do
-
-		end
-
-	pass
-		do
-
+			game_info.starfighter.weapon_selected.fire
 		end
 
 	turn_frist_part
+		local
+			index_friendly , index_enemy , index_curr : INTEGER
 		do
+			index_friendly := 1
+			index_enemy := 1
 
+			from
+				index_curr := -1
+			until
+				index_curr < projectile_id_counter
+			loop
+				if friendly_projectiles.valid_index (index_friendly) and index_curr = friendly_projectiles.at (index_friendly).id then
+
+					friendly_projectiles.at (index_friendly).do_turn
+					index_friendly := index_friendly + 1
+
+				elseif enemy_projectiles.valid_index (index_enemy) and index_curr = enemy_projectiles.at (index_enemy).id then
+
+					enemy_projectiles.at (index_enemy).do_turn
+					index_enemy := index_enemy + 1
+
+				end
+
+			index_curr := index_curr - 1
+
+			end
 		end
 
 	enemy_spawn

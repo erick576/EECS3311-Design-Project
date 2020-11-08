@@ -14,9 +14,33 @@ feature -- Attributes
 	row_pos : INTEGER
 	col_pos : INTEGER
 
+	type : INTEGER
+	is_friendly : BOOLEAN
+
+	game_info: GAME_INFO
+		local
+			ma: ETF_MODEL_ACCESS
+		do
+			Result := ma.m.game_info
+		end
+
+	grid: GRID
+		local
+			ma: ETF_MODEL_ACCESS
+		do
+			Result := ma.m.grid
+		end
+
+	starfighter: STARFIGHTER
+		local
+			ma: ETF_MODEL_ACCESS
+		do
+			Result := ma.m.starfighter
+		end
+
 feature -- Commands
 
-	do_turn (grid : GRID ; starfighter : STARFIGHTER ; game_info : GAME_INFO)
+	do_turn
 		-- Turn Action for a Projectile
 		deferred end
 

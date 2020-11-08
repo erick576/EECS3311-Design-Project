@@ -68,6 +68,13 @@ feature -- Attributes
 	engine_selected : ENGINE
 	power_selected : POWER
 
+	grid: GRID
+		local
+			ma: ETF_MODEL_ACCESS
+		do
+			Result := ma.m.grid
+		end
+
 feature -- Commands
 
 	regenerate

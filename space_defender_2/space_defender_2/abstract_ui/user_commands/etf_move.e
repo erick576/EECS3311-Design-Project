@@ -81,7 +81,7 @@ feature -- command
 
 				-- Perform Move
 				model.starfighter.regenerate
-
+				model.grid.turn_frist_part
 				-- Moving but not taken into consideration enemies and projectiles yet
 				model.starfighter.move_starfighter (row, column)
 

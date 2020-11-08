@@ -31,6 +31,7 @@ feature -- command
 				-- Perform Pass
 				model.starfighter.regenerate
 				model.starfighter.regenerate
+				model.grid.turn_frist_part
 			end
 
 			etf_cmd_container.on_change.notify ([Current])

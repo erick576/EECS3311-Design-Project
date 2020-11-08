@@ -15,20 +15,23 @@ create
 
 feature -- Initialization
 
-	make (row : INTEGER ; col : INTEGER ; i : INTEGER)
+	make (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
-				id := i
+			id := i
 
-		    --  row_pos : INTEGER
-			--  col_pos : INTEGER
+			type := t
+			is_friendly := true
+
+		    row_pos := row
+			col_pos := col
 		end
 
 feature -- Commands
 
-	do_turn (grid : GRID ; starfighter : STARFIGHTER ; game_info : GAME_INFO)
+	do_turn
 		-- Turn Action for a Projectile
 		do
-
+			-- Does Nothing
 		end
 
 end

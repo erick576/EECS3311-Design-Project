@@ -323,7 +323,19 @@ feature -- Getters
 			-- Place Starfighter on Grid
 			grid.grid_elements.put ('S', ((starfighter.row_pos - 1) * grid.col_size) + starfighter.col_pos)
 
-			-- Set Projectiles on Grid
+			-- Set Friendly Projectiles on Grid
+			from
+				i := 1
+			until
+				i > grid.friendly_projectiles.count
+			loop
+				if grid.is_in_bounds (grid.friendly_projectiles.at (i).row_pos, grid.friendly_projectiles.at (i).col_pos) then
+					grid.grid_elements.put ('*', ((grid.friendly_projectiles.at (i).row_pos - 1) * grid.col_size) + grid.friendly_projectiles.at (i).col_pos)
+				end
+				i := i + 1
+			end
+
+			-- Set Enemy Projectiles on Grid
 			-- TODO
 
 			-- Set Enemies on Grid

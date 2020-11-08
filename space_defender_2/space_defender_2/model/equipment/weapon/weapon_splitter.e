@@ -35,9 +35,18 @@ feature -- Initialization
 
 feature -- Deferred Commands
 
-	projectile_movement
+	-- Create Weapon Specific Projectile
+	create_projectile (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
+			grid.add_friendly_projectile_splitter (row, col, i, t)
+		end
 
+	fire
+		do
+			grid.increment_projectile_id_counter
+			create_projectile (starfighter.row_pos, starfighter.col_pos + 1, grid.projectile_id_counter, 1)
+
+			-- Still have to cover spawning collisions cases TODO
 		end
 
 end

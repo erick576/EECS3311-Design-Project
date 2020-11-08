@@ -15,15 +15,6 @@ feature -- command
     	do
 			-- perform some update on the model state
 
---			fire_error_1 : STRING = "  Command can only be used in game."
---			fire_error_2 : STRING = "  Not enough resources to fire."
---			
---			fire
---			1. "Command can only be used in game."
---			(Command was not used in in game state.)
---			2. "Not enough resources to fire."
---			(Factoring in regeneration for that turn, the Starfighter did not have enough resources to fire.)
-
 			if not model.app.current_state.in_game then
 				model.game_info.set_is_error (true)
 				model.game_info.set_is_valid_operation (false)
@@ -67,7 +58,8 @@ feature -- command
 
 				-- Perform Fire
 				model.starfighter.regenerate
-
+				model.grid.turn_frist_part
+				model.grid.fire
 			end
 
 			etf_cmd_container.on_change.notify ([Current])
