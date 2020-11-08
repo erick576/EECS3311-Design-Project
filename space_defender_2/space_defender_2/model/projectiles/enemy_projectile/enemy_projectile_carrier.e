@@ -22,6 +22,8 @@ feature -- Initialization
 			--	type : INTEGER
 			is_friendly := false
 
+--			damage : INTEGER
+
 		    --  row_pos : INTEGER
 			--  col_pos : INTEGER
 		end

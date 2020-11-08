@@ -43,14 +43,58 @@ feature -- Deferred Commands
 		end
 
 	fire
+		local
+			i : INTEGER
 		do
 			grid.increment_projectile_id_counter
 			create_projectile (starfighter.row_pos - 1, starfighter.col_pos - 1, grid.projectile_id_counter, 1)
 
+			-- Spawn Collision Case with an Enemy Projectile
+
+			-- Spawn Collision Case with an Friendly Projectile
+			from
+				i := 1
+			until
+				i > grid.friendly_projectiles.count - 1
+			loop
+				if grid.friendly_projectiles.at (i).row_pos = (starfighter.row_pos - 1) and grid.friendly_projectiles.at (i).col_pos = (starfighter.col_pos - 1) then
+					grid.friendly_projectiles.at (grid.friendly_projectiles.count).set_damage (grid.friendly_projectiles.at (grid.friendly_projectiles.count).damage + grid.friendly_projectiles.at (i).damage)
+					grid.friendly_projectiles.at (i).set_row (99)
+					grid.friendly_projectiles.at (i).set_col (99)
+
+					i := grid.friendly_projectiles.count
+				end
+
+				i := i + 1
+			end
+
+			-- Spawn Collision Case with an Enemy
+
+
 			grid.increment_projectile_id_counter
 			create_projectile (starfighter.row_pos + 1, starfighter.col_pos - 1, grid.projectile_id_counter, 2)
 
-			-- Still have to cover spawning collisions cases TODO
+			-- Spawn Collision Case with an Enemy Projectile
+
+			-- Spawn Collision Case with an Friendly Projectile
+			from
+				i := 1
+			until
+				i > grid.friendly_projectiles.count - 1
+			loop
+				if grid.friendly_projectiles.at (i).row_pos = (starfighter.row_pos + 1) and grid.friendly_projectiles.at (i).col_pos = (starfighter.col_pos - 1) then
+					grid.friendly_projectiles.at (grid.friendly_projectiles.count).set_damage (grid.friendly_projectiles.at (grid.friendly_projectiles.count).damage + grid.friendly_projectiles.at (i).damage)
+					grid.friendly_projectiles.at (i).set_row (99)
+					grid.friendly_projectiles.at (i).set_col (99)
+
+					i := grid.friendly_projectiles.count
+				end
+
+				i := i + 1
+			end
+
+			-- Spawn Collision Case with an Enemy
+
 		end
 
 end

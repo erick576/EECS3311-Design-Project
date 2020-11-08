@@ -14,6 +14,8 @@ feature -- Attributes
 	row_pos : INTEGER
 	col_pos : INTEGER
 
+	damage : INTEGER
+
 	type : INTEGER
 	is_friendly : BOOLEAN
 
@@ -56,4 +58,8 @@ feature -- Setters
 			col_pos := col
 		end
 
+	set_damage (dam : INTEGER)
+		do
+			damage := dam
+		end
 end

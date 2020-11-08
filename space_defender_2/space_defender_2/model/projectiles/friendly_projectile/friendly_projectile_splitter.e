@@ -22,6 +22,8 @@ feature -- Initialization
 			type := t
 			is_friendly := true
 
+			damage := 150
+
 		    row_pos := row
 			col_pos := col
 		end

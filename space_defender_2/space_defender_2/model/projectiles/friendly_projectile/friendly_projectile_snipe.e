@@ -22,6 +22,8 @@ feature -- Initialization
 			type := t
 			is_friendly := true
 
+			damage := 1000
+
 		    row_pos := row
 			col_pos := col
 		end
@@ -38,7 +40,7 @@ feature -- Commands
 
 					-- Collision Check TODO
 				end
-				
+
 			end
 		end
 

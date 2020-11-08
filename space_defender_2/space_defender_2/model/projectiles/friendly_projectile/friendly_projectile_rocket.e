@@ -23,6 +23,8 @@ feature -- Initialization
 			is_friendly := true
 			turn := 1
 
+			damage := 100
+
 		    row_pos := row
 			col_pos := col
 		end

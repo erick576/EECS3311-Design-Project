@@ -121,7 +121,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -171,7 +171,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -224,7 +224,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -275,7 +275,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -328,7 +328,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -375,7 +375,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -426,7 +426,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -473,7 +473,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -524,7 +524,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -571,7 +571,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -623,7 +623,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -671,7 +671,7 @@ feature -- Commands
 								j > grid.friendly_projectiles.count
 							loop
 								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := projectile_damage - armour
+									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
