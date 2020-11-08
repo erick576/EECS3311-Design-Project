@@ -706,7 +706,11 @@ feature -- Commands
 
 	use_fire
 		do
-			curr_energy := curr_energy - projectile_cost
+			if weapon_selected.is_projectile_cost_health then
+				curr_health := curr_health - projectile_cost
+			else
+				curr_energy := curr_energy - projectile_cost
+			end
 		end
 
 feature -- Setters for Setting State
