@@ -80,7 +80,6 @@ feature -- command
 --				model.game_info.set_operation_message ("")
 
 				-- Perform Move
-				model.starfighter.regenerate
 				model.grid.turn_frist_part
 
 				-- Check if Died
@@ -93,6 +92,7 @@ feature -- command
 
 				else
 					-- Moving but not taken into consideration enemies and projectiles yet
+					model.starfighter.regenerate
 					model.starfighter.move_starfighter (row, column)
 				end
 

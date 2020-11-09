@@ -29,8 +29,6 @@ feature -- command
 --				model.game_info.set_operation_message ("")
 
 				-- Perform Pass
-				model.starfighter.regenerate
-				model.starfighter.regenerate
 				model.grid.turn_frist_part
 
 				-- Check if Died
@@ -40,6 +38,9 @@ feature -- command
 					-- Transition into Not Started State
 					model.app.current_state.set_choice (4)
 					model.app.execute_transition
+				else
+					model.starfighter.regenerate
+					model.starfighter.regenerate
 				end
 			end
 

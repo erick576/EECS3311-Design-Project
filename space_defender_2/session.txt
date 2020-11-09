@@ -1,11 +1,41 @@
-play(10, 30, 1, 1, 1, 1, 1)
+play(5, 10, 1, 1, 1, 1, 1)
+setup_select(1)
+setup_next(1)
 setup_select(2)
-setup_next(5)
+setup_next(1)
+setup_next(1)
+setup_next(1)
+setup_next(1)
 fire
-move(B, 2)
+move(C, 4)
+move(C, 1)
 fire
+pass
+pass
+pass
+pass
+pass
 fire
+move(C, 6)
+move(C, 1)
+pass
+pass
+pass
+pass
+pass
+pass
+pass
 fire
+move(C, 7)
+move(C, 1)
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+pass
 fire
-fire
-move(B, 8)
+move(C, 7)

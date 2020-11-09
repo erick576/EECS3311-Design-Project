@@ -57,7 +57,6 @@ feature -- command
 --				model.game_info.set_operation_message ("")
 
 				-- Perform Fire
-				model.starfighter.regenerate
 				model.grid.turn_frist_part
 
 				-- Check if Died
@@ -68,6 +67,7 @@ feature -- command
 					model.app.current_state.set_choice (4)
 					model.app.execute_transition
 				else
+					model.starfighter.regenerate
 					model.starfighter.use_fire
 					model.grid.fire
 				end
