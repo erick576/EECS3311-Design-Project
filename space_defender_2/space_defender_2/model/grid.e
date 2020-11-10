@@ -223,9 +223,15 @@ feature -- Commands
 			end
 		end
 
+	turn_sixth_phase
+		do
+			-- Do same thing as phase four
+			turn_fourth_phase
+		end
+
 	enemy_spawn
 		do
-
+			
 		end
 
 end

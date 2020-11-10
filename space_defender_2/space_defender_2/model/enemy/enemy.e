@@ -23,6 +23,8 @@ feature -- Attributes
 	can_see_starfighter : BOOLEAN
 	seen_by_starfighter : BOOLEAN
 
+	symbol : CHARACTER
+
   game_info: GAME_INFO
 	local
 		ma: ETF_MODEL_ACCESS

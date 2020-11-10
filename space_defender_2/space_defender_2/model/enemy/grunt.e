@@ -24,8 +24,10 @@ feature -- Initialization
 			armour := 1
 			vision := 5
 
---			can_see_starfighter : BOOLEAN
---			seen_by_starfighter : BOOLEAN
+			can_see_starfighter := false
+			seen_by_starfighter := false
+
+			symbol := 'G'
 
 -- 			Apply Random Gnerator TODO
 --			row_pos := 0

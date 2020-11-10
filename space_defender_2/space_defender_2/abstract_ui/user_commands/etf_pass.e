@@ -83,7 +83,7 @@ feature -- command
 
 			-- Phase 6
 				if model.game_info.is_alive = true then
-
+					model.grid.turn_sixth_phase
 				end
 
 				-- Check if Died
