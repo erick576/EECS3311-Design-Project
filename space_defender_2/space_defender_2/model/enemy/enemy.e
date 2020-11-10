@@ -20,6 +20,9 @@ feature -- Attributes
 	row_pos : INTEGER
 	col_pos : INTEGER
 
+	can_see_starfighter : BOOLEAN
+	seen_by_starfighter : BOOLEAN
+
   game_info: GAME_INFO
 	local
 		ma: ETF_MODEL_ACCESS
@@ -29,22 +32,14 @@ feature -- Attributes
 
 feature -- Commands
 
---	For seen by Starfighter, set to true if the sum of the horizontal and vertical displacement between the
---	enemys location and the Starfighters location is less than or equal to the Starfighters vision. Set to false
---	otherwise
-
---	For can see Starfighter, set to true if the sum of the horizontal and vertical displacement between the
---	enemys location and the Starfighters location is less than or equal to the enemys vision. Set to false
---	otherwise
-
-	can_see_starfighter : BOOLEAN
+	update_can_see_starfighter
 		do
-
+			can_see_starfighter := game_info.grid.can_see (game_info.starfighter, row_pos, col_pos)
 		end
 
-	seen_by_starfighter : BOOLEAN
+	update_seen_by_starfighter
 		do
-
+			seen_by_starfighter := game_info.grid.can_be_seen (game_info.starfighter, vision, row_pos, col_pos)
 		end
 
 	preemptive_action

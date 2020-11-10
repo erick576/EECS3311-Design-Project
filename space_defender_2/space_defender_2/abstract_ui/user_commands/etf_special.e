@@ -60,6 +60,9 @@ feature -- command
 				end
 
 			-- Phase 4
+				if model.game_info.is_alive = true then
+					model.grid.turn_fourth_phase
+				end
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -67,6 +70,9 @@ feature -- command
 				end
 
 			-- Phase 5
+				if model.game_info.is_alive = true then
+
+				end
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -74,6 +80,9 @@ feature -- command
 				end
 
 			-- Phase 6
+				if model.game_info.is_alive = true then
+
+				end
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -81,6 +90,9 @@ feature -- command
 				end
 
 			-- Phase 7
+				if model.game_info.is_alive = true then
+
+				end
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then

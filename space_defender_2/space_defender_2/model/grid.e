@@ -90,6 +90,30 @@ feature -- Helper Methods
 			end
 		end
 
+	can_be_seen (starfighter : STARFIGHTER ; enemy_vision : INTEGER ; enemy_row : INTEGER ; enemy_column : INTEGER) : BOOLEAN
+		-- Can a Ememy see the starfighter?
+		local
+			column_diff, row_diff : INTEGER
+		do
+			if (enemy_column - starfighter.col_pos) >= 0 then
+				column_diff := enemy_column - starfighter.col_pos
+			else
+				column_diff := starfighter.col_pos - enemy_column
+			end
+
+			if (enemy_row - starfighter.row_pos) >= 0 then
+				row_diff := enemy_row - starfighter.row_pos
+			else
+				row_diff := starfighter.row_pos - enemy_row
+			end
+
+			if (enemy_vision - (row_diff + column_diff)) < 0 then
+				Result := false
+			else
+				Result := true
+			end
+		end
+
 	is_in_bounds (row : INTEGER ; column : INTEGER) : BOOLEAN
 		do
 			Result := not (row > row_size or row < 1 or column > col_size or column < 1)
@@ -154,8 +178,7 @@ feature -- Commands
 					index_curr := friendly_projectiles.count + 1
 				end
 
-			index_curr := index_curr + 1
-
+				index_curr := index_curr + 1
 			end
 		end
 
@@ -174,8 +197,29 @@ feature -- Commands
 					index_curr := enemy_projectiles.count + 1
 				end
 
-			index_curr := index_curr + 1
+				index_curr := index_curr + 1
+			end
+		end
 
+	turn_fourth_phase
+		local
+			index_curr : INTEGER
+		do
+			from
+				index_curr := 1
+			until
+				index_curr > enemies.count
+			loop
+				if game_info.starfighter.curr_health /= 0 then
+					if is_in_bounds (enemies.at (index_curr).row_pos , enemies.at (index_curr).col_pos) then
+						enemies.at (index_curr).update_seen_by_starfighter
+						enemies.at (index_curr).update_can_see_starfighter
+					end
+				else
+					index_curr := enemies.count + 1
+				end
+
+				index_curr := index_curr + 1
 			end
 		end
 
