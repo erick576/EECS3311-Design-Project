@@ -11,6 +11,7 @@ feature -- Attributes
 
 	id: INTEGER
 
+	curr_health : INTEGER
 	health : INTEGER
 	health_regen : INTEGER
 	armour : INTEGER
@@ -19,19 +20,12 @@ feature -- Attributes
 	row_pos : INTEGER
 	col_pos : INTEGER
 
-	starfighter : STARFIGHTER
-		local
-			ma: ETF_MODEL_ACCESS
-		do
-			Result := ma.m.starfighter
-		end
-
-	grid: GRID
-		local
-			ma: ETF_MODEL_ACCESS
-		do
-			Result := ma.m.grid
-		end
+  game_info: GAME_INFO
+	local
+		ma: ETF_MODEL_ACCESS
+	do
+		Result := ma.m.game_info
+	end
 
 feature -- Commands
 

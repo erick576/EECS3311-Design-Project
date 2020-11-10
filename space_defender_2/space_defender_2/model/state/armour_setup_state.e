@@ -47,7 +47,7 @@ feature
 	setup_select (i : INTEGER)
 	  -- Select the equipment only for setup states
 	  do
-	  		starfighter.set_armour (game_info.armours.at (i))
+	  		game_info.starfighter.set_armour (game_info.armours.at (i))
 	  end
 
     display : STRING
@@ -62,7 +62,7 @@ feature
       		Result.append (game_info.display_state)
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_error)
-	      	
+
       	elseif game_info.is_valid_operation then
       		game_info.set_status_message (game_info.ok_status)
       		Result.append (game_info.display_state)
@@ -74,7 +74,7 @@ feature
       		Result.append (game_info.display_state)
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_state_specific)
-	      	Result.append (starfighter.armour_selected.type_name)
+	      	Result.append (game_info.starfighter.armour_selected.type_name)
       	end
 
       end

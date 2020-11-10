@@ -75,9 +75,9 @@ feature
 	      	Result.append (game_info.display_grid)
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_game_over)
-	      	
+
       		game_info.set_is_alive (true)
-			starfighter.reset
+			game_info.starfighter.reset
 
       	elseif game_info.is_valid_operation then
       		game_info.set_status_message (game_info.ok_status)

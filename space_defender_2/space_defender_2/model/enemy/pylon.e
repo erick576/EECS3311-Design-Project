@@ -18,6 +18,7 @@ feature -- Initialization
 		do
 			id := i
 
+			curr_health := 300
 			health := 300
 			health_regen := 0
 			armour := 0

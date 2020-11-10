@@ -26,20 +26,6 @@ feature -- Attributes
 			Result := ma.m.game_info
 		end
 
-	grid: GRID
-		local
-			ma: ETF_MODEL_ACCESS
-		do
-			Result := ma.m.grid
-		end
-
-	starfighter: STARFIGHTER
-		local
-			ma: ETF_MODEL_ACCESS
-		do
-			Result := ma.m.starfighter
-		end
-
 feature -- Commands
 
 	do_turn

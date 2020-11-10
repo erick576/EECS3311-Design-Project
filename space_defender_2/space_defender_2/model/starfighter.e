@@ -68,11 +68,11 @@ feature -- Attributes
 	engine_selected : ENGINE
 	power_selected : POWER
 
-	grid: GRID
+	game_info: GAME_INFO
 		local
 			ma: ETF_MODEL_ACCESS
 		do
-			Result := ma.m.grid
+			Result := ma.m.game_info
 		end
 
 feature -- Commands
@@ -118,10 +118,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -132,13 +132,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := column + 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -168,10 +168,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -182,13 +182,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := column - 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -221,10 +221,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -235,13 +235,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := row + 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -272,10 +272,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -286,13 +286,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := row - 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -325,10 +325,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -339,13 +339,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := row + 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -372,10 +372,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -386,13 +386,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := column + 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -423,10 +423,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -437,13 +437,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := row - 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -470,10 +470,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -484,13 +484,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := column + 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -521,10 +521,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -535,13 +535,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := row + 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -568,10 +568,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -582,13 +582,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := column - 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -620,10 +620,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -634,13 +634,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := row - 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 
@@ -668,10 +668,10 @@ feature -- Commands
 							from
 								j := 1
 							until
-								j > grid.friendly_projectiles.count
+								j > game_info.grid.friendly_projectiles.count
 							loop
-								if row_pos = grid.friendly_projectiles.at (j).row_pos and col_pos = grid.friendly_projectiles.at (j).col_pos then
-									damage_with_armour := grid.friendly_projectiles.at (j).damage - armour
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
 									if damage_with_armour < 0 then
 										damage_with_armour := 0
 									end
@@ -682,13 +682,13 @@ feature -- Commands
 										curr_health := 0
 									end
 
-									grid.friendly_projectiles.at (j).set_col (99)
-									grid.friendly_projectiles.at (j).set_row (99)
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
 								if curr_health = 0 then
 									i := column - 1
-									j := grid.friendly_projectiles.count + 1
+									j := game_info.grid.friendly_projectiles.count + 1
 									stop_starfighter := true
 								end
 

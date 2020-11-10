@@ -38,15 +38,15 @@ feature -- Deferred Commands
 	-- Create Weapon Specific Projectile
 	create_projectile (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
-			grid.add_friendly_projectile_splitter (row, col, i, t)
+			game_info.grid.add_friendly_projectile_splitter (row, col, i, t)
 		end
 
 	fire
 		local
 			i : INTEGER
 		do
-			grid.increment_projectile_id_counter
-			create_projectile (starfighter.row_pos, starfighter.col_pos + 1, grid.projectile_id_counter, 1)
+			game_info.grid.increment_projectile_id_counter
+			create_projectile (game_info.starfighter.row_pos, game_info.starfighter.col_pos + 1, game_info.grid.projectile_id_counter, 1)
 
 			-- Spawn Collision Case with an Enemy Projectile
 
@@ -54,14 +54,14 @@ feature -- Deferred Commands
 			from
 				i := 1
 			until
-				i > grid.friendly_projectiles.count - 1
+				i > game_info.grid.friendly_projectiles.count - 1
 			loop
-				if grid.friendly_projectiles.at (i).row_pos = starfighter.row_pos and grid.friendly_projectiles.at (i).col_pos = (starfighter.col_pos + 1) then
-					grid.friendly_projectiles.at (grid.friendly_projectiles.count).set_damage (grid.friendly_projectiles.at (grid.friendly_projectiles.count).damage + grid.friendly_projectiles.at (i).damage)
-					grid.friendly_projectiles.at (i).set_row (99)
-					grid.friendly_projectiles.at (i).set_col (99)
+				if game_info.grid.friendly_projectiles.at (i).row_pos = game_info.starfighter.row_pos and game_info.grid.friendly_projectiles.at (i).col_pos = (game_info.starfighter.col_pos + 1) then
+					game_info.grid.friendly_projectiles.at (game_info.grid.friendly_projectiles.count).set_damage (game_info.grid.friendly_projectiles.at (game_info.grid.friendly_projectiles.count).damage + game_info.grid.friendly_projectiles.at (i).damage)
+					game_info.grid.friendly_projectiles.at (i).set_row (99)
+					game_info.grid.friendly_projectiles.at (i).set_col (99)
 
-					i := grid.friendly_projectiles.count
+					i := game_info.grid.friendly_projectiles.count
 				end
 
 				i := i + 1

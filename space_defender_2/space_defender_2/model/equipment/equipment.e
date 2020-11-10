@@ -20,4 +20,11 @@ feature -- Attributes
 	projectile_damage : INTEGER
 	projectile_cost : INTEGER
 
+	game_info: GAME_INFO
+		local
+			ma: ETF_MODEL_ACCESS
+		do
+			Result := ma.m.game_info
+		end
+
 end

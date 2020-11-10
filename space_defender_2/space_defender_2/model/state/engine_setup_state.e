@@ -47,7 +47,7 @@ feature
 	setup_select (i : INTEGER)
 	  -- Select the equipment only for setup states
 	  do
-	  		starfighter.set_engine (game_info.engines.at (i))
+	  		game_info.starfighter.set_engine (game_info.engines.at (i))
 	  end
 
     display : STRING
@@ -74,7 +74,7 @@ feature
       		Result.append (game_info.display_state)
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_state_specific)
-	      	Result.append (starfighter.engine_selected.type_name)
+	      	Result.append (game_info.starfighter.engine_selected.type_name)
       	end
 
       end

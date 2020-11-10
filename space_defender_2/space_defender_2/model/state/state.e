@@ -16,13 +16,6 @@ feature -- features
 		Result := ma.m.game_info
 	end
 
-  starfighter: STARFIGHTER
-	local
-		ma: ETF_MODEL_ACCESS
-	do
-		Result := ma.m.starfighter
-	end
-
   choice : INTEGER
     -- Choice for next step
 

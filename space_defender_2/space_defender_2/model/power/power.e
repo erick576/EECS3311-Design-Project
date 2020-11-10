@@ -13,19 +13,12 @@ feature -- Attributes
 	is_health_cost : BOOLEAN
 	type_name : STRING
 
-	grid: GRID
-		local
-			ma: ETF_MODEL_ACCESS
-		do
-			Result := ma.m.grid
-		end
-
-	starfighter: STARFIGHTER
-		local
-			ma: ETF_MODEL_ACCESS
-		do
-			Result := ma.m.starfighter
-		end
+  game_info: GAME_INFO
+	local
+		ma: ETF_MODEL_ACCESS
+	do
+		Result := ma.m.game_info
+	end
 
 feature -- Commands
 
