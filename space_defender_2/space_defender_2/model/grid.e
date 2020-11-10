@@ -139,35 +139,42 @@ feature -- Commands
 			game_info.starfighter.weapon_selected.fire
 		end
 
-	turn_frist_part
+	turn_frist_phase
 		local
-			index_friendly , index_enemy , index_curr : INTEGER
+			index_curr : INTEGER
 		do
-			index_friendly := 1
-			index_enemy := 1
-
 			from
-				index_curr := -1
+				index_curr := 1
 			until
-				index_curr < projectile_id_counter
+				index_curr > friendly_projectiles.count
 			loop
 				if game_info.starfighter.curr_health /= 0 then
-					if friendly_projectiles.valid_index (index_friendly) and index_curr = friendly_projectiles.at (index_friendly).id then
-
-						friendly_projectiles.at (index_friendly).do_turn
-						index_friendly := index_friendly + 1
-
-					elseif enemy_projectiles.valid_index (index_enemy) and index_curr = enemy_projectiles.at (index_enemy).id then
-
-						enemy_projectiles.at (index_enemy).do_turn
-						index_enemy := index_enemy + 1
-
-					end
+					friendly_projectiles.at (index_curr).do_turn
 				else
-					index_curr := projectile_id_counter - 1
+					index_curr := friendly_projectiles.count + 1
 				end
 
-			index_curr := index_curr - 1
+			index_curr := index_curr + 1
+
+			end
+		end
+
+	turn_second_phase
+		local
+			index_curr : INTEGER
+		do
+			from
+				index_curr := 1
+			until
+				index_curr > enemy_projectiles.count
+			loop
+				if game_info.starfighter.curr_health /= 0 then
+					enemy_projectiles.at (index_curr).do_turn
+				else
+					index_curr := enemy_projectiles.count + 1
+				end
+
+			index_curr := index_curr + 1
 
 			end
 		end

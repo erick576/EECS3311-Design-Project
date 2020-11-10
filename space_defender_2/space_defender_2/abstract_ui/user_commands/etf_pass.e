@@ -29,19 +29,74 @@ feature -- command
 --				model.game_info.set_operation_message ("")
 
 				-- Perform Pass
-				model.grid.turn_frist_part
+
+			-- Phase 1
+				if model.game_info.is_alive = true then
+					model.grid.turn_frist_phase
+				end
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
 					model.game_info.set_is_alive (false)
+				end
 
-					-- Transition into Not Started State
-					model.app.current_state.set_choice (4)
-					model.app.execute_transition
-				else
+			-- Phase 2
+				if model.game_info.is_alive = true then
+					model.grid.turn_second_phase
+				end
+
+				-- Check if Died
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+				end
+
+			-- Phase 3
+				if model.game_info.is_alive = true then
 					model.starfighter.regenerate
 					model.starfighter.regenerate
 				end
+
+				-- Check if Died
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+				end
+
+			-- Phase 4
+
+				-- Check if Died
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+				end
+
+			-- Phase 5
+
+				-- Check if Died
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+				end
+
+			-- Phase 6
+
+				-- Check if Died
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+				end
+
+			-- Phase 7
+
+				-- Check if Died
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+				end
+
+
+				-- Check if Died , If so then exit game
+				if model.game_info.is_alive = false then
+					-- Transition into Not Started State
+					model.app.current_state.set_choice (4)
+					model.app.execute_transition
+				end
+
 			end
 
 			etf_cmd_container.on_change.notify ([Current])

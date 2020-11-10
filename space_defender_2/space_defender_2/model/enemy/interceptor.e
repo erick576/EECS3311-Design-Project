@@ -31,16 +31,6 @@ feature -- Initialization
 
 feature -- Commands
 
-	can_see_starfighter
-		do
-
-		end
-
-	seen_by_starfighter
-		do
-
-		end
-
 	preemptive_action
 		do
 

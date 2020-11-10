@@ -29,11 +29,23 @@ feature -- Attributes
 
 feature -- Commands
 
-	can_see_starfighter
-		deferred end
+--	For seen by Starfighter, set to true if the sum of the horizontal and vertical displacement between the
+--	enemys location and the Starfighters location is less than or equal to the Starfighters vision. Set to false
+--	otherwise
 
-	seen_by_starfighter
-		deferred end
+--	For can see Starfighter, set to true if the sum of the horizontal and vertical displacement between the
+--	enemys location and the Starfighters location is less than or equal to the enemys vision. Set to false
+--	otherwise
+
+	can_see_starfighter : BOOLEAN
+		do
+
+		end
+
+	seen_by_starfighter : BOOLEAN
+		do
+
+		end
 
 	preemptive_action
 		deferred end
