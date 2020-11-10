@@ -163,7 +163,7 @@ feature -- Commands
 			game_info.starfighter.weapon_selected.fire
 		end
 
-	turn_frist_phase
+	friendly_projectile_movements
 		local
 			index_curr : INTEGER
 		do
@@ -182,7 +182,7 @@ feature -- Commands
 			end
 		end
 
-	turn_second_phase
+	enemy_projectile_movements
 		local
 			index_curr : INTEGER
 		do
@@ -201,7 +201,7 @@ feature -- Commands
 			end
 		end
 
-	turn_fourth_phase
+	update_enemy_vision
 		local
 			index_curr : INTEGER
 		do
@@ -223,13 +223,41 @@ feature -- Commands
 			end
 		end
 
-	turn_sixth_phase
+	enemy_spawn
+		local
+			random : RANDOM_GENERATOR_ACCESS
+			first_num, second_num : INTEGER
 		do
-			-- Do same thing as phase four
-			turn_fourth_phase
+			first_num := random.rchoose (1, row_size)
+			second_num := random.rchoose (1, 100)
+
+			if second_num >= 1 and second_num < grunt_threshold then
+				-- Grunt Spawns
+				increment_enemy_id_counter
+				enemies.force (create {GRUNT}.make (first_num, col_size, enemy_id_counter))
+			elseif second_num >= grunt_threshold and second_num < fighter_threshold then
+				-- Fighter Spawns
+				increment_enemy_id_counter
+				enemies.force (create {FIGHTER}.make (first_num, col_size, enemy_id_counter))
+			elseif second_num >= fighter_threshold and second_num < carrier_threshold then
+				-- Carriern Spawns
+				increment_enemy_id_counter
+				enemies.force (create {CARRIER}.make (first_num, col_size, enemy_id_counter))
+			elseif second_num >= carrier_threshold and second_num < interceptor_threshold then
+				-- Interceptor Spawns
+				increment_enemy_id_counter
+				enemies.force (create {INTERCEPTOR}.make (first_num, col_size, enemy_id_counter))
+			elseif second_num >= interceptor_threshold and second_num < pylon_threshold then
+				-- Pylon Spawns
+				increment_enemy_id_counter
+				enemies.force (create {PYLON}.make (first_num, col_size, enemy_id_counter))
+			else
+				-- Nothing Spawns
+			end
+
 		end
 
-	enemy_spawn
+	enemies_action
 		do
 			
 		end

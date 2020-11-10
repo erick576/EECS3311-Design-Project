@@ -352,7 +352,17 @@ feature -- Getters
 			-- TODO
 
 			-- Set Enemies on Grid
-			-- TODO
+			from
+				i := 1
+			until
+				i > grid.enemies.count
+			loop
+				if grid.is_in_bounds (grid.enemies.at (i).row_pos, grid.enemies.at (i).col_pos) then
+					grid.grid_elements.put (grid.enemies.at (i).symbol, ((grid.enemies.at (i).row_pos - 1) * grid.col_size) + grid.enemies.at (i).col_pos)
+				end
+				i := i + 1
+			end
+
 
 			-- Set Vision Limits
 			count := 1

@@ -14,7 +14,7 @@ create
 	make
 
 feature -- Initialization
-	make (i : INTEGER)
+	make (row : INTEGER ; col : INTEGER ; i : INTEGER)
 		do
 			id := i
 
@@ -29,9 +29,8 @@ feature -- Initialization
 
 			symbol := 'F'
 
--- 			Apply Random Gnerator TODO
---			row_pos := 0
---			col_pos := 0
+			row_pos := row
+			col_pos := col
 		end
 
 feature -- Commands

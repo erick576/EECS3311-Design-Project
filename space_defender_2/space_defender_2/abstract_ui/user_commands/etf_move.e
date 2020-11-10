@@ -83,7 +83,7 @@ feature -- command
 
 			-- Phase 1
 				if model.game_info.is_alive = true then
-					model.grid.turn_frist_phase
+					model.grid.friendly_projectile_movements
 				end
 
 				-- Check if Died
@@ -93,7 +93,7 @@ feature -- command
 
 			-- Phase 2
 				if model.game_info.is_alive = true then
-					model.grid.turn_second_phase
+					model.grid.enemy_projectile_movements
 				end
 
 				-- Check if Died
@@ -114,7 +114,7 @@ feature -- command
 
 			-- Phase 4
 				if model.game_info.is_alive = true then
-					model.grid.turn_fourth_phase
+					model.grid.update_enemy_vision
 				end
 
 				-- Check if Died
@@ -124,7 +124,7 @@ feature -- command
 
 			-- Phase 5
 				if model.game_info.is_alive = true then
-
+					model.grid.enemies_action
 				end
 
 				-- Check if Died
@@ -134,7 +134,7 @@ feature -- command
 
 			-- Phase 6
 				if model.game_info.is_alive = true then
-					model.grid.turn_sixth_phase
+					model.grid.update_enemy_vision
 				end
 
 				-- Check if Died
@@ -144,7 +144,7 @@ feature -- command
 
 			-- Phase 7
 				if model.game_info.is_alive = true then
-
+					model.grid.enemy_spawn
 				end
 
 				-- Check if Died
