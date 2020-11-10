@@ -226,40 +226,126 @@ feature -- Commands
 	enemy_spawn
 		local
 			random : RANDOM_GENERATOR_ACCESS
+			j , damage_with_armour: INTEGER
 			first_num, second_num : INTEGER
+			did_spawn : BOOLEAN
 		do
 			first_num := random.rchoose (1, row_size)
 			second_num := random.rchoose (1, 100)
+
+			did_spawn := false
 
 			if second_num >= 1 and second_num < grunt_threshold then
 				-- Grunt Spawns
 				increment_enemy_id_counter
 				enemies.force (create {GRUNT}.make (first_num, col_size, enemy_id_counter))
+				did_spawn := true
 			elseif second_num >= grunt_threshold and second_num < fighter_threshold then
 				-- Fighter Spawns
 				increment_enemy_id_counter
 				enemies.force (create {FIGHTER}.make (first_num, col_size, enemy_id_counter))
+				did_spawn := true
 			elseif second_num >= fighter_threshold and second_num < carrier_threshold then
 				-- Carriern Spawns
 				increment_enemy_id_counter
 				enemies.force (create {CARRIER}.make (first_num, col_size, enemy_id_counter))
+				did_spawn := true
 			elseif second_num >= carrier_threshold and second_num < interceptor_threshold then
 				-- Interceptor Spawns
 				increment_enemy_id_counter
 				enemies.force (create {INTERCEPTOR}.make (first_num, col_size, enemy_id_counter))
+				did_spawn := true
 			elseif second_num >= interceptor_threshold and second_num < pylon_threshold then
 				-- Pylon Spawns
 				increment_enemy_id_counter
 				enemies.force (create {PYLON}.make (first_num, col_size, enemy_id_counter))
+				did_spawn := true
 			else
 				-- Nothing Spawns
+				did_spawn := false
 			end
 
+			-- Collision Checks
+			if did_spawn = true then
+				-- Collisions with Friendly Projectiles
+				from
+					j := 1
+				until
+					j > friendly_projectiles.count
+				loop
+					if enemies.at (enemies.count).row_pos = friendly_projectiles.at (j).row_pos and enemies.at (enemies.count).col_pos = friendly_projectiles.at (j).col_pos then
+						damage_with_armour := friendly_projectiles.at (j).damage - enemies.at (enemies.count).armour
+						if damage_with_armour < 0 then
+							damage_with_armour := 0
+						end
+
+						enemies.at (enemies.count).set_curr_health (enemies.at (enemies.count).curr_health - damage_with_armour)
+
+						if enemies.at (enemies.count).curr_health < 0 then
+							enemies.at (enemies.count).set_curr_health (0)
+						end
+
+						friendly_projectiles.at (j).set_col (99)
+						friendly_projectiles.at (j).set_row (99)
+					end
+
+					if enemies.at (enemies.count).curr_health = 0 then
+						j := friendly_projectiles.count + 1
+
+						enemies.at (enemies.count).set_row_pos (99)
+						enemies.at (enemies.count).set_col_pos (99)
+					end
+
+					j := j + 1
+				end
+
+
+				-- Collisions with Enemy Projectiles
+				from
+					j := 1
+				until
+					j > enemy_projectiles.count
+				loop
+					if enemies.at (enemies.count).row_pos = enemy_projectiles.at (j).row_pos and enemies.at (enemies.count).col_pos = enemy_projectiles.at (j).col_pos then
+						enemies.at (enemies.count).set_curr_health (enemies.at (enemies.count).curr_health + enemy_projectiles.at (j).damage)
+
+						if enemies.at (enemies.count).curr_health > enemies.at (enemies.count).health then
+							enemies.at (enemies.count).set_curr_health (enemies.at (enemies.count).health)
+						end
+
+						enemy_projectiles.at (j).set_col (99)
+						enemy_projectiles.at (j).set_row (99)
+					end
+
+					if enemies.at (enemies.count).curr_health = 0 then
+						j := enemy_projectiles.count + 1
+
+						enemies.at (enemies.count).set_row_pos (99)
+						enemies.at (enemies.count).set_col_pos (99)
+					end
+
+					j := j + 1
+				end
+
+
+				-- Collision with the Starfighter
+				if enemies.at (enemies.count).row_pos = game_info.starfighter.row_pos and enemies.at (enemies.count).col_pos = game_info.starfighter.col_pos then
+						game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - enemies.at (enemies.count).curr_health)
+
+						if game_info.starfighter.curr_health < 0 then
+							game_info.starfighter.set_curr_health (0)
+						end
+
+						enemies.at (enemies.count).set_row_pos (99)
+						enemies.at (enemies.count).set_col_pos (99)
+				end
+
+			end
 		end
 
 	enemies_action
 		do
-			
+
 		end
 
 end

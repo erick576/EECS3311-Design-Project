@@ -1,5 +1,8 @@
-play(5 ,10,1, 1,1,1,1)
+play(5, 10, 2, 2, 2 ,2, 2)
 setup_next(5)
+pass
+pass
+pass
 pass
 pass
 pass

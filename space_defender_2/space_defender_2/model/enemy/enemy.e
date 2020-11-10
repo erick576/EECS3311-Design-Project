@@ -62,16 +62,21 @@ feature -- Commands
 	move (row : INTEGER ; col : INTEGER)
 		deferred end
 
-feature -- Sertters
+feature -- Setters
 
-	set_row (row : INTEGER)
+	set_row_pos (row : INTEGER)
 		do
 			row_pos := row
 		end
 
-	set_col (col : INTEGER)
+	set_col_pos (col : INTEGER)
 		do
 			col_pos := col
+		end
+
+	set_curr_health (i : INTEGER)
+		do
+			curr_health := i
 		end
 
 end

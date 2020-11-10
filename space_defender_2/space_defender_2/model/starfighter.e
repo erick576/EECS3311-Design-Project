@@ -79,16 +79,24 @@ feature -- Commands
 
 	regenerate
 		do
-			if curr_health + health_regen > health then
-				curr_health := health
+			if curr_health > health then
+				-- Do Nothing (Only Can Occur From using Repair)
 			else
-				curr_health := curr_health + health_regen
+				if curr_health + health_regen > health then
+					curr_health := health
+				else
+					curr_health := curr_health + health_regen
+				end
 			end
 
-			if curr_energy + energy_regen > energy then
-				curr_energy := energy
+			if curr_energy > energy then
+				-- Do Nothing (Only Can Occur From using Overcharge)
 			else
-				curr_energy := curr_energy + energy_regen
+				if curr_energy + energy_regen > energy then
+					curr_energy := energy
+				else
+					curr_energy := curr_energy + energy_regen
+				end
 			end
 		end
 
