@@ -16,17 +16,4 @@ fire
 fire
 move(H, 3)
 pass
-move(H, 15)
-move(H, 12)
-move(H, 11)
-move(H, 10)
-move(H, 9)
-move(H, 7)
 pass
-pass
-pass
-pass
-pass
-pass
-fire
-fire

@@ -230,25 +230,16 @@ feature -- Commands
 					until
 						j > game_info.grid.enemies.count
 					loop
-						if game_info.grid.enemies.at (j).row_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos and game_info.grid.enemies.at (j).col_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos then
-							damage_with_armour := game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage - game_info.grid.enemies.at (j).armour
-							if damage_with_armour < 0 then
-								damage_with_armour := 0
-							end
+						if game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos = game_info.grid.enemies.at (j).row_pos and game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos = game_info.grid.enemies.at (j).col_pos then
 
-							game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).curr_health - damage_with_armour)
+							game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).curr_health + game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage)
 
-							if game_info.grid.enemies.at (j).curr_health < 0 then
-								game_info.grid.enemies.at (j).set_curr_health (0)
+							if game_info.grid.enemies.at (j).curr_health > game_info.grid.enemies.at (j).health then
+								game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).health)
 							end
 
 							game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_row (99)
 							game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_col (99)
-
-							if game_info.grid.enemies.at (j).curr_health = 0 then
-								game_info.grid.enemies.at (j).set_row_pos (99)
-								game_info.grid.enemies.at (j).set_col_pos (99)
-							end
 
 							j := game_info.grid.enemies.count + 1
 						end
@@ -256,8 +247,24 @@ feature -- Commands
 						j := j + 1
 					end
 
-
 					-- Spawn Collision Case with an Starfighter
+					if game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos = game_info.starfighter.row_pos and game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos = game_info.starfighter.col_pos then
+
+						damage_with_armour := game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage - game_info.starfighter.armour
+						if damage_with_armour < 0 then
+							damage_with_armour := 0
+						end
+
+						game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - damage_with_armour)
+
+						if game_info.starfighter.curr_health < 0 then
+							game_info.starfighter.set_curr_health (0)
+						end
+
+						game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_row (99)
+						game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_col (99)
+					end
+
 
 				end
 
@@ -441,25 +448,16 @@ feature -- Commands
 					until
 						j > game_info.grid.enemies.count
 					loop
-						if game_info.grid.enemies.at (j).row_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos and game_info.grid.enemies.at (j).col_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos then
-							damage_with_armour := game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage - game_info.grid.enemies.at (j).armour
-							if damage_with_armour < 0 then
-								damage_with_armour := 0
-							end
+						if game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos = game_info.grid.enemies.at (j).row_pos and game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos = game_info.grid.enemies.at (j).col_pos then
 
-							game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).curr_health - damage_with_armour)
+							game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).curr_health + game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage)
 
-							if game_info.grid.enemies.at (j).curr_health < 0 then
-								game_info.grid.enemies.at (j).set_curr_health (0)
+							if game_info.grid.enemies.at (j).curr_health > game_info.grid.enemies.at (j).health then
+								game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).health)
 							end
 
 							game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_row (99)
 							game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_col (99)
-
-							if game_info.grid.enemies.at (j).curr_health = 0 then
-								game_info.grid.enemies.at (j).set_row_pos (99)
-								game_info.grid.enemies.at (j).set_col_pos (99)
-							end
 
 							j := game_info.grid.enemies.count + 1
 						end

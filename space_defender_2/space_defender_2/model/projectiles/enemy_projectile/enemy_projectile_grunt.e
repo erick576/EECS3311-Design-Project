@@ -104,31 +104,23 @@ feature -- Commands
 					until
 						j > game_info.grid.enemies.count
 					loop
-						if game_info.grid.enemies.at (j).row_pos = row_pos and game_info.grid.enemies.at (j).col_pos = col_pos then
-							damage_with_armour := damage - game_info.grid.enemies.at (j).armour
-							if damage_with_armour < 0 then
-								damage_with_armour := 0
-							end
+						if row_pos = game_info.grid.enemies.at (j).row_pos and col_pos = game_info.grid.enemies.at (j).col_pos then
 
-							game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).curr_health - damage_with_armour)
+							game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).curr_health + damage)
 
-							if game_info.grid.enemies.at (j).curr_health < 0 then
-								game_info.grid.enemies.at (j).set_curr_health (0)
+							if game_info.grid.enemies.at (j).curr_health > game_info.grid.enemies.at (j).health then
+								game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).health)
 							end
 
 							set_row (99)
 							set_col (99)
-
-							if game_info.grid.enemies.at (j).curr_health = 0 then
-								game_info.grid.enemies.at (j).set_row_pos (99)
-								game_info.grid.enemies.at (j).set_col_pos (99)
-							end
 
 							j := game_info.grid.enemies.count + 1
 						end
 
 						j := j + 1
 					end
+
 
 
 					-- Check with Collisions with starfighter
