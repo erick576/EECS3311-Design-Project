@@ -89,77 +89,77 @@ feature -- Commands
 									end
 								end
 
-						-- Collision Checks
-						-- Check with Collisions with friendly projectiles
-						from
-							j := 1
-						until
-							j > game_info.grid.friendly_projectiles.count
-						loop
-							if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
-								damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
-								if damage_with_armour < 0 then
-									damage_with_armour := 0
+							-- Collision Checks
+							-- Check with Collisions with friendly projectiles
+							from
+								j := 1
+							until
+								j > game_info.grid.friendly_projectiles.count
+							loop
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									set_curr_health (curr_health - damage_with_armour)
+
+									if curr_health < 0 then
+										set_curr_health (0)
+									end
+
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
-								set_curr_health (curr_health - damage_with_armour)
+								if curr_health = 0 then
+									j := game_info.grid.friendly_projectiles.count + 1
 
-								if curr_health < 0 then
-									set_curr_health (0)
+									set_row_pos (99)
+									set_col_pos (99)
 								end
 
-								game_info.grid.friendly_projectiles.at (j).set_col (99)
-								game_info.grid.friendly_projectiles.at (j).set_row (99)
+								j := j + 1
 							end
 
-							if curr_health = 0 then
-								j := game_info.grid.friendly_projectiles.count + 1
+							-- Check with Collisions with enemy projectiles
+							from
+								j := 1
+							until
+								j > game_info.grid.enemy_projectiles.count
+							loop
+								if row_pos = game_info.grid.enemy_projectiles.at (j).row_pos and col_pos = game_info.grid.enemy_projectiles.at (j).col_pos then
+									set_curr_health (curr_health + game_info.grid.enemy_projectiles.at (j).damage)
 
-								set_row_pos (99)
-								set_col_pos (99)
-							end
+									if curr_health > health then
+										set_curr_health (health)
+									end
 
-							j := j + 1
-						end
-
-						-- Check with Collisions with enemy projectiles
-						from
-							j := 1
-						until
-							j > game_info.grid.enemy_projectiles.count
-						loop
-							if row_pos = game_info.grid.enemy_projectiles.at (j).row_pos and col_pos = game_info.grid.enemy_projectiles.at (j).col_pos then
-								set_curr_health (curr_health + game_info.grid.enemy_projectiles.at (j).damage)
-
-								if curr_health > health then
-									set_curr_health (health)
+									game_info.grid.enemy_projectiles.at (j).set_col (99)
+									game_info.grid.enemy_projectiles.at (j).set_row (99)
 								end
 
-								game_info.grid.enemy_projectiles.at (j).set_col (99)
-								game_info.grid.enemy_projectiles.at (j).set_row (99)
-							end
+								if curr_health = 0 then
+									j := game_info.grid.enemy_projectiles.count + 1
 
-							if curr_health = 0 then
-								j := game_info.grid.enemy_projectiles.count + 1
-
-								set_row_pos (99)
-								set_col_pos (99)
-							end
-
-							j := j + 1
-						end
-
-						-- Check with Collisions with starfighter
-						if row_pos = game_info.starfighter.row_pos and col_pos = game_info.starfighter.col_pos then
-								game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - curr_health)
-
-								if game_info.starfighter.curr_health < 0 then
-									game_info.starfighter.set_curr_health (0)
+									set_row_pos (99)
+									set_col_pos (99)
 								end
 
-								set_row_pos (99)
-								set_col_pos (99)
-						end
+								j := j + 1
+							end
+
+							-- Check with Collisions with starfighter
+							if row_pos = game_info.starfighter.row_pos and col_pos = game_info.starfighter.col_pos then
+									game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - curr_health)
+
+									if game_info.starfighter.curr_health < 0 then
+										game_info.starfighter.set_curr_health (0)
+									end
+
+									set_row_pos (99)
+									set_col_pos (99)
+							end
 
 							end
 							i := i + 1
@@ -206,77 +206,77 @@ feature -- Commands
 									end
 								end
 
-						-- Collision Checks
-						-- Check with Collisions with friendly projectiles
-						from
-							j := 1
-						until
-							j > game_info.grid.friendly_projectiles.count
-						loop
-							if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
-								damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
-								if damage_with_armour < 0 then
-									damage_with_armour := 0
+							-- Collision Checks
+							-- Check with Collisions with friendly projectiles
+							from
+								j := 1
+							until
+								j > game_info.grid.friendly_projectiles.count
+							loop
+								if row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+									damage_with_armour := game_info.grid.friendly_projectiles.at (j).damage - armour
+									if damage_with_armour < 0 then
+										damage_with_armour := 0
+									end
+
+									set_curr_health (curr_health - damage_with_armour)
+
+									if curr_health < 0 then
+										set_curr_health (0)
+									end
+
+									game_info.grid.friendly_projectiles.at (j).set_col (99)
+									game_info.grid.friendly_projectiles.at (j).set_row (99)
 								end
 
-								set_curr_health (curr_health - damage_with_armour)
+								if curr_health = 0 then
+									j := game_info.grid.friendly_projectiles.count + 1
 
-								if curr_health < 0 then
-									set_curr_health (0)
+									set_row_pos (99)
+									set_col_pos (99)
 								end
 
-								game_info.grid.friendly_projectiles.at (j).set_col (99)
-								game_info.grid.friendly_projectiles.at (j).set_row (99)
+								j := j + 1
 							end
 
-							if curr_health = 0 then
-								j := game_info.grid.friendly_projectiles.count + 1
+							-- Check with Collisions with enemy projectiles
+							from
+								j := 1
+							until
+								j > game_info.grid.enemy_projectiles.count
+							loop
+								if row_pos = game_info.grid.enemy_projectiles.at (j).row_pos and col_pos = game_info.grid.enemy_projectiles.at (j).col_pos then
+									set_curr_health (curr_health + game_info.grid.enemy_projectiles.at (j).damage)
 
-								set_row_pos (99)
-								set_col_pos (99)
-							end
+									if curr_health > health then
+										set_curr_health (health)
+									end
 
-							j := j + 1
-						end
-
-						-- Check with Collisions with enemy projectiles
-						from
-							j := 1
-						until
-							j > game_info.grid.enemy_projectiles.count
-						loop
-							if row_pos = game_info.grid.enemy_projectiles.at (j).row_pos and col_pos = game_info.grid.enemy_projectiles.at (j).col_pos then
-								set_curr_health (curr_health + game_info.grid.enemy_projectiles.at (j).damage)
-
-								if curr_health > health then
-									set_curr_health (health)
+									game_info.grid.enemy_projectiles.at (j).set_col (99)
+									game_info.grid.enemy_projectiles.at (j).set_row (99)
 								end
 
-								game_info.grid.enemy_projectiles.at (j).set_col (99)
-								game_info.grid.enemy_projectiles.at (j).set_row (99)
-							end
+								if curr_health = 0 then
+									j := game_info.grid.enemy_projectiles.count + 1
 
-							if curr_health = 0 then
-								j := game_info.grid.enemy_projectiles.count + 1
-
-								set_row_pos (99)
-								set_col_pos (99)
-							end
-
-							j := j + 1
-						end
-
-						-- Check with Collisions with starfighter
-						if row_pos = game_info.starfighter.row_pos and col_pos = game_info.starfighter.col_pos then
-								game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - curr_health)
-
-								if game_info.starfighter.curr_health < 0 then
-									game_info.starfighter.set_curr_health (0)
+									set_row_pos (99)
+									set_col_pos (99)
 								end
 
-								set_row_pos (99)
-								set_col_pos (99)
-						end
+								j := j + 1
+							end
+
+							-- Check with Collisions with starfighter
+							if row_pos = game_info.starfighter.row_pos and col_pos = game_info.starfighter.col_pos then
+									game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - curr_health)
+
+									if game_info.starfighter.curr_health < 0 then
+										game_info.starfighter.set_curr_health (0)
+									end
+
+									set_row_pos (99)
+									set_col_pos (99)
+							end
 
 							end
 							i := i + 1

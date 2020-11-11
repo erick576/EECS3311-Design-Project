@@ -515,12 +515,14 @@ feature -- Commands
 
 	enemy_action
 		local
-			i : INTEGER
+			i , count : INTEGER
 		do
+			count := enemies.count
+
 			from
 				i := 1
 			until
-				i > enemies.count
+				i > count
 			loop
 				if enemies.at (i).can_see_starfighter then
 					enemies.at (i).action_when_starfighter_is_seen
