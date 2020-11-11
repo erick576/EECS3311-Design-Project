@@ -140,7 +140,7 @@ feature -- Deferred Commands
 			from
 				i := 1
 			until
-				i > game_info.grid.enemies.count
+				i > game_info.grid.enemy_projectiles.count
 			loop
 				if game_info.grid.enemy_projectiles.at (i).row_pos = (game_info.starfighter.row_pos) and game_info.grid.enemy_projectiles.at (i).col_pos = (game_info.starfighter.col_pos + 1) then
 
@@ -228,7 +228,7 @@ feature -- Deferred Commands
 			from
 				i := 1
 			until
-				i > game_info.grid.enemies.count
+				i > game_info.grid.enemy_projectiles.count
 			loop
 				if game_info.grid.enemy_projectiles.at (i).row_pos = (game_info.starfighter.row_pos + 1) and game_info.grid.enemy_projectiles.at (i).col_pos = (game_info.starfighter.col_pos + 1) then
 
