@@ -1428,6 +1428,11 @@ feature -- Setters for Setting State
 			curr_energy := curr
 		end
 
+	set_score (s : INTEGER)
+		do
+			score := s
+		end
+
 feature -- Exit Game
 
 	reset
