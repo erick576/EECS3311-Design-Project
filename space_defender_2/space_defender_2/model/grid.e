@@ -114,6 +114,30 @@ feature -- Helper Methods
 			end
 		end
 
+	can_see_enemy (other_enemy : ENEMY ; enemy_vision : INTEGER ; enemy_row : INTEGER ; enemy_column : INTEGER) : BOOLEAN
+		-- Can a Ememy see the enemy?
+		local
+			column_diff, row_diff : INTEGER
+		do
+			if (enemy_column - other_enemy.col_pos) >= 0 then
+				column_diff := enemy_column - other_enemy.col_pos
+			else
+				column_diff := other_enemy.col_pos - enemy_column
+			end
+
+			if (enemy_row - other_enemy.row_pos) >= 0 then
+				row_diff := enemy_row - other_enemy.row_pos
+			else
+				row_diff := other_enemy.row_pos - enemy_row
+			end
+
+			if (enemy_vision - (row_diff + column_diff)) < 0 then
+				Result := false
+			else
+				Result := true
+			end
+		end
+
 	is_in_bounds (row : INTEGER ; column : INTEGER) : BOOLEAN
 		do
 			Result := not (row > row_size or row < 1 or column > col_size or column < 1)
@@ -144,6 +168,31 @@ feature -- Setters
 	add_friendly_projectile_splitter (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
 			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_SPLITTER}.make (row, col, i, t))
+		end
+
+	add_enemy_projectile_grunt (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
+		do
+			enemy_projectiles.force (create {ENEMY_PROJECTILE_GRUNT}.make (row, col, i, t, d))
+		end
+
+	add_enemy_projectile_fighter (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
+		do
+			enemy_projectiles.force (create {ENEMY_PROJECTILE_FIGHTER}.make (row, col, i, t, d))
+		end
+
+	add_enemy_projectile_carrier (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
+		do
+			enemy_projectiles.force (create {ENEMY_PROJECTILE_CARRIER}.make (row, col, i, t, d))
+		end
+
+	add_enemy_projectile_interceptor (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
+		do
+			enemy_projectiles.force (create {ENEMY_PROJECTILE_INTERCEPTOR}.make (row, col, i, t, d))
+		end
+
+	add_enemy_projectile_pylon (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
+		do
+			enemy_projectiles.force (create {ENEMY_PROJECTILE_PYLON}.make (row, col, i, t, d))
 		end
 
 	increment_projectile_id_counter
@@ -343,9 +392,148 @@ feature -- Commands
 			end
 		end
 
-	enemies_action
+	spawn_interceptor (row : INTEGER ; column : INTEGER)
+		local
+			i , j, damage_with_armour: INTEGER
+			do_spawn : BOOLEAN
 		do
+			do_spawn := true
 
+			from
+				i := 1
+			until
+				i > enemies.count
+			loop
+				if enemies.at (i).row_pos = row and enemies.at (i).col_pos = column then
+					do_spawn := false
+				end
+				i := i + 1
+			end
+
+			if do_spawn = true then
+				increment_enemy_id_counter
+				enemies.force (create {INTERCEPTOR}.make (row, column, enemy_id_counter))
+				enemies.at (enemies.count).set_is_turn_over (true)
+
+				if is_in_bounds (row, column) then
+
+					-- Collisions with Friendly Projectiles
+					from
+						j := 1
+					until
+						j > friendly_projectiles.count
+					loop
+						if enemies.at (enemies.count).row_pos = friendly_projectiles.at (j).row_pos and enemies.at (enemies.count).col_pos = friendly_projectiles.at (j).col_pos then
+							damage_with_armour := friendly_projectiles.at (j).damage - enemies.at (enemies.count).armour
+							if damage_with_armour < 0 then
+								damage_with_armour := 0
+							end
+
+							enemies.at (enemies.count).set_curr_health (enemies.at (enemies.count).curr_health - damage_with_armour)
+
+							if enemies.at (enemies.count).curr_health < 0 then
+								enemies.at (enemies.count).set_curr_health (0)
+							end
+
+							friendly_projectiles.at (j).set_col (99)
+							friendly_projectiles.at (j).set_row (99)
+						end
+
+						if enemies.at (enemies.count).curr_health = 0 then
+							j := friendly_projectiles.count + 1
+
+							enemies.at (enemies.count).set_row_pos (99)
+							enemies.at (enemies.count).set_col_pos (99)
+						end
+
+						j := j + 1
+					end
+
+
+					-- Collisions with Enemy Projectiles
+					from
+						j := 1
+					until
+						j > enemy_projectiles.count
+					loop
+						if enemies.at (enemies.count).row_pos = enemy_projectiles.at (j).row_pos and enemies.at (enemies.count).col_pos = enemy_projectiles.at (j).col_pos then
+							enemies.at (enemies.count).set_curr_health (enemies.at (enemies.count).curr_health + enemy_projectiles.at (j).damage)
+
+							if enemies.at (enemies.count).curr_health > enemies.at (enemies.count).health then
+								enemies.at (enemies.count).set_curr_health (enemies.at (enemies.count).health)
+							end
+
+							enemy_projectiles.at (j).set_col (99)
+							enemy_projectiles.at (j).set_row (99)
+						end
+
+						if enemies.at (enemies.count).curr_health = 0 then
+							j := enemy_projectiles.count + 1
+
+							enemies.at (enemies.count).set_row_pos (99)
+							enemies.at (enemies.count).set_col_pos (99)
+						end
+
+						j := j + 1
+					end
+
+
+					-- Collision with the Starfighter
+					if enemies.at (enemies.count).row_pos = game_info.starfighter.row_pos and enemies.at (enemies.count).col_pos = game_info.starfighter.col_pos then
+							game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - enemies.at (enemies.count).curr_health)
+
+							if game_info.starfighter.curr_health < 0 then
+								game_info.starfighter.set_curr_health (0)
+							end
+
+							enemies.at (enemies.count).set_row_pos (99)
+							enemies.at (enemies.count).set_col_pos (99)
+					end
+				end
+
+			end
+		end
+
+	enemy_preemptive_action (type : CHARACTER)
+		local
+			i : INTEGER
+		do
+			from
+				i := 1
+			until
+				i > enemies.count
+			loop
+				enemies.at (i).preemptive_action (type)
+
+				if game_info.starfighter.curr_health = 0 then
+					i := enemies.count + 1
+				end
+
+				i := i + 1
+			end
+		end
+
+	enemy_action
+		local
+			i : INTEGER
+		do
+			from
+				i := 1
+			until
+				i > enemies.count
+			loop
+				if enemies.at (i).can_see_starfighter then
+					enemies.at (i).action_when_starfighter_is_seen
+				else
+					enemies.at (i).action_when_starfighter_is_not_seen
+				end
+
+				if game_info.starfighter.curr_health = 0 then
+					i := enemies.count + 1
+				end
+
+				i := i + 1
+			end
 		end
 
 end

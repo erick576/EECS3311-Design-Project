@@ -15,25 +15,24 @@ create
 
 feature -- Initialization
 
-	make (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
+	make (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
 		do
-				id := i
+			id := i
 
-			--	type : INTEGER
+			type := t
 			is_friendly := false
 
---			damage : INTEGER
+			damage := d
 
-		    --  row_pos : INTEGER
-			--  col_pos : INTEGER
+		    row_pos := row
+			col_pos := col
 		end
 
 feature -- Commands
 
 	do_turn
-		-- Turn Action for a Projectile
 		do
-
+			-- Do Nothing
 		end
 
 end

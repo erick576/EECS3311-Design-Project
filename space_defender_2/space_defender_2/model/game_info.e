@@ -349,7 +349,16 @@ feature -- Getters
 			end
 
 			-- Set Enemy Projectiles on Grid
-			-- TODO
+			from
+				i := 1
+			until
+				i > grid.enemy_projectiles.count
+			loop
+				if grid.is_in_bounds (grid.enemy_projectiles.at (i).row_pos, grid.enemy_projectiles.at (i).col_pos) then
+					grid.grid_elements.put ('<', ((grid.enemy_projectiles.at (i).row_pos - 1) * grid.col_size) + grid.enemy_projectiles.at (i).col_pos)
+				end
+				i := i + 1
+			end
 
 			-- Set Enemies on Grid
 			from

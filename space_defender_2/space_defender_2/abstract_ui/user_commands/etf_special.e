@@ -53,6 +53,9 @@ feature -- command
 				end
 
 			-- Phase 3
+				if model.game_info.is_alive = true then
+					model.starfighter.special
+				end
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -71,7 +74,16 @@ feature -- command
 
 			-- Phase 5
 				if model.game_info.is_alive = true then
-					model.grid.enemies_action
+					model.grid.enemy_preemptive_action ('S')
+				end
+
+				-- Check if Died
+				if model.starfighter.curr_health = 0 then
+					model.game_info.set_is_alive (false)
+				end
+
+				if model.game_info.is_alive = true then
+					model.grid.enemy_action
 				end
 
 				-- Check if Died

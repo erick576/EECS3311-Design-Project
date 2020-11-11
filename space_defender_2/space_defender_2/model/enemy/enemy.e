@@ -23,6 +23,8 @@ feature -- Attributes
 	can_see_starfighter : BOOLEAN
 	seen_by_starfighter : BOOLEAN
 
+	is_turn_over : BOOLEAN
+
 	symbol : CHARACTER
 
   game_info: GAME_INFO
@@ -36,30 +38,29 @@ feature -- Commands
 
 	update_can_see_starfighter
 		do
-			can_see_starfighter := game_info.grid.can_see (game_info.starfighter, row_pos, col_pos)
+			can_see_starfighter := game_info.grid.can_be_seen (game_info.starfighter, vision, row_pos, col_pos)
 		end
 
 	update_seen_by_starfighter
 		do
-			seen_by_starfighter := game_info.grid.can_be_seen (game_info.starfighter, vision, row_pos, col_pos)
+			seen_by_starfighter := game_info.grid.can_see (game_info.starfighter, row_pos, col_pos)
 		end
 
-	preemptive_action
+	regenerate
+		do
+			curr_health := curr_health + health_regen
+			if curr_health > health then
+				curr_health := health
+			end
+		end
+
+	preemptive_action (type : CHARACTER)
 		deferred end
 
 	action_when_starfighter_is_not_seen
 		deferred end
 
 	action_when_starfighter_is_seen
-		deferred end
-
-	do_turn
-		deferred end
-
-	regenerate
-		deferred end
-
-	move (row : INTEGER ; col : INTEGER)
 		deferred end
 
 feature -- Setters
@@ -79,4 +80,8 @@ feature -- Setters
 			curr_health := i
 		end
 
+	set_is_turn_over (b : BOOLEAN)
+		do
+			is_turn_over := b
+		end
 end
