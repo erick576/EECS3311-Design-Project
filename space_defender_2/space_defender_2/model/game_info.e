@@ -386,9 +386,9 @@ feature -- Getters
 				until
 					j > grid.col_size
 				loop
-					if not grid.can_see (starfighter, i, j) then
-						grid.grid_elements.put ('?', count)
-					end
+--					if not grid.can_see (starfighter, i, j) then
+--						grid.grid_elements.put ('?', count)
+--					end
 					j := j  + 1
 					count := count + 1
 				end
