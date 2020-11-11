@@ -26,7 +26,9 @@ feature -- Commands
 
 	special_move
 		do
-
+			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy - cost)
+			game_info.grid.friendly_projectiles.wipe_out
+			game_info.grid.enemy_projectiles.wipe_out
 		end
 
 end

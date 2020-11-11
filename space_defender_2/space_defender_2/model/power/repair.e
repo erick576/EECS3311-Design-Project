@@ -26,7 +26,8 @@ feature -- Commands
 
 	special_move
 		do
-
+			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy - cost)
+			game_info.starfighter.set_curr_health (game_info.starfighter.curr_health + 50)
 		end
 
 end

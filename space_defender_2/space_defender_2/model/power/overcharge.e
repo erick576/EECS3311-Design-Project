@@ -25,8 +25,16 @@ feature -- Initialization
 feature -- Commands
 
 	special_move
+		local
+			val : INTEGER
 		do
+			if game_info.starfighter.curr_health < 51 then
+				val := game_info.starfighter.curr_health - 1
+			else
+				val := 50
+			end
 
+			game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - val)
+			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy + (val * 2))
 		end
-
 end

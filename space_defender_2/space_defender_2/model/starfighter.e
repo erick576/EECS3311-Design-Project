@@ -1383,7 +1383,7 @@ feature -- Commands
 
 	special
 		do
-
+			power_selected.special_move
 		end
 
 feature -- Setters for Setting State
@@ -1421,6 +1421,11 @@ feature -- Setters for Setting State
 	set_curr_health (curr : INTEGER)
 		do
 			curr_health := curr
+		end
+
+	set_curr_energy (curr : INTEGER)
+		do
+			curr_energy := curr
 		end
 
 feature -- Exit Game

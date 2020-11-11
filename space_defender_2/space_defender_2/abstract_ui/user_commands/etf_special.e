@@ -19,8 +19,14 @@ feature -- command
 				model.game_info.set_is_error (true)
 				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.special_error_1)
---			elseif  then  -- TODO IF ENOUGH RESOURCES (Curr HEALTH OR Curr ENERGY)
-
+			elseif model.starfighter.power_selected.is_health_cost and model.starfighter.curr_health + model.starfighter.health_regen < 2 then
+				model.game_info.set_is_error (true)
+				model.game_info.set_is_valid_operation (false)
+				model.game_info.set_error_message (model.game_info.special_error_2)
+			elseif not model.starfighter.power_selected.is_health_cost and model.starfighter.curr_energy + model.starfighter.energy_regen < model.starfighter.power_selected.cost then
+				model.game_info.set_is_error (true)
+				model.game_info.set_is_valid_operation (false)
+				model.game_info.set_error_message (model.game_info.special_error_2)
 			else
 				-- Reset Error Count and Increment Valid Operation Count
 				model.game_info.set_error_count (0)
@@ -54,6 +60,7 @@ feature -- command
 
 			-- Phase 3
 				if model.game_info.is_alive = true then
+					model.starfighter.regenerate
 					model.starfighter.special
 				end
 
