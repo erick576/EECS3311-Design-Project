@@ -1,6 +1,15 @@
-play(5, 10, 1, 1, 1, 101, 101)
+play(5, 10, 10, 20, 30, 50, 90)
 setup_next(5)
 pass
 pass
-fire
-fire
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+pass
