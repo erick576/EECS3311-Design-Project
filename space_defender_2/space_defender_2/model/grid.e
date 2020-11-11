@@ -398,7 +398,6 @@ feature -- Commands
 			do_spawn : BOOLEAN
 		do
 			do_spawn := true
-
 			from
 				i := 1
 			until
@@ -515,14 +514,12 @@ feature -- Commands
 
 	enemy_action
 		local
-			i , count : INTEGER
+			i : INTEGER
 		do
-			count := enemies.count
-
 			from
 				i := 1
 			until
-				i > count
+				i > enemies.count
 			loop
 				if enemies.at (i).can_see_starfighter then
 					enemies.at (i).action_when_starfighter_is_seen

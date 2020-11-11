@@ -284,6 +284,7 @@ feature -- Commands
 
 					end
 
+					is_turn_over := true
 				else
 					-- Do Nothing
 				end
