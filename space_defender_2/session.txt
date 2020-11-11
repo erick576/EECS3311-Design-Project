@@ -17,3 +17,10 @@ fire
 move(H, 3)
 pass
 pass
+pass
+pass
+pass
+pass
+pass
+fire
+fire

@@ -213,7 +213,7 @@ feature -- Commands
 						j > game_info.grid.enemy_projectiles.count - 1
 					loop
 						if game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).id /= game_info.grid.enemy_projectiles.at (j).id then
-							if game_info.grid.enemy_projectiles.at (j).row_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos and game_info.grid.enemy_projectiles.at (j).col_pos = (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos - 1) then
+							if game_info.grid.enemy_projectiles.at (j).row_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos and game_info.grid.enemy_projectiles.at (j).col_pos = (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos) then
 								game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_damage (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage + game_info.grid.enemy_projectiles.at (j).damage)
 								game_info.grid.enemy_projectiles.at (j).set_row (99)
 								game_info.grid.enemy_projectiles.at (j).set_col (99)
@@ -430,7 +430,7 @@ feature -- Commands
 					until
 						j > game_info.grid.enemy_projectiles.count - 1
 					loop
-						if game_info.grid.enemy_projectiles.at (j).row_pos = row_pos and game_info.grid.enemy_projectiles.at (j).col_pos = (col_pos - 1) then
+						if game_info.grid.enemy_projectiles.at (j).row_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos and game_info.grid.enemy_projectiles.at (j).col_pos = (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos) then
 							game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_damage (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage + game_info.grid.enemy_projectiles.at (j).damage)
 							game_info.grid.enemy_projectiles.at (j).set_row (99)
 							game_info.grid.enemy_projectiles.at (j).set_col (99)
