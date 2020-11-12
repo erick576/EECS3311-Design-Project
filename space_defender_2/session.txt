@@ -6,3 +6,4 @@ setup_next(5)
 fire
 fire
 pass
+move(A, 3)

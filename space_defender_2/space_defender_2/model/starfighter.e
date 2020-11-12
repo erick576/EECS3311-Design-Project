@@ -1470,9 +1470,13 @@ feature -- Commands
 					if focus.at (i).curr_size < focus.at (i).capacity then
 						focus.at (i).holder.force (create {BRONZE_ORB}.make)
 						focus.at (i).increment_curr_size
+						j := focus.at (i).capacity + 1
 						did_add := true
 					end
 					j := j + 1
+				end
+				if did_add = true then
+					i := focus.count + 1
 				end
 				i := i + 1
 			end
@@ -1503,9 +1507,13 @@ feature -- Commands
 					if focus.at (i).curr_size < focus.at (i).capacity then
 						focus.at (i).holder.force (create {SILVER_ORB}.make)
 						focus.at (i).increment_curr_size
+						j := focus.at (i).capacity + 1
 						did_add := true
 					end
 					j := j + 1
+				end
+				if did_add = true then
+					i := focus.count + 1
 				end
 				i := i + 1
 			end
@@ -1537,9 +1545,13 @@ feature -- Commands
 					if focus.at (i).curr_size < focus.at (i).capacity then
 						focus.at (i).holder.force (create {GOLD_ORB}.make)
 						focus.at (i).increment_curr_size
+						j := focus.at (i).capacity + 1
 						did_add := true
 					end
 					j := j + 1
+				end
+				if did_add = true then
+					i := focus.count + 1
 				end
 				i := i + 1
 			end
