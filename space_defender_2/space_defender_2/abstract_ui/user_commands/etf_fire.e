@@ -140,6 +140,9 @@ feature -- command
 				end
 
 
+				-- Update Score
+				model.starfighter.update_score
+
 				-- Check if Died , If so then exit game
 				if model.game_info.is_alive = false then
 					-- Transition into Not Started State

@@ -37,6 +37,11 @@ feature -- Initialization
 
 feature -- Commands
 
+	discharge_after_death
+		do
+			game_info.starfighter.add_silver_orb
+		end
+
 	preemptive_action (type : CHARACTER)
 		do
 			if type ~ 'P' then
@@ -117,6 +122,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.friendly_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -144,6 +150,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.enemy_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -159,6 +166,7 @@ feature -- Commands
 									game_info.starfighter.set_curr_health (0)
 								end
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 						end
@@ -335,6 +343,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.friendly_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -362,6 +371,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.enemy_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -377,6 +387,7 @@ feature -- Commands
 									game_info.starfighter.set_curr_health (0)
 								end
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 						end

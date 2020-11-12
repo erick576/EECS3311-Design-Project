@@ -24,11 +24,10 @@ feature -- Initialization
 			projectile_id_counter := 0
 			enemy_id_counter := 0
 
-			create friendly_projectiles.make (0)
-			create enemy_projectiles.make (0)
-			create all_projectiles.make (0)
+			create {ARRAYED_LIST[FRIENDLY_PROJECTILE]} friendly_projectiles.make (0)
+			create {ARRAYED_LIST[ENEMY_PROJECTILE]} enemy_projectiles.make (0)
 
-			create enemies.make (0)
+			create {ARRAYED_LIST[ENEMY]} enemies.make (0)
 
 			grid_char_rows := <<'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'>>
 			create grid_elements.make_filled ('_', 0, row_size * col_size)
@@ -47,11 +46,10 @@ feature -- Attributes
 	projectile_id_counter : INTEGER
 	enemy_id_counter : INTEGER
 
-	friendly_projectiles : ARRAYED_LIST[FRIENDLY_PROJECTILE]
-	enemy_projectiles : ARRAYED_LIST[ENEMY_PROJECTILE]
-	all_projectiles : ARRAYED_LIST[PROJECTILE]
+	friendly_projectiles : LIST[FRIENDLY_PROJECTILE]
+	enemy_projectiles : LIST[ENEMY_PROJECTILE]
 
-	enemies : ARRAYED_LIST[ENEMY]
+	enemies : LIST[ENEMY]
 
 	grid_char_rows : ARRAY[CHARACTER]
 	grid_elements : ARRAY[CHARACTER]

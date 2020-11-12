@@ -118,6 +118,7 @@ feature -- Commands
 							set_col (99)
 
 							if game_info.grid.enemies.at (j).curr_health = 0 then
+								game_info.grid.enemies.at (j).discharge_after_death
 								game_info.grid.enemies.at (j).set_row_pos (99)
 								game_info.grid.enemies.at (j).set_col_pos (99)
 							end
@@ -227,6 +228,7 @@ feature -- Commands
 							set_col (99)
 
 							if game_info.grid.enemies.at (j).curr_health = 0 then
+								game_info.grid.enemies.at (j).discharge_after_death
 								game_info.grid.enemies.at (j).set_row_pos (99)
 								game_info.grid.enemies.at (j).set_col_pos (99)
 							end
@@ -337,6 +339,7 @@ feature -- Commands
 							set_col (99)
 
 							if game_info.grid.enemies.at (j).curr_health = 0 then
+								game_info.grid.enemies.at (j).discharge_after_death
 								game_info.grid.enemies.at (j).set_row_pos (99)
 								game_info.grid.enemies.at (j).set_col_pos (99)
 							end

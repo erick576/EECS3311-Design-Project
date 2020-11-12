@@ -37,6 +37,11 @@ feature -- Initialization
 
 feature -- Commands
 
+	discharge_after_death
+		do
+			game_info.starfighter.add_bronze_orb
+		end
+
 	preemptive_action (type : CHARACTER)
 		local
 			i, j, distance , damage_with_armour : INTEGER
@@ -115,6 +120,7 @@ feature -- Commands
 								if curr_health = 0 then
 									j := game_info.grid.friendly_projectiles.count + 1
 
+									discharge_after_death
 									set_row_pos (99)
 									set_col_pos (99)
 								end
@@ -142,6 +148,7 @@ feature -- Commands
 								if curr_health = 0 then
 									j := game_info.grid.enemy_projectiles.count + 1
 
+									discharge_after_death
 									set_row_pos (99)
 									set_col_pos (99)
 								end
@@ -157,6 +164,7 @@ feature -- Commands
 										game_info.starfighter.set_curr_health (0)
 									end
 
+									discharge_after_death
 									set_row_pos (99)
 									set_col_pos (99)
 							end
@@ -232,6 +240,7 @@ feature -- Commands
 								if curr_health = 0 then
 									j := game_info.grid.friendly_projectiles.count + 1
 
+									discharge_after_death
 									set_row_pos (99)
 									set_col_pos (99)
 								end
@@ -259,6 +268,7 @@ feature -- Commands
 								if curr_health = 0 then
 									j := game_info.grid.enemy_projectiles.count + 1
 
+									discharge_after_death
 									set_row_pos (99)
 									set_col_pos (99)
 								end
@@ -274,6 +284,7 @@ feature -- Commands
 										game_info.starfighter.set_curr_health (0)
 									end
 
+									discharge_after_death
 									set_row_pos (99)
 									set_col_pos (99)
 							end
@@ -351,6 +362,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.friendly_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -378,6 +390,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.enemy_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -393,6 +406,7 @@ feature -- Commands
 									game_info.starfighter.set_curr_health (0)
 								end
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 						end
@@ -466,6 +480,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.friendly_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -493,6 +508,7 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.enemy_projectiles.count + 1
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -508,6 +524,7 @@ feature -- Commands
 									game_info.starfighter.set_curr_health (0)
 								end
 
+								discharge_after_death
 								set_row_pos (99)
 								set_col_pos (99)
 						end

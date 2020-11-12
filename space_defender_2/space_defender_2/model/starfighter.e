@@ -33,6 +33,7 @@ feature -- Initialization
 			projectile_cost := 0
 
 			score := 0
+			focus := create {ARRAYED_LIST[FOCUS]}.make (0)
 
 			weapon_selected := create {WEAPON_STANDARD}.make
 			armour_selected := create {ARMOUR_NONE}.make
@@ -62,6 +63,7 @@ feature -- Attributes
 	projectile_cost : INTEGER
 
 	score : INTEGER
+	focus : LIST[FOCUS]
 
 	weapon_selected : WEAPON
 	armour_selected : ARMOUR
@@ -198,6 +200,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -303,6 +306,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -411,6 +415,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -517,6 +522,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -625,6 +631,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -727,6 +734,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -833,6 +841,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -935,6 +944,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -1041,6 +1051,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -1143,6 +1154,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -1250,6 +1262,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -1353,6 +1366,7 @@ feature -- Commands
 										set_curr_health (0)
 									end
 
+									game_info.grid.enemies.at (j).discharge_after_death
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end
@@ -1385,6 +1399,133 @@ feature -- Commands
 		do
 			power_selected.special_move
 		end
+
+	update_score
+		local
+			i : INTEGER
+		do
+			score := 0
+
+			from
+				i := 1
+			until
+				i > focus.count
+			loop
+				score := score + focus.at (i).return_total_score
+				i := i + 1
+			end
+		end
+
+	add_diamond_focus
+		do
+			focus.force (create {DIAMOND_FOCUS}.make)
+		end
+
+	add_platinum_focus
+		do
+			focus.force (create {PLATINUM_FOCUS}.make)
+		end
+
+	add_bronze_orb
+		local
+			i , j : INTEGER
+			did_add : BOOLEAN
+		do
+			did_add := false
+
+			from
+				i := 1
+			until
+				i > focus.count
+			loop
+				from
+					j := 1
+				until
+					j > focus.at (i).capacity
+				loop
+					if focus.at (i).curr_size < focus.at (i).capacity then
+						focus.at (i).holder.force (create {BRONZE_ORB}.make)
+						focus.at (i).increment_curr_size
+						did_add := true
+					end
+					j := j + 1
+				end
+				i := i + 1
+			end
+
+			if did_add = false then
+				focus.force (create {SINGLE_FOCUS}.make)
+				focus.at (focus.count).holder.force (create {BRONZE_ORB}.make)
+			end
+		end
+
+	add_silver_orb
+		local
+			i , j : INTEGER
+			did_add : BOOLEAN
+		do
+			did_add := false
+
+			from
+				i := 1
+			until
+				i > focus.count
+			loop
+				from
+					j := 1
+				until
+					j > focus.at (i).capacity
+				loop
+					if focus.at (i).curr_size < focus.at (i).capacity then
+						focus.at (i).holder.force (create {SILVER_ORB}.make)
+						focus.at (i).increment_curr_size
+						did_add := true
+					end
+					j := j + 1
+				end
+				i := i + 1
+			end
+
+			if did_add = false then
+				focus.force (create {SINGLE_FOCUS}.make)
+				focus.at (focus.count).holder.force (create {SILVER_ORB}.make)
+			end
+		end
+
+
+	add_gold_orb
+		local
+			i , j : INTEGER
+			did_add : BOOLEAN
+		do
+			did_add := false
+
+			from
+				i := 1
+			until
+				i > focus.count
+			loop
+				from
+					j := 1
+				until
+					j > focus.at (i).capacity
+				loop
+					if focus.at (i).curr_size < focus.at (i).capacity then
+						focus.at (i).holder.force (create {GOLD_ORB}.make)
+						focus.at (i).increment_curr_size
+						did_add := true
+					end
+					j := j + 1
+				end
+				i := i + 1
+			end
+
+			if did_add = false then
+				focus.force (create {SINGLE_FOCUS}.make)
+				focus.at (focus.count).holder.force (create {GOLD_ORB}.make)
+			end
+		end
+
 
 feature -- Setters for Setting State
 

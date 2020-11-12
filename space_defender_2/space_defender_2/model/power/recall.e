@@ -108,6 +108,7 @@ feature -- Commands
 						game_info.starfighter.set_curr_health (0)
 					end
 
+					game_info.grid.enemies.at (j).discharge_after_death
 					game_info.grid.enemies.at (j).set_row_pos (99)
 					game_info.grid.enemies.at (j).set_col_pos (99)
 				end

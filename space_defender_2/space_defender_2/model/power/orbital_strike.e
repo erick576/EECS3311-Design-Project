@@ -49,6 +49,7 @@ feature -- Commands
 				end
 
 				if game_info.grid.enemies.at (i).curr_health = 0 then
+					game_info.grid.enemies.at (i).discharge_after_death
 					game_info.grid.enemies.at (i).set_row_pos (99)
 					game_info.grid.enemies.at (i).set_col_pos (99)
 				end

@@ -1,26 +1,10 @@
-play(10, 30, 5, 25, 50, 75, 100)
-setup_select(4)
-setup_next(1)
-setup_select(3)
-setup_next(1)
-setup_select(1)
-setup_next(1)
+play(5, 10, 1, 1, 1, 101, 101)
+setup_select(5)
+setup_next(3)
 setup_select(5)
 setup_next(5)
-fire
-pass
-move(D, 3)
-fire
-fire
-fire
-fire
-move(H, 3)
 pass
 pass
 pass
 pass
-pass
-pass
-pass
-fire
-fire
+special

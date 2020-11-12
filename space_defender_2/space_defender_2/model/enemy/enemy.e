@@ -63,6 +63,9 @@ feature -- Commands
 	action_when_starfighter_is_seen
 		deferred end
 
+	discharge_after_death
+		deferred end
+
 feature -- Setters
 
 	set_row_pos (row : INTEGER)
