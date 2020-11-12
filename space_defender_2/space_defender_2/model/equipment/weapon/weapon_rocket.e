@@ -121,7 +121,9 @@ feature -- Deferred Commands
 					game_info.grid.friendly_projectiles.at (game_info.grid.friendly_projectiles.count).set_col (99)
 
 					if game_info.grid.enemies.at (i).curr_health = 0 then
-						game_info.grid.enemies.at (i).discharge_after_death
+						if game_info.grid.is_in_bounds (game_info.grid.enemies.at (i).row_pos, game_info.grid.enemies.at (i).col_pos) then
+							game_info.grid.enemies.at (i).discharge_after_death
+						end
 						game_info.grid.enemies.at (i).set_row_pos (99)
 						game_info.grid.enemies.at (i).set_col_pos (99)
 					end
@@ -208,7 +210,9 @@ feature -- Deferred Commands
 					game_info.grid.friendly_projectiles.at (game_info.grid.friendly_projectiles.count).set_col (99)
 
 					if game_info.grid.enemies.at (i).curr_health = 0 then
-						game_info.grid.enemies.at (i).discharge_after_death
+						if game_info.grid.is_in_bounds (game_info.grid.enemies.at (i).row_pos, game_info.grid.enemies.at (i).col_pos) then
+							game_info.grid.enemies.at (i).discharge_after_death
+						end
 						game_info.grid.enemies.at (i).set_row_pos (99)
 						game_info.grid.enemies.at (i).set_col_pos (99)
 					end

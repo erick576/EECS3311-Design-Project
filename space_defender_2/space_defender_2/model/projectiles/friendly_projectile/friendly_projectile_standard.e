@@ -122,7 +122,9 @@ feature -- Commands
 								set_col (99)
 
 								if game_info.grid.enemies.at (j).curr_health = 0 then
-									game_info.grid.enemies.at (j).discharge_after_death
+									if game_info.grid.is_in_bounds (game_info.grid.enemies.at (j).row_pos, game_info.grid.enemies.at (j).col_pos) then
+										game_info.grid.enemies.at (j).discharge_after_death
+									end
 									game_info.grid.enemies.at (j).set_row_pos (99)
 									game_info.grid.enemies.at (j).set_col_pos (99)
 								end

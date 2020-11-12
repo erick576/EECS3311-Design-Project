@@ -122,7 +122,9 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.friendly_projectiles.count + 1
 
-								discharge_after_death
+								if game_info.grid.is_in_bounds (row_pos, col_pos) then
+									discharge_after_death
+								end
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -150,7 +152,9 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.enemy_projectiles.count + 1
 
-								discharge_after_death
+								if game_info.grid.is_in_bounds (row_pos, col_pos) then
+									discharge_after_death
+								end
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -166,7 +170,9 @@ feature -- Commands
 									game_info.starfighter.set_curr_health (0)
 								end
 
-								discharge_after_death
+								if game_info.grid.is_in_bounds (row_pos, col_pos) then
+									discharge_after_death
+								end
 								set_row_pos (99)
 								set_col_pos (99)
 						end
@@ -343,7 +349,9 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.friendly_projectiles.count + 1
 
-								discharge_after_death
+								if game_info.grid.is_in_bounds (row_pos, col_pos) then
+									discharge_after_death
+								end
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -371,7 +379,9 @@ feature -- Commands
 							if curr_health = 0 then
 								j := game_info.grid.enemy_projectiles.count + 1
 
-								discharge_after_death
+								if game_info.grid.is_in_bounds (row_pos, col_pos) then
+									discharge_after_death
+								end
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -387,7 +397,9 @@ feature -- Commands
 									game_info.starfighter.set_curr_health (0)
 								end
 
-								discharge_after_death
+								if game_info.grid.is_in_bounds (row_pos, col_pos) then
+									discharge_after_death
+								end
 								set_row_pos (99)
 								set_col_pos (99)
 						end
