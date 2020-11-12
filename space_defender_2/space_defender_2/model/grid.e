@@ -354,6 +354,9 @@ feature -- Commands
 						if enemies.at (enemies.count).curr_health = 0 then
 							j := friendly_projectiles.count + 1
 
+							if is_in_bounds (enemies.at (enemies.count).row_pos , enemies.at (enemies.count).col_pos) then
+								enemies.at (enemies.count).discharge_after_death
+							end
 							enemies.at (enemies.count).set_row_pos (99)
 							enemies.at (enemies.count).set_col_pos (99)
 						end
@@ -382,6 +385,9 @@ feature -- Commands
 						if enemies.at (enemies.count).curr_health = 0 then
 							j := enemy_projectiles.count + 1
 
+							if is_in_bounds (enemies.at (enemies.count).row_pos , enemies.at (enemies.count).col_pos) then
+								enemies.at (enemies.count).discharge_after_death
+							end
 							enemies.at (enemies.count).set_row_pos (99)
 							enemies.at (enemies.count).set_col_pos (99)
 						end
@@ -398,6 +404,9 @@ feature -- Commands
 								game_info.starfighter.set_curr_health (0)
 							end
 
+							if is_in_bounds (enemies.at (enemies.count).row_pos , enemies.at (enemies.count).col_pos) then
+								enemies.at (enemies.count).discharge_after_death
+							end
 							enemies.at (enemies.count).set_row_pos (99)
 							enemies.at (enemies.count).set_col_pos (99)
 					end
@@ -455,6 +464,9 @@ feature -- Commands
 						if enemies.at (enemies.count).curr_health = 0 then
 							j := friendly_projectiles.count + 1
 
+							if is_in_bounds (enemies.at (enemies.count).row_pos , enemies.at (enemies.count).col_pos) then
+								enemies.at (enemies.count).discharge_after_death
+							end
 							enemies.at (enemies.count).set_row_pos (99)
 							enemies.at (enemies.count).set_col_pos (99)
 						end
@@ -483,6 +495,9 @@ feature -- Commands
 						if enemies.at (enemies.count).curr_health = 0 then
 							j := enemy_projectiles.count + 1
 
+							if is_in_bounds (enemies.at (enemies.count).row_pos , enemies.at (enemies.count).col_pos) then
+								enemies.at (enemies.count).discharge_after_death
+							end
 							enemies.at (enemies.count).set_row_pos (99)
 							enemies.at (enemies.count).set_col_pos (99)
 						end
@@ -499,6 +514,9 @@ feature -- Commands
 								game_info.starfighter.set_curr_health (0)
 							end
 
+							if is_in_bounds (enemies.at (enemies.count).row_pos , enemies.at (enemies.count).col_pos) then
+								enemies.at (enemies.count).discharge_after_death
+							end
 							enemies.at (enemies.count).set_row_pos (99)
 							enemies.at (enemies.count).set_col_pos (99)
 					end
