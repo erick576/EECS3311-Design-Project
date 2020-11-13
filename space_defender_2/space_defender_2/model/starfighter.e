@@ -209,7 +209,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := column + 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -317,7 +317,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := column - 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -428,7 +428,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := row + 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -537,7 +537,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := row - 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -648,7 +648,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := row + 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -753,7 +753,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := column + 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -862,7 +862,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := row - 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -967,7 +967,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := column + 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -1076,7 +1076,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := row + 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -1181,7 +1181,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := column - 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -1291,7 +1291,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := row - 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -1397,7 +1397,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									i := column - 1
-									j := game_info.grid.enemy_projectiles.count + 1
+									j := game_info.grid.enemies.count + 1
 									stop_starfighter := true
 								end
 
@@ -1629,6 +1629,7 @@ feature -- Exit Game
 			projectile_cost :=  weapon_selected.projectile_cost + armour_selected.projectile_cost + engine_selected.projectile_cost
 
 			score := 0
+			focus := create {ARRAYED_LIST[FOCUS]}.make (0)
 		end
 
 end
