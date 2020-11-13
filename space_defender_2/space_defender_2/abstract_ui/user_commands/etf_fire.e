@@ -142,6 +142,7 @@ feature -- command
 
 				-- Update Score
 				model.starfighter.update_score
+				model.grid.clear_all
 
 				-- Check if Died , If so then exit game
 				if model.game_info.is_alive = false then

@@ -71,7 +71,7 @@ feature -- Commands
 									game_info.grid.friendly_projectiles.at (j).set_col (99)
 								end
 
-								j := game_info.grid.friendly_projectiles.count
+								j := game_info.grid.friendly_projectiles.count + 1
 							end
 						end
 						j := j + 1
@@ -179,7 +179,7 @@ feature -- Commands
 									game_info.grid.friendly_projectiles.at (j).set_col (99)
 								end
 
-								j := game_info.grid.friendly_projectiles.count
+								j := game_info.grid.friendly_projectiles.count + 1
 							end
 						end
 						j := j + 1
@@ -288,7 +288,7 @@ feature -- Commands
 									game_info.grid.friendly_projectiles.at (j).set_col (99)
 								end
 
-								j := game_info.grid.friendly_projectiles.count
+								j := game_info.grid.friendly_projectiles.count + 1
 							end
 						end
 						j := j + 1

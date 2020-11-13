@@ -461,7 +461,7 @@ feature -- Commands
 							j := game_info.grid.enemy_projectiles.count
 						end
 
-						j := i + 1
+						j := j + 1
 					end
 
 
