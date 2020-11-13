@@ -304,7 +304,7 @@ feature -- Commands
 					-- Fire Projectile
 
 					game_info.grid.increment_projectile_id_counter
-					game_info.grid.add_enemy_projectile_fighter (row_pos, col_pos - 1, game_info.grid.projectile_id_counter, 1, 70)
+					game_info.grid.add_enemy_projectile_pylon (row_pos, col_pos - 1, game_info.grid.projectile_id_counter, 1, 70)
 
 					-- Spawn Collision Case with Friendly Projectile
 					from
