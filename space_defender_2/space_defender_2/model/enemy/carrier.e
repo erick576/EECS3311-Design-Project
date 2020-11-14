@@ -54,6 +54,8 @@ feature -- Commands
 
 			elseif type ~ 'P' then
 
+				regenerate
+
 				-- Preemptive Action on Pass
 				enemy_seen := false
 

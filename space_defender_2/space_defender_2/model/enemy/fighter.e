@@ -56,6 +56,8 @@ feature -- Commands
 
 			elseif type ~ 'P' then
 
+				regenerate
+
 				-- Preemptive Action on Pass
 				from
 					i := 1

@@ -50,6 +50,8 @@ feature -- Commands
 			if is_turn_over = false then
 				if type ~ 'F' then
 
+					regenerate
+
 					-- Preemptive Action on Fire
 					enemy_seen := false
 					distance := row_pos - game_info.starfighter.row_pos
