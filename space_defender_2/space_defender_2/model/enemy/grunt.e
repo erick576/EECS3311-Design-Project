@@ -30,6 +30,7 @@ feature -- Initialization
 			is_turn_over := false
 
 			symbol := 'G'
+			name := "Grunt"
 
 			row_pos := row
 			col_pos := col

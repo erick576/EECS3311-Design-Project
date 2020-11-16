@@ -26,6 +26,7 @@ feature -- Attributes
 	is_turn_over : BOOLEAN
 
 	symbol : CHARACTER
+	name : STRING
 
   game_info: GAME_INFO
 	local

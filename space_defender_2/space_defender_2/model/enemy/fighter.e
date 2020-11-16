@@ -30,6 +30,7 @@ feature -- Initialization
 			is_turn_over := false
 
 			symbol := 'F'
+			name := "Fighter"
 
 			row_pos := row
 			col_pos := col
