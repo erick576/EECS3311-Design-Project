@@ -122,6 +122,12 @@ feature -- command
 				model.starfighter.update_score
 				model.grid.clear_all
 
+				-- Add Info to debug mode output
+				if not model.game_info.in_normal_mode then
+					model.grid.add_enemy_info
+					model.grid.add_projectiles_info
+				end
+
 				-- Check if Died , If so then exit game
 				if model.game_info.is_alive = false then
 					-- Transition into Not Started State

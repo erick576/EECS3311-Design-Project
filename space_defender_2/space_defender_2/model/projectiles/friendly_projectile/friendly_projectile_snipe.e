@@ -21,6 +21,7 @@ feature -- Initialization
 
 			type := t
 			is_friendly := true
+			move := 8
 
 			damage := 1000
 

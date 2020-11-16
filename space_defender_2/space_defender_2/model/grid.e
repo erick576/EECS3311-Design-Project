@@ -173,9 +173,9 @@ feature -- Setters
 			enemy_projectiles.force (create {ENEMY_PROJECTILE_GRUNT}.make (row, col, i, t, d))
 		end
 
-	add_enemy_projectile_fighter (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
+	add_enemy_projectile_fighter (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER ; m : INTEGER)
 		do
-			enemy_projectiles.force (create {ENEMY_PROJECTILE_FIGHTER}.make (row, col, i, t, d))
+			enemy_projectiles.force (create {ENEMY_PROJECTILE_FIGHTER}.make (row, col, i, t, d, m))
 		end
 
 	add_enemy_projectile_carrier (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
@@ -606,6 +606,47 @@ feature -- Commands
 					enemies.remove
 				end
 				i := i + 1
+			end
+		end
+
+feature -- Debug Mode Output
+
+	add_enemy_info
+		local
+			i : INTEGER
+		do
+			from
+				i := 1
+			until
+				i > enemies.count
+			loop
+				game_info.append_enemy_info ("    [" + enemies.at (i).id.out + "," + enemies.at (i).symbol.out + "]->health:" + enemies.at (i).curr_health.out + "/" + enemies.at (i).health.out + ", Regen:" + enemies.at (i).health_regen.out + ", Armour:" + enemies.at (i).armour.out + ", Vision:" + enemies.at (i).vision.out + ", seen_by_Starfighter:" + enemies.at (i).seen_by_starfighter_output + ", can_see_Starfighter:" + enemies.at (i).can_see_starfighter_output + ", location:[" + grid_char_rows.at (enemies.at (i).row_pos).out + "," + enemies.at (i).col_pos.out + "]")
+				i := i + 1
+			end
+		end
+
+	add_projectiles_info
+		local
+			i , j , k : INTEGER
+		do
+			j := 1
+			k := 1
+
+			from
+				i := -1
+			until
+				i < projectile_id_counter
+			loop
+				if friendly_projectiles.valid_index (j) and friendly_projectiles.at (j).id = i then
+					game_info.append_projectile_info ("    [" + friendly_projectiles.at (j).id.out + ",*]->damage:" + friendly_projectiles.at (j).damage.out + ", move:" + friendly_projectiles.at (j).move.out + ", location:[" + grid_char_rows.at (friendly_projectiles.at (j).row_pos).out + "," + friendly_projectiles.at (j).col_pos.out + "])")
+					j := j + 1
+				end
+
+				if enemy_projectiles.valid_index (k) and enemy_projectiles.at (k).id = i then
+					game_info.append_projectile_info ("    [" + enemy_projectiles.at (k).id.out + ",<]->damage:" + enemy_projectiles.at (k).damage.out + ", move:" + enemy_projectiles.at (k).move.out + ", location:[" + grid_char_rows.at (enemy_projectiles.at (k).row_pos).out + "," + enemy_projectiles.at (k).col_pos.out + "])")
+					k := k + 1
+				end
+				i := i - 1
 			end
 		end
 

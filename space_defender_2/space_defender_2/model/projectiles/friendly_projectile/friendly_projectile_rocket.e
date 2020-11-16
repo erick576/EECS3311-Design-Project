@@ -22,6 +22,7 @@ feature -- Initialization
 			type := t
 			is_friendly := true
 			turn := 1
+			move := 1
 
 			damage := 100
 
@@ -288,6 +289,7 @@ feature -- Commands
 				end
 
 				turn := turn * 2
+				move := turn
 
 			end
 		end

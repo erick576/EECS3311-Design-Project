@@ -14,6 +14,8 @@ feature -- Attributes
 	row_pos : INTEGER
 	col_pos : INTEGER
 
+	move : INTEGER
+
 	damage : INTEGER
 
 	type : INTEGER

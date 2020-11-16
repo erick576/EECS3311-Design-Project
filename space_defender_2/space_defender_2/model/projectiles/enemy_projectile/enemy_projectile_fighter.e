@@ -15,12 +15,13 @@ create
 
 feature -- Initialization
 
-	make (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
+	make (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER ; m : INTEGER)
 		do
 			id := i
 
 			type := t
 			is_friendly := false
+			move := m
 
 			damage := d
 

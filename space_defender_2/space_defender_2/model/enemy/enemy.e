@@ -87,4 +87,26 @@ feature -- Setters
 		do
 			is_turn_over := b
 		end
+
+feature -- Output Helpers
+
+	can_see_starfighter_output : STRING
+		do
+			create Result.make_empty
+			if can_see_starfighter = true then
+				Result.append ("T")
+			else
+				Result.append ("F")
+			end
+		end
+
+	seen_by_starfighter_output : STRING
+		do
+			create Result.make_empty
+			if seen_by_starfighter = true then
+				Result.append ("T")
+			else
+				Result.append ("F")
+			end
+		end
 end
