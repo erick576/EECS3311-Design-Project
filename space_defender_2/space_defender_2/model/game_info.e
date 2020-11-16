@@ -21,6 +21,14 @@ feature
 			create operation_message.make_empty
 			create game_over_message.make_empty
 
+			create enemy_info.make_empty
+			create projectile_info.make_empty
+			create friendly_projectile_action_info.make_empty
+		    create enemy_projectile_action_info.make_empty
+			create starfighter_action_info.make_empty
+		    create enemy_action_info.make_empty
+			create natural_enemy_spawn_info.make_empty
+
 			in_normal_mode := true
 			is_alive := true
 			is_error := false
@@ -102,6 +110,13 @@ feature {NONE} -- Attribute Messages
 	operation_message : STRING
 	game_over_message : STRING
 
+	enemy_info : STRING
+	projectile_info : STRING
+	friendly_projectile_action_info : STRING
+    enemy_projectile_action_info : STRING
+	starfighter_action_info : STRING
+    enemy_action_info : STRING
+	natural_enemy_spawn_info : STRING
 
 feature -- Set Messages
 
@@ -216,6 +231,10 @@ feature -- Set Messages
 
 	starfighter_is_dead : STRING = "  The game is over. Better luck next time!"
 
+	in_debug_mode_message : STRING = "  In debug mode."
+	not_in_debug_mode_message : STRING = "  Not in debug mode."
+
+
 feature -- Setters for messages
 
 	set_error_message (s : STRING)
@@ -251,6 +270,84 @@ feature -- Setters for messages
 	set_game_over_message (s : STRING)
 		do
 			game_over_message := s
+		end
+
+	set_enemy_info (s : STRING)
+		do
+			enemy_info := s
+		end
+
+	set_projectile_info (s : STRING)
+		do
+			projectile_info := s
+		end
+
+	set_friendly_projectile_action_info (s : STRING)
+		do
+			friendly_projectile_action_info := s
+		end
+
+    set_enemy_projectile_action_info (s : STRING)
+    	do
+			enemy_projectile_action_info := s
+    	end
+
+	set_starfighter_action_info (s : STRING)
+		do
+			starfighter_action_info := s
+		end
+
+    set_enemy_action_info (s : STRING)
+    	do
+			enemy_action_info := s
+    	end
+
+	set_natural_enemy_spawn_info (s : STRING)
+		do
+			natural_enemy_spawn_info := s
+		end
+
+	append_enemy_info (s : STRING)
+		do
+			enemy_info.append (s)
+			enemy_info.append ("%N")
+		end
+
+	append_projectile_info (s : STRING)
+		do
+			projectile_info.append (s)
+			projectile_info.append ("%N")
+		end
+
+	append_friendly_projectile_action_info (s : STRING)
+		do
+			friendly_projectile_action_info.append (s)
+			friendly_projectile_action_info.append ("%N")
+		end
+
+    append_enemy_projectile_action_info (s : STRING)
+    	do
+			enemy_projectile_action_info.append (s)
+			enemy_projectile_action_info.append ("%N")
+    	end
+
+	append_starfighter_action_info (s : STRING)
+		do
+			starfighter_action_info.append (s)
+			starfighter_action_info.append ("%N")
+
+		end
+
+    append_enemy_action_info (s : STRING)
+    	do
+			enemy_action_info.append (s)
+			enemy_action_info.append ("%N")
+    	end
+
+	append_natural_enemy_spawn_info (s : STRING)
+		do
+			natural_enemy_spawn_info.append (s)
+			natural_enemy_spawn_info.append ("%N")
 		end
 
 feature -- Setters for boolean queries
@@ -468,5 +565,32 @@ feature -- Getters
 			Result.append ("      Power:" + starfighter.power_selected.type_name)
 			Result.append ("%N")
 			Result.append ("      score:" + starfighter.score.out)
+		end
+
+	display_debug_mode : STRING
+		do
+			create Result.make_empty
+			Result.append ("  Enemy:")
+			Result.append ("%N")
+			Result.append (enemy_info)
+			Result.append ("  Projectile:")
+			Result.append ("%N")
+			Result.append (projectile_info)
+			Result.append ("  Friendly Projectile Action:")
+			Result.append ("%N")
+			Result.append (friendly_projectile_action_info)
+			Result.append ("  Enemy Projectile Action:")
+			Result.append ("%N")
+			Result.append (enemy_projectile_action_info)
+			Result.append ("  Starfighter Action:")
+			Result.append ("%N")
+			Result.append (starfighter_action_info)
+			Result.append ("  Enemy Action:")
+			Result.append ("%N")
+			Result.append (enemy_action_info)
+			Result.append ("  Natural Enemy Spawn:")
+			Result.append ("%N")
+			Result.append (natural_enemy_spawn_info)
+
 		end
 end

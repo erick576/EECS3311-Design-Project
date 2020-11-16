@@ -72,6 +72,11 @@ feature
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_objects)
 	      	Result.append ("%N")
+
+	      	if game_info.in_normal_mode = false then
+	     		Result.append (game_info.display_debug_mode)
+			end
+
 	      	Result.append (game_info.display_grid)
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_game_over)

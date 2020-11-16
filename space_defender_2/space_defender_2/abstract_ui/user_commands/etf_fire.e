@@ -48,13 +48,21 @@ feature -- command
 				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.fire_error_2)
 			else
+				-- Clear all Debug Messages
+    			model.game_info.set_enemy_info ("")
+				model.game_info.set_projectile_info ("")
+				model.game_info.set_friendly_projectile_action_info ("")
+			    model.game_info.set_enemy_projectile_action_info ("")
+				model.game_info.set_starfighter_action_info ("")
+			    model.game_info.set_enemy_action_info ("")
+				model.game_info.set_natural_enemy_spawn_info ("")
+
 				-- Reset Error Count and Increment Valid Operation Count
 				model.game_info.set_error_count (0)
 				model.game_info.set_valid_operation_count (model.game_info.valid_operation_count + 1)
 
 				model.game_info.set_is_error (false)
-				model.game_info.set_is_valid_operation (true)
---				model.game_info.set_operation_message ("")
+				model.game_info.set_is_valid_operation (false)
 
 				-- Perform Fire
 

@@ -66,12 +66,7 @@ feature
       		game_info.set_status_message (game_info.ok_status)
       		Result.append (game_info.display_state)
 	      	Result.append ("%N")
---	      	Result.append (game_info.display_operation)
---	      	Result.append ("%N")
-	      	Result.append (game_info.display_objects)
-	      	Result.append ("%N")
-	      	Result.append (game_info.display_grid)
-
+	      	Result.append (game_info.display_operation)
       	else
       		game_info.set_status_message (game_info.ok_status)
       		Result.append (game_info.display_state)
@@ -79,6 +74,11 @@ feature
 	      	Result.append ("%N")
 	      	Result.append (game_info.display_objects)
 	      	Result.append ("%N")
+
+	      	if game_info.in_normal_mode = false then
+	     		Result.append (game_info.display_debug_mode)
+			end
+
 	      	Result.append (game_info.display_grid)
       	end
 
