@@ -417,18 +417,18 @@ feature -- Commands
 								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " at location [" + grid_char_rows.at (enemies.at (enemies.count).row_pos).out + "," + enemies.at (enemies.count).col_pos.out + "] has been destroyed.")
 							end
 
-							if game_info.starfighter.curr_health <= 0 then
-								-- Add to debug Output
-								if not game_info.in_normal_mode then
-									game_info.append_natural_enemy_spawn_info ("      The Starfighter at location [" + grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed.")
-								end
-
+							if game_info.starfighter.curr_health < 0 then
 								game_info.starfighter.set_curr_health (0)
 							end
 
 							-- Add to debug Output
 							if not game_info.in_normal_mode then
 								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " collides with Starfighter(id:0) at location [" + grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "], trading " + enemies.at (enemies.count).curr_health.out + " damage.")
+							end
+
+							-- Add to debug Output
+							if not game_info.in_normal_mode and game_info.starfighter.curr_health = 0 then
+								game_info.append_natural_enemy_spawn_info ("      The Starfighter at location [" + grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed.")
 							end
 
 							if is_in_bounds (enemies.at (enemies.count).row_pos , enemies.at (enemies.count).col_pos) then
