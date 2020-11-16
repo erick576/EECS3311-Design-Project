@@ -19,28 +19,14 @@ feature -- command
 				model.game_info.set_is_error (true)
 				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.fire_error_1)
-			elseif model.starfighter.weapon_selected.is_projectile_cost_health and model.starfighter.projectile_cost > (model.starfighter.curr_health + model.starfighter.health_regen) and (model.starfighter.curr_health + model.starfighter.health_regen) <= model.starfighter.health then
+			elseif model.starfighter.weapon_selected.is_projectile_cost_health and model.starfighter.projectile_cost > (model.starfighter.curr_health + model.starfighter.health_regen) then
 				-- Increment Error Count
 				model.game_info.set_error_count (model.game_info.error_count + 1)
 
 				model.game_info.set_is_error (true)
 				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.fire_error_2)
-			elseif model.starfighter.weapon_selected.is_projectile_cost_health and model.starfighter.projectile_cost > model.starfighter.health and (model.starfighter.curr_health + model.starfighter.health_regen) > model.starfighter.health then
-				-- Increment Error Count
-				model.game_info.set_error_count (model.game_info.error_count + 1)
-
-				model.game_info.set_is_error (true)
-				model.game_info.set_is_valid_operation (false)
-				model.game_info.set_error_message (model.game_info.fire_error_2)
-			elseif not model.starfighter.weapon_selected.is_projectile_cost_health and model.starfighter.projectile_cost > (model.starfighter.curr_energy + model.starfighter.energy_regen) and (model.starfighter.curr_energy + model.starfighter.energy_regen) <= model.starfighter.energy then
-				-- Increment Error Count
-				model.game_info.set_error_count (model.game_info.error_count + 1)
-
-				model.game_info.set_is_error (true)
-				model.game_info.set_is_valid_operation (false)
-				model.game_info.set_error_message (model.game_info.fire_error_2)
-			elseif not model.starfighter.weapon_selected.is_projectile_cost_health and model.starfighter.projectile_cost > model.starfighter.energy and (model.starfighter.curr_energy + model.starfighter.energy_regen) > model.starfighter.energy then
+			elseif not model.starfighter.weapon_selected.is_projectile_cost_health and model.starfighter.projectile_cost > (model.starfighter.curr_energy + model.starfighter.energy_regen) then
 				-- Increment Error Count
 				model.game_info.set_error_count (model.game_info.error_count + 1)
 
@@ -56,7 +42,7 @@ feature -- command
 				model.game_info.set_starfighter_action_info ("")
 				model.game_info.set_enemy_action_info ("")
 				model.game_info.set_natural_enemy_spawn_info ("")
-				
+
 				-- Reset Error Count and Increment Valid Operation Count
 				model.game_info.set_error_count (0)
 				model.game_info.set_valid_operation_count (model.game_info.valid_operation_count + 1)

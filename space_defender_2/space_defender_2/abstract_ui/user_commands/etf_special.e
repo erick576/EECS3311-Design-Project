@@ -42,7 +42,7 @@ feature -- command
 				model.game_info.set_starfighter_action_info ("")
 				model.game_info.set_enemy_action_info ("")
 				model.game_info.set_natural_enemy_spawn_info ("")
-				
+
 				-- Reset Error Count and Increment Valid Operation Count
 				model.game_info.set_error_count (0)
 				model.game_info.set_valid_operation_count (model.game_info.valid_operation_count + 1)

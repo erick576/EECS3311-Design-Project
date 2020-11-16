@@ -56,14 +56,7 @@ feature -- command
 				model.game_info.set_is_error (true)
 				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.move_error_4)
-			elseif (row_diff + column_diff) * model.starfighter.move_cost > (model.starfighter.curr_energy + model.starfighter.energy_regen) and (model.starfighter.curr_energy + model.starfighter.energy_regen) <= model.starfighter.energy then
-				-- Increment Error Count
-				model.game_info.set_error_count (model.game_info.error_count + 1)
-
-				model.game_info.set_is_error (true)
-				model.game_info.set_is_valid_operation (false)
-				model.game_info.set_error_message (model.game_info.move_error_5)
-			elseif (row_diff + column_diff) * model.starfighter.move_cost > model.starfighter.energy and (model.starfighter.curr_energy + model.starfighter.energy_regen) > model.starfighter.energy then
+			elseif (row_diff + column_diff) * model.starfighter.move_cost > (model.starfighter.curr_energy + model.starfighter.energy_regen) then
 				-- Increment Error Count
 				model.game_info.set_error_count (model.game_info.error_count + 1)
 
