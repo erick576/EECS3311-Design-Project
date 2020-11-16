@@ -24,9 +24,9 @@ feature
 			create enemy_info.make_empty
 			create projectile_info.make_empty
 			create friendly_projectile_action_info.make_empty
-		    create enemy_projectile_action_info.make_empty
+			create enemy_projectile_action_info.make_empty
 			create starfighter_action_info.make_empty
-		    create enemy_action_info.make_empty
+			create enemy_action_info.make_empty
 			create natural_enemy_spawn_info.make_empty
 
 			in_normal_mode := true
@@ -483,7 +483,7 @@ feature -- Getters
 				until
 					j > grid.col_size
 				loop
-					if not grid.can_see (starfighter, i, j) then
+					if not grid.can_see (starfighter, i, j) and in_normal_mode then
 						grid.grid_elements.put ('?', count)
 					end
 					j := j  + 1

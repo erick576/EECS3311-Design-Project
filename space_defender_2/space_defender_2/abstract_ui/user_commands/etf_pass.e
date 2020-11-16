@@ -21,12 +21,12 @@ feature -- command
 				model.game_info.set_error_message (model.game_info.pass_error_1)
 			else
 				-- Clear all Debug Messages
-    			model.game_info.set_enemy_info ("")
+				model.game_info.set_enemy_info ("")
 				model.game_info.set_projectile_info ("")
 				model.game_info.set_friendly_projectile_action_info ("")
-			    model.game_info.set_enemy_projectile_action_info ("")
+				model.game_info.set_enemy_projectile_action_info ("")
 				model.game_info.set_starfighter_action_info ("")
-			    model.game_info.set_enemy_action_info ("")
+				model.game_info.set_enemy_action_info ("")
 				model.game_info.set_natural_enemy_spawn_info ("")
 
 				-- Reset Error Count and Increment Valid Operation Count
