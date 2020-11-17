@@ -38,7 +38,7 @@ feature -- Commands
 
 			-- Only for Debug Output
 			if not game_info.in_normal_mode then
-				game_info.append_friendly_projectile_action_info ("      A friendly projectile(id:" + id.out + ") stays at: [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]")
+				game_info.append_friendly_projectile_action_info ("      A friendly projectile(id:" + id.out + ") stays at: [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
 			end
 		end
 

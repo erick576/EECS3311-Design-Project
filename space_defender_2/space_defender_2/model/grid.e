@@ -330,6 +330,10 @@ feature -- Commands
 				-- Collision Checks
 				if did_spawn = true then
 
+					-- Update seen
+					enemies.at (enemies.count).update_can_see_starfighter
+					enemies.at (enemies.count).update_seen_by_starfighter
+
 					-- Add to debug Output
 					if not game_info.in_normal_mode then
 						game_info.append_natural_enemy_spawn_info ("    A " + enemies.at (enemies.count).name + "(id:" + enemies.at (enemies.count).id.out + ") spawns at location [" + grid_char_rows.at (enemies.at (enemies.count).row_pos).out + "," + enemies.at (enemies.count).col_pos.out + "].")
@@ -465,6 +469,10 @@ feature -- Commands
 				enemies.at (enemies.count).set_is_turn_over (true)
 
 				if is_in_bounds (row, column) then
+
+					-- Update seen
+					enemies.at (enemies.count).update_can_see_starfighter
+					enemies.at (enemies.count).update_seen_by_starfighter
 
 					-- Collisions with Friendly Projectiles
 					from
