@@ -62,6 +62,10 @@ feature -- command
 				if model.game_info.is_alive = true then
 					model.starfighter.regenerate
 					model.starfighter.regenerate
+					-- Add to debug output
+					if not model.game_info.in_normal_mode then
+						model.game_info.append_starfighter_action_info ("    The Starfighter(id:0) passes at location [" + model.grid.grid_char_rows.at (model.starfighter.row_pos).out + "," + model.starfighter.col_pos.out + "], doubling regen rate." + "%N")
+					end
 				end
 
 				-- Check if Died

@@ -332,14 +332,11 @@ feature -- Setters for messages
 	append_starfighter_action_info (s : STRING)
 		do
 			starfighter_action_info.append (s)
-			starfighter_action_info.append ("%N")
-
 		end
 
     append_enemy_action_info (s : STRING)
     	do
 			enemy_action_info.append (s)
-			enemy_action_info.append ("%N")
     	end
 
 	append_natural_enemy_spawn_info (s : STRING)

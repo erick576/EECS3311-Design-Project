@@ -207,6 +207,11 @@ feature -- Commands
 
 	fire
 		do
+			-- Add to debug output
+			if not game_info.in_normal_mode then
+				game_info.append_starfighter_action_info ("    The Starfighter(id:0) fires at location [" + grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "]." + "%N")
+			end
+
 			game_info.starfighter.weapon_selected.fire
 		end
 

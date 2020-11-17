@@ -26,7 +26,7 @@ feature -- Commands
 
 	special_move
 		local
-			val : INTEGER
+			val , val_energy : INTEGER
 		do
 			if game_info.starfighter.curr_health < 51 then
 				val := game_info.starfighter.curr_health - 1
@@ -34,7 +34,14 @@ feature -- Commands
 				val := 50
 			end
 
+			val_energy := val * 2
+
+			-- Add Debug Output
+			if not game_info.in_normal_mode then
+				game_info.append_starfighter_action_info ("    The Starfighter(id:0) uses special, gaining " + val_energy.out + " energy at the expense of " + val.out + " health." + "%N")
+			end
+
 			game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - val)
-			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy + (val * 2))
+			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy + val_energy)
 		end
 end

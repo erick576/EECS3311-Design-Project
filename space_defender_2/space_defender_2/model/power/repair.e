@@ -28,6 +28,11 @@ feature -- Commands
 		do
 			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy - cost)
 			game_info.starfighter.set_curr_health (game_info.starfighter.curr_health + 50)
+
+			-- Debug Mode Output
+			if not game_info.in_normal_mode then
+				game_info.append_starfighter_action_info ("    The Starfighter(id:0) uses special, gaining 50 health." + "%N")
+			end
 		end
 
 end
