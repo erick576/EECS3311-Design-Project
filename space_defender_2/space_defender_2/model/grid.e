@@ -24,10 +24,10 @@ feature -- Initialization
 			projectile_id_counter := 0
 			enemy_id_counter := 0
 
-			create {LINKED_LIST[FRIENDLY_PROJECTILE]} friendly_projectiles.make
-			create {LINKED_LIST[ENEMY_PROJECTILE]} enemy_projectiles.make
+			create {ARRAYED_LIST[FRIENDLY_PROJECTILE]} friendly_projectiles.make (0)
+			create {ARRAYED_LIST[ENEMY_PROJECTILE]} enemy_projectiles.make (0)
 
-			create {LINKED_LIST[ENEMY]} enemies.make
+			create {ARRAYED_LIST[ENEMY]} enemies.make (0)
 
 			grid_char_rows := <<'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'>>
 			create grid_elements.make_filled ('_', 0, row_size * col_size)
@@ -595,8 +595,7 @@ feature -- Commands
 				i > friendly_projectiles.count
 			loop
 				if not is_in_bounds (friendly_projectiles.at (i).row_pos , friendly_projectiles.at (i).col_pos) then
-					friendly_projectiles.go_i_th (i)
-					friendly_projectiles.remove
+					friendly_projectiles.prune (friendly_projectiles.at (i))
 				end
 				i := i + 1
 			end
@@ -607,8 +606,7 @@ feature -- Commands
 				i > enemy_projectiles.count
 			loop
 				if not is_in_bounds (enemy_projectiles.at (i).row_pos , enemy_projectiles.at (i).col_pos) then
-					enemy_projectiles.go_i_th (i)
-					enemy_projectiles.remove
+					enemy_projectiles.prune (enemy_projectiles.at (i))
 				end
 				i := i + 1
 			end
@@ -619,8 +617,7 @@ feature -- Commands
 				i > enemies.count
 			loop
 				if not is_in_bounds (enemies.at (i).row_pos , enemies.at (i).col_pos) then
-					enemies.go_i_th (i)
-					enemies.remove
+					enemies.prune (enemies.at (i))
 				end
 				i := i + 1
 			end
