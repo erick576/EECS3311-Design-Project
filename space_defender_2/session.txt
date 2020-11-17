@@ -1,7 +1,9 @@
-play(5, 17, 2, 2, 2, 2, 2)
-toggle_debug_mode
+play(7, 30, 34, 67, 78, 89, 101)
 setup_next(5)
-move(A, 1)
+pass
+pass
+pass
+pass
+toggle_debug_mode
+pass
 fire
-move(A, 2)
-move(A, 3)

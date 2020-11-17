@@ -124,7 +124,6 @@ feature -- command
 
 				-- Add Info to debug mode output
 				if not model.game_info.in_normal_mode then
-					model.grid.clear_all
 					model.grid.add_enemy_info
 					model.grid.add_projectiles_info
 				end

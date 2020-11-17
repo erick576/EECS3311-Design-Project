@@ -588,14 +588,21 @@ feature -- Commands
 		-- Clear all out of bound items
 		local
 			i : INTEGER
+			new_friendly_projectiles : LIST[FRIENDLY_PROJECTILE]
+			new_enemy_projectiles : LIST[ENEMY_PROJECTILE]
+			new_enemies : LIST[ENEMY]
 		do
+			create {ARRAYED_LIST[FRIENDLY_PROJECTILE]} new_friendly_projectiles.make (1)
+			create {ARRAYED_LIST[ENEMY_PROJECTILE]} new_enemy_projectiles.make (1)
+			create {ARRAYED_LIST[ENEMY]} new_enemies.make (1)
+
 			from
 				i := 1
 			until
 				i > friendly_projectiles.count
 			loop
-				if not is_in_bounds (friendly_projectiles.at (i).row_pos , friendly_projectiles.at (i).col_pos) then
-					friendly_projectiles.prune (friendly_projectiles.at (i))
+				if is_in_bounds (friendly_projectiles.at (i).row_pos , friendly_projectiles.at (i).col_pos) then
+					new_friendly_projectiles.force (friendly_projectiles.at (i))
 				end
 				i := i + 1
 			end
@@ -605,8 +612,8 @@ feature -- Commands
 			until
 				i > enemy_projectiles.count
 			loop
-				if not is_in_bounds (enemy_projectiles.at (i).row_pos , enemy_projectiles.at (i).col_pos) then
-					enemy_projectiles.prune (enemy_projectiles.at (i))
+				if is_in_bounds (enemy_projectiles.at (i).row_pos , enemy_projectiles.at (i).col_pos) then
+					new_enemy_projectiles.force (enemy_projectiles.at (i))
 				end
 				i := i + 1
 			end
@@ -616,11 +623,15 @@ feature -- Commands
 			until
 				i > enemies.count
 			loop
-				if not is_in_bounds (enemies.at (i).row_pos , enemies.at (i).col_pos) then
-					enemies.prune (enemies.at (i))
+				if is_in_bounds (enemies.at (i).row_pos , enemies.at (i).col_pos) then
+					new_enemies.force (enemies.at (i))
 				end
 				i := i + 1
 			end
+
+			friendly_projectiles := new_friendly_projectiles
+			enemy_projectiles := new_enemy_projectiles
+			enemies := new_enemies
 		end
 
 feature -- Debug Mode Output
@@ -652,12 +663,12 @@ feature -- Debug Mode Output
 				i < projectile_id_counter
 			loop
 				if friendly_projectiles.valid_index (j) and friendly_projectiles.at (j).id = i then
-					game_info.append_projectile_info ("    [" + friendly_projectiles.at (j).id.out + ",*]->damage:" + friendly_projectiles.at (j).damage.out + ", move:" + friendly_projectiles.at (j).move.out + ", location:[" + grid_char_rows.at (friendly_projectiles.at (j).row_pos).out + "," + friendly_projectiles.at (j).col_pos.out + "])")
+					game_info.append_projectile_info ("    [" + friendly_projectiles.at (j).id.out + ",*]->damage:" + friendly_projectiles.at (j).damage.out + ", move:" + friendly_projectiles.at (j).move.out + ", location:[" + grid_char_rows.at (friendly_projectiles.at (j).row_pos).out + "," + friendly_projectiles.at (j).col_pos.out + "]")
 					j := j + 1
 				end
 
 				if enemy_projectiles.valid_index (k) and enemy_projectiles.at (k).id = i then
-					game_info.append_projectile_info ("    [" + enemy_projectiles.at (k).id.out + ",<]->damage:" + enemy_projectiles.at (k).damage.out + ", move:" + enemy_projectiles.at (k).move.out + ", location:[" + grid_char_rows.at (enemy_projectiles.at (k).row_pos).out + "," + enemy_projectiles.at (k).col_pos.out + "])")
+					game_info.append_projectile_info ("    [" + enemy_projectiles.at (k).id.out + ",<]->damage:" + enemy_projectiles.at (k).damage.out + ", move:" + enemy_projectiles.at (k).move.out + ", location:[" + grid_char_rows.at (enemy_projectiles.at (k).row_pos).out + "," + enemy_projectiles.at (k).col_pos.out + "]")
 					k := k + 1
 				end
 				i := i - 1
