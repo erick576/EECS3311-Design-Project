@@ -307,6 +307,41 @@ feature -- Setters for messages
 			natural_enemy_spawn_info := s
 		end
 
+	set_front_enemy_info (s : STRING)
+		do
+			enemy_info := s + enemy_info
+		end
+
+	set_front_projectile_info (s : STRING)
+		do
+			projectile_info := s + projectile_info
+		end
+
+	set_front_friendly_projectile_action_info (s : STRING)
+		do
+			friendly_projectile_action_info := s + friendly_projectile_action_info
+		end
+
+    set_front_enemy_projectile_action_info (s : STRING)
+    	do
+			enemy_projectile_action_info := s + enemy_projectile_action_info
+    	end
+
+	set_front_starfighter_action_info (s : STRING)
+		do
+			starfighter_action_info := s + starfighter_action_info
+		end
+
+    set_front_enemy_action_info (s : STRING)
+    	do
+			enemy_action_info := s + enemy_action_info
+    	end
+
+	set_front_natural_enemy_spawn_info (s : STRING)
+		do
+			natural_enemy_spawn_info := s + natural_enemy_spawn_info
+		end
+
 	append_enemy_info (s : STRING)
 		do
 			enemy_info.append (s)
