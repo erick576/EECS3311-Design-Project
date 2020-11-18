@@ -448,7 +448,7 @@ feature -- Commands
 
 	action_when_starfighter_is_seen
 		local
-			i , j , damage_with_armour : INTEGER
+			j , damage_with_armour : INTEGER
 			enemy_seen , destination_assigned : BOOLEAN
 			enemy_action , enemy_action_info : STRING
 			old_row , old_col : INTEGER
