@@ -156,7 +156,7 @@ feature -- Commands
 
 								-- Set destroyed destination and debug output
 								if not game_info.in_normal_mode then
-									projectile_action_info.append ("      The projectile collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], dealing " + damage_with_armour.out + " damage." + "%N")
+									projectile_action_info.append ("      The projectile collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], dealing " + damage_with_armour.out + " damage." + "%N")
 									projectile_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
 									destination_assigned := true
 								end
@@ -326,7 +326,7 @@ feature -- Commands
 
 								-- Set destroyed destination and debug output
 								if not game_info.in_normal_mode then
-									projectile_action_info.append ("      The projectile collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], dealing " + damage_with_armour.out + " damage." + "%N")
+									projectile_action_info.append ("      The projectile collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], dealing " + damage_with_armour.out + " damage." + "%N")
 									projectile_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
 									destination_assigned := true
 								end

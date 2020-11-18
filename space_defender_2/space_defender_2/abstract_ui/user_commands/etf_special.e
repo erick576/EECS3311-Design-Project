@@ -57,6 +57,8 @@ feature -- command
 					model.grid.friendly_projectile_movements
 				end
 
+				model.grid.clear_all
+
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
 					model.game_info.set_is_alive (false)
@@ -66,6 +68,8 @@ feature -- command
 				if model.game_info.is_alive = true then
 					model.grid.enemy_projectile_movements
 				end
+
+				model.grid.clear_all
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -77,6 +81,8 @@ feature -- command
 					model.starfighter.regenerate
 					model.starfighter.special
 				end
+
+				model.grid.clear_all
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -98,6 +104,8 @@ feature -- command
 					model.grid.enemy_preemptive_action ('S')
 				end
 
+				model.grid.clear_all
+
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
 					model.game_info.set_is_alive (false)
@@ -107,6 +115,8 @@ feature -- command
 					model.grid.enemy_action
 				end
 
+				model.grid.clear_all
+				
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
 					model.game_info.set_is_alive (false)

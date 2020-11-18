@@ -139,7 +139,7 @@ feature -- Commands
 
 							-- Add Debug Info
 							if not game_info.in_normal_mode then
-								game_info.append_friendly_projectile_action_info ("      The projectile collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], dealing " + damage_with_armour.out + " damage." + "%N")
+								game_info.append_friendly_projectile_action_info ("      The projectile collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], dealing " + damage_with_armour.out + " damage." + "%N")
 							end
 
 							set_row (99)
