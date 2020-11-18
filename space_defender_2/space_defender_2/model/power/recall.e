@@ -71,7 +71,7 @@ feature -- Commands
 				if game_info.starfighter.curr_health = 0 then
 					-- Add to debug output
 					if not game_info.in_normal_mode then
-						game_info.append_starfighter_action_info ("      The Starfighter(id:0) at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
+						game_info.append_starfighter_action_info ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
 					end
 
 					j := game_info.grid.friendly_projectiles.count + 1
@@ -110,7 +110,7 @@ feature -- Commands
 				if game_info.starfighter.curr_health = 0 then
 					-- Add to debug output
 					if not game_info.in_normal_mode then
-						game_info.append_starfighter_action_info ("      The Starfighter(id:0) at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
+						game_info.append_starfighter_action_info ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
 					end
 
 					j := game_info.grid.enemy_projectiles.count + 1
@@ -150,7 +150,7 @@ feature -- Commands
 				if game_info.starfighter.curr_health = 0 then
 					-- Add to debug output
 					if not game_info.in_normal_mode then
-						game_info.append_starfighter_action_info ("      The Starfighter(id:0) at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
+						game_info.append_starfighter_action_info ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
 					end
 
 					j := game_info.grid.enemy_projectiles.count + 1
