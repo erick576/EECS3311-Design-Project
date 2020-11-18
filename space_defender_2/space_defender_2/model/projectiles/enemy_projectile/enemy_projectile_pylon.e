@@ -184,7 +184,7 @@ feature -- Commands
 
 							-- Add to debug Output
 							if not game_info.in_normal_mode and game_info.starfighter.curr_health = 0 then
-								projectile_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed."+ "%N")
+								projectile_action_info.append ("      The Starfighter(id:0) at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed."+ "%N")
 							end
 
 							set_row (99)
