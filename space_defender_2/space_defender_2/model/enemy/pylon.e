@@ -50,8 +50,10 @@ feature -- Commands
 
 	action_when_starfighter_is_not_seen
 		local
-			i, j , damage_with_armour : INTEGER
-			enemy_seen : BOOLEAN
+			i , j , damage_with_armour : INTEGER
+			enemy_seen , destination_assigned : BOOLEAN
+			enemy_action , enemy_action_info : STRING
+			old_row , old_col : INTEGER
 		do
 			if is_turn_over = false then
 
@@ -59,6 +61,12 @@ feature -- Commands
 
 				-- Do Action
 				enemy_seen := false
+				destination_assigned := false
+				old_row := row_pos
+				old_col := col_pos
+				enemy_action := "    A " + name + "(id:" + id.out + ") moves: [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] -> "
+				enemy_action_info := ""
+
 				from
 					i := 1
 				until
@@ -101,6 +109,11 @@ feature -- Commands
 									set_curr_health (0)
 								end
 
+								-- Debug Mode Output
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The " + name + " collides with friendly projectile(id:" +  game_info.grid.friendly_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.friendly_projectiles.at (j).row_pos).out + "," + game_info.grid.friendly_projectiles.at (j).col_pos.out + "], taking " + damage_with_armour.out + " damage." + "%N")
+								end
+
 								game_info.grid.friendly_projectiles.at (j).set_col (99)
 								game_info.grid.friendly_projectiles.at (j).set_row (99)
 							end
@@ -111,6 +124,14 @@ feature -- Commands
 								if game_info.grid.is_in_bounds (row_pos, col_pos) then
 									discharge_after_death
 								end
+
+								-- Debug Mode Output
+								if not game_info.in_normal_mode then
+									destination_assigned := true
+									enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+									enemy_action_info.append ("      The " + name + " at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
+								end
+
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -131,6 +152,11 @@ feature -- Commands
 									set_curr_health (health)
 								end
 
+								-- Add to debug Output
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + "damage." + "%N")
+								end
+
 								game_info.grid.enemy_projectiles.at (j).set_col (99)
 								game_info.grid.enemy_projectiles.at (j).set_row (99)
 							end
@@ -141,6 +167,14 @@ feature -- Commands
 								if game_info.grid.is_in_bounds (row_pos, col_pos) then
 									discharge_after_death
 								end
+
+								-- Debug Mode Output
+								if not game_info.in_normal_mode then
+									destination_assigned := true
+									enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+									enemy_action_info.append ("      The " + name + " at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
+								end
+
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -152,8 +186,25 @@ feature -- Commands
 						if row_pos = game_info.starfighter.row_pos and col_pos = game_info.starfighter.col_pos then
 								game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - curr_health)
 
+								-- Add to debug Output
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The " + name + " collides with Starfighter(id:0) at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "], trading " + curr_health.out + " damage." + "%N")
+								end
+
 								if game_info.starfighter.curr_health < 0 then
 									game_info.starfighter.set_curr_health (0)
+								end
+
+								-- Add to debug Output
+								if not game_info.in_normal_mode then
+									destination_assigned := true
+									enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+									enemy_action_info.append ("      The " + name + " at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
+								end
+
+								-- Add to debug Output
+								if not game_info.in_normal_mode and game_info.starfighter.curr_health = 0 then
+									enemy_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
 								end
 
 								if game_info.grid.is_in_bounds (row_pos, col_pos) then
@@ -166,24 +217,46 @@ feature -- Commands
 					end
 					i := i + 1
 				end
-			end
 
-			if curr_health > 0 and game_info.grid.is_in_bounds (row_pos, col_pos) then
-				-- Heal all enemies in vision range by 10
-				from
-					i := 1
-				until
-					i > game_info.grid.enemies.count
-				loop
-					if game_info.grid.can_see_enemy (game_info.grid.enemies.at (i), vision, row_pos, col_pos) then
-						game_info.grid.enemies.at (i).set_curr_health (game_info.grid.enemies.at (i).curr_health + 10)
-
-						if game_info.grid.enemies.at (i).curr_health > game_info.grid.enemies.at (i).health then
-							game_info.grid.enemies.at (i).set_curr_health (game_info.grid.enemies.at (i).health)
-						end
+				-- Debug Mode Output
+				if not game_info.in_normal_mode and destination_assigned = false then
+					if game_info.grid.is_in_bounds (row_pos, col_pos) then
+						enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+					else
+						enemy_action.append ("out of board" + "%N")
 					end
-					i := i + 1
+
+					if row_pos = old_row and col_pos = old_col then
+						enemy_action := "    A " + name + "(id:" + id.out + ") stays at: [" + game_info.grid.grid_char_rows.at (old_row).out + "," + old_col.out + "]" + "%N"
+					end
 				end
+
+				if curr_health > 0 and game_info.grid.is_in_bounds (row_pos, col_pos) then
+					-- Heal all enemies in vision range by 10
+					from
+						i := 1
+					until
+						i > game_info.grid.enemies.count
+					loop
+						if game_info.grid.can_see_enemy (game_info.grid.enemies.at (i), vision, row_pos, col_pos) then
+							game_info.grid.enemies.at (i).set_curr_health (game_info.grid.enemies.at (i).curr_health + 10)
+
+							if game_info.grid.enemies.at (i).curr_health > game_info.grid.enemies.at (i).health then
+								game_info.grid.enemies.at (i).set_curr_health (game_info.grid.enemies.at (i).health)
+							end
+
+							-- Debug Mode Output
+							if not game_info.in_normal_mode then
+								enemy_action_info.append ("      The Pylon heals " + game_info.grid.enemies.at (i).name + "(id:" + game_info.grid.enemies.at (i).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (i).row_pos).out + "," + game_info.grid.enemies.at (i).col_pos.out + "] for 10 damage." + "%N")
+							end
+						end
+						i := i + 1
+					end
+				end
+
+				-- Append to enemy action info for turn
+				game_info.append_enemy_action_info (enemy_action + enemy_action_info)
+
 			end
 
 			-- Reset is_turn_over
@@ -193,7 +266,9 @@ feature -- Commands
 	action_when_starfighter_is_seen
 		local
 			j , damage_with_armour : INTEGER
-			enemy_seen : BOOLEAN
+			enemy_seen , destination_assigned : BOOLEAN
+			enemy_action , enemy_action_info : STRING
+			old_row , old_col : INTEGER
 		do
 			if is_turn_over = false then
 
@@ -201,6 +276,12 @@ feature -- Commands
 
 				-- Do Action
 				enemy_seen := false
+				destination_assigned := false
+				old_row := row_pos
+				old_col := col_pos
+				enemy_action := "    A " + name + "(id:" + id.out + ") moves: [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] -> "
+				enemy_action_info := ""
+
 				if game_info.grid.is_in_bounds (row_pos, col_pos) then
 					from
 						j := 1
@@ -237,6 +318,11 @@ feature -- Commands
 									set_curr_health (0)
 								end
 
+								-- Debug Mode Output
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The " + name + " collides with friendly projectile(id:" +  game_info.grid.friendly_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.friendly_projectiles.at (j).row_pos).out + "," + game_info.grid.friendly_projectiles.at (j).col_pos.out + "], taking " + damage_with_armour.out + " damage." + "%N")
+								end
+
 								game_info.grid.friendly_projectiles.at (j).set_col (99)
 								game_info.grid.friendly_projectiles.at (j).set_row (99)
 							end
@@ -247,6 +333,14 @@ feature -- Commands
 								if game_info.grid.is_in_bounds (row_pos, col_pos) then
 									discharge_after_death
 								end
+
+								-- Debug Mode Output
+								if not game_info.in_normal_mode then
+									destination_assigned := true
+									enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+									enemy_action_info.append ("      The " + name + " at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
+								end
+
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -267,6 +361,11 @@ feature -- Commands
 									set_curr_health (health)
 								end
 
+								-- Add to debug Output
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + "damage." + "%N")
+								end
+
 								game_info.grid.enemy_projectiles.at (j).set_col (99)
 								game_info.grid.enemy_projectiles.at (j).set_row (99)
 							end
@@ -277,6 +376,14 @@ feature -- Commands
 								if game_info.grid.is_in_bounds (row_pos, col_pos) then
 									discharge_after_death
 								end
+
+								-- Debug Mode Output
+								if not game_info.in_normal_mode then
+									destination_assigned := true
+									enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+									enemy_action_info.append ("      The " + name + " at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
+								end
+
 								set_row_pos (99)
 								set_col_pos (99)
 							end
@@ -288,8 +395,25 @@ feature -- Commands
 						if row_pos = game_info.starfighter.row_pos and col_pos = game_info.starfighter.col_pos then
 								game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - curr_health)
 
+								-- Add to debug Output
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The " + name + " collides with Starfighter(id:0) at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "], trading " + curr_health.out + " damage." + "%N")
+								end
+
 								if game_info.starfighter.curr_health < 0 then
 									game_info.starfighter.set_curr_health (0)
+								end
+
+								-- Add to debug Output
+								if not game_info.in_normal_mode then
+									destination_assigned := true
+									enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+									enemy_action_info.append ("      The " + name + " at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
+								end
+
+								-- Add to debug Output
+								if not game_info.in_normal_mode and game_info.starfighter.curr_health = 0 then
+									enemy_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed." + "%N")
 								end
 
 								if game_info.grid.is_in_bounds (row_pos, col_pos) then
@@ -301,11 +425,33 @@ feature -- Commands
 
 				end
 
+				-- Debug Mode Output
+				if not game_info.in_normal_mode and destination_assigned = false then
+					if game_info.grid.is_in_bounds (row_pos, col_pos) then
+						enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+					else
+						enemy_action.append ("out of board" + "%N")
+					end
+
+					if row_pos = old_row and col_pos = old_col then
+						enemy_action := "    A " + name + "(id:" + id.out + ") stays at: [" + game_info.grid.grid_char_rows.at (old_row).out + "," + old_col.out + "]" + "%N"
+					end
+				end
+
 				if curr_health > 0 and game_info.grid.is_in_bounds (row_pos, col_pos) then
 					-- Fire Projectile
 
 					game_info.grid.increment_projectile_id_counter
 					game_info.grid.add_enemy_projectile_pylon (row_pos, col_pos - 1, game_info.grid.projectile_id_counter, 1, 70)
+
+					-- Debug Mode Output
+					if not game_info.in_normal_mode then
+						if game_info.grid.is_in_bounds (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos, game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos) then
+							enemy_action_info.append ("      A enemy projectile(id:" + game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).id.out + ") spawns at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos).out + "," + game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos.out + "]." + "%N")
+						else
+							enemy_action_info.append ("      A enemy projectile(id:" + game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).id.out + ") spawns at location out of board." + "%N")
+						end
+					end
 
 					-- Spawn Collision Case with Friendly Projectile
 					from
@@ -315,6 +461,12 @@ feature -- Commands
 					loop
 						if game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).id /= game_info.grid.friendly_projectiles.at (j).id then
 							if game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos = game_info.grid.friendly_projectiles.at (j).row_pos and game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos = game_info.grid.friendly_projectiles.at (j).col_pos then
+
+								-- Add Debug Info
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The projectile collides with friendly projectile(id:" + game_info.grid.friendly_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.friendly_projectiles.at (j).row_pos).out + "," + game_info.grid.friendly_projectiles.at (j).col_pos.out + "], negating damage." + "%N")
+								end
+
 								if game_info.grid.friendly_projectiles.at (j).damage > game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage then
 
 									game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_row (99)
@@ -350,6 +502,12 @@ feature -- Commands
 						if game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).id /= game_info.grid.enemy_projectiles.at (j).id then
 							if game_info.grid.enemy_projectiles.at (j).row_pos = game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).row_pos and game_info.grid.enemy_projectiles.at (j).col_pos = (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).col_pos) then
 								game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_damage (game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage + game_info.grid.enemy_projectiles.at (j).damage)
+
+								-- Add Debug Info
+								if not game_info.in_normal_mode then
+									enemy_action_info.append ("      The projectile collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], combining damage."+ "%N")
+								end
+
 								game_info.grid.enemy_projectiles.at (j).set_row (99)
 								game_info.grid.enemy_projectiles.at (j).set_col (99)
 
@@ -371,6 +529,11 @@ feature -- Commands
 
 							if game_info.grid.enemies.at (j).curr_health > game_info.grid.enemies.at (j).health then
 								game_info.grid.enemies.at (j).set_curr_health (game_info.grid.enemies.at (j).health)
+							end
+
+							-- Set destroyed destination and debug output
+							if not game_info.in_normal_mode then
+								enemy_action_info.append ("      The projectile collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).damage.out + " damage."+ "%N")
 							end
 
 							game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_row (99)
@@ -397,12 +560,25 @@ feature -- Commands
 							game_info.starfighter.set_curr_health (0)
 						end
 
+						-- Set destroyed destination and debug output
+						if not game_info.in_normal_mode then
+							enemy_action_info.append ("      The projectile collides with Starfighter(id:0) at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "], dealing " + damage_with_armour.out + " damage."+ "%N")
+						end
+
+						-- Add to debug Output
+						if not game_info.in_normal_mode and game_info.starfighter.curr_health = 0 then
+							enemy_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "] has been destroyed."+ "%N")
+						end
+
 						game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_row (99)
 						game_info.grid.enemy_projectiles.at (game_info.grid.enemy_projectiles.count).set_col (99)
 					end
 
-
 				end
+
+				-- Append to enemy action info for turn
+				game_info.append_enemy_action_info (enemy_action + enemy_action_info)
+
 			end
 
 			-- Reset is_turn_over

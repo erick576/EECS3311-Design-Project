@@ -77,6 +77,7 @@ feature -- Commands
 			i , j , damage_with_armour : INTEGER
 			enemy_seen , destination_assigned : BOOLEAN
 			enemy_action , enemy_action_info : STRING
+			old_row , old_col : INTEGER
 		do
 			if is_turn_over = false then
 
@@ -85,6 +86,8 @@ feature -- Commands
 				-- Do Action
 				enemy_seen := false
 				destination_assigned := false
+				old_row := row_pos
+				old_col := col_pos
 				enemy_action := "    A " + name + "(id:" + id.out + ") moves: [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] -> "
 				enemy_action_info := ""
 
@@ -243,7 +246,15 @@ feature -- Commands
 
 				-- Debug Mode Output
 				if not game_info.in_normal_mode and destination_assigned = false then
-					enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+					if game_info.grid.is_in_bounds (row_pos, col_pos) then
+						enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+					else
+						enemy_action.append ("out of board" + "%N")
+					end
+
+					if row_pos = old_row and col_pos = old_col then
+						enemy_action := "    A " + name + "(id:" + id.out + ") stays at: [" + game_info.grid.grid_char_rows.at (old_row).out + "," + old_col.out + "]" + "%N"
+					end
 				end
 
 				if curr_health > 0 and game_info.grid.is_in_bounds (row_pos, col_pos) then
@@ -395,6 +406,7 @@ feature -- Commands
 			i , j , damage_with_armour : INTEGER
 			enemy_seen , destination_assigned : BOOLEAN
 			enemy_action , enemy_action_info : STRING
+			old_row , old_col : INTEGER
 		do
 			if is_turn_over = false then
 
@@ -403,6 +415,8 @@ feature -- Commands
 				-- Do Action
 				enemy_seen := false
 				destination_assigned := false
+				old_row := row_pos
+				old_col := col_pos
 				enemy_action := "    A " + name + "(id:" + id.out + ") moves: [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] -> "
 				enemy_action_info := ""
 
@@ -560,7 +574,15 @@ feature -- Commands
 
 				-- Debug Mode Output
 				if not game_info.in_normal_mode and destination_assigned = false then
-					enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+					if game_info.grid.is_in_bounds (row_pos, col_pos) then
+						enemy_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "]" + "%N")
+					else
+						enemy_action.append ("out of board" + "%N")
+					end
+
+					if row_pos = old_row and col_pos = old_col then
+						enemy_action := "    A " + name + "(id:" + id.out + ") stays at: [" + game_info.grid.grid_char_rows.at (old_row).out + "," + old_col.out + "]" + "%N"
+					end
 				end
 
 				if curr_health > 0 and game_info.grid.is_in_bounds (row_pos, col_pos) then
