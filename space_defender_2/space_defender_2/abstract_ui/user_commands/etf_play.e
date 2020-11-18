@@ -35,6 +35,15 @@ feature -- command
 				model.game_info.set_is_valid_operation (false)
 				model.game_info.set_error_message (model.game_info.play_error_3)
 			else
+				-- Clear all Debug Messages
+				model.game_info.set_enemy_info ("")
+				model.game_info.set_projectile_info ("")
+				model.game_info.set_friendly_projectile_action_info ("")
+				model.game_info.set_enemy_projectile_action_info ("")
+				model.game_info.set_starfighter_action_info ("")
+				model.game_info.set_enemy_action_info ("")
+				model.game_info.set_natural_enemy_spawn_info ("")
+
 				-- Play Go to Weapon Setup State
 				model.game_info.set_is_error (false)
 				model.game_info.set_is_valid_operation (false)
