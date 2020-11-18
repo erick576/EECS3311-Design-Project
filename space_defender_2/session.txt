@@ -1,6 +1,8 @@
+toggle_debug_mode
 play(5, 10, 101, 101, 101, 101, 101)
 setup_next(5)
-fire
 pass
-fire
-move(C, 7)
+pass
+pass
+pass
+pass

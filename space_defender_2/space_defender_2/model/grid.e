@@ -423,7 +423,7 @@ feature -- Commands
 
 							-- Add to debug Output
 							if not game_info.in_normal_mode then
-								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " at location [" + grid_char_rows.at (enemies.at (enemies.count).row_pos).out + "," + enemies.at (enemies.count).col_pos.out + "] has been destroyed.")
+								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " collides with Starfighter(id:0) at location [" + grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "], trading " + enemies.at (enemies.count).curr_health.out + " damage.")
 							end
 
 							if game_info.starfighter.curr_health < 0 then
@@ -432,7 +432,7 @@ feature -- Commands
 
 							-- Add to debug Output
 							if not game_info.in_normal_mode then
-								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " collides with Starfighter(id:0) at location [" + grid_char_rows.at (game_info.starfighter.row_pos).out + "," + game_info.starfighter.col_pos.out + "], trading " + enemies.at (enemies.count).curr_health.out + " damage.")
+								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " at location [" + grid_char_rows.at (enemies.at (enemies.count).row_pos).out + "," + enemies.at (enemies.count).col_pos.out + "] has been destroyed.")
 							end
 
 							-- Add to debug Output
@@ -564,7 +564,9 @@ feature -- Commands
 			until
 				i > enemies.count
 			loop
-				enemies.at (i).preemptive_action (type)
+				if is_in_bounds (enemies.at (i).row_pos , enemies.at (i).col_pos) then
+					enemies.at (i).preemptive_action (type)
+				end
 
 				if game_info.starfighter.curr_health = 0 then
 					i := enemies.count + 1
@@ -584,9 +586,13 @@ feature -- Commands
 				i > enemies.count
 			loop
 				if enemies.at (i).can_see_starfighter then
-					enemies.at (i).action_when_starfighter_is_seen
+					if is_in_bounds (enemies.at (i).row_pos , enemies.at (i).col_pos) then
+						enemies.at (i).action_when_starfighter_is_seen
+					end
 				else
-					enemies.at (i).action_when_starfighter_is_not_seen
+					if is_in_bounds (enemies.at (i).row_pos , enemies.at (i).col_pos) then
+						enemies.at (i).action_when_starfighter_is_not_seen
+					end
 				end
 
 				if game_info.starfighter.curr_health = 0 then
