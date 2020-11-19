@@ -406,7 +406,7 @@ feature -- Commands
 
 							-- Add to debug Output
 							if not game_info.in_normal_mode and is_in_bounds (enemy_projectiles.at (j).row_pos, enemy_projectiles.at (j).col_pos) then
-								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " collides with enemy projectile(id:" + enemy_projectiles.at (j).id.out + ") at location [" + grid_char_rows.at (enemy_projectiles.at (j).row_pos).out + "," + enemy_projectiles.at (j).col_pos.out + "], healing " + enemy_projectiles.at (j).damage.out + "damage.")
+								game_info.append_natural_enemy_spawn_info ("      The " + enemies.at (enemies.count).name + " collides with enemy projectile(id:" + enemy_projectiles.at (j).id.out + ") at location [" + grid_char_rows.at (enemy_projectiles.at (j).row_pos).out + "," + enemy_projectiles.at (j).col_pos.out + "], healing " + enemy_projectiles.at (j).damage.out + " damage.")
 							end
 
 							enemy_projectiles.at (j).set_col (99)
@@ -549,7 +549,7 @@ feature -- Commands
 
 							-- Add to debug Output
 							if not game_info.in_normal_mode and is_in_bounds (enemy_projectiles.at (j).row_pos, enemy_projectiles.at (j).col_pos) then
-								game_info.append_enemy_action_info ("      The " + enemies.at (enemies.count).name + " collides with enemy projectile(id:" + enemy_projectiles.at (j).id.out + ") at location [" + grid_char_rows.at (enemy_projectiles.at (j).row_pos).out + "," + enemy_projectiles.at (j).col_pos.out + "], healing " + enemy_projectiles.at (j).damage.out + "damage." + "%N")
+								game_info.append_enemy_action_info ("      The " + enemies.at (enemies.count).name + " collides with enemy projectile(id:" + enemy_projectiles.at (j).id.out + ") at location [" + grid_char_rows.at (enemy_projectiles.at (j).row_pos).out + "," + enemy_projectiles.at (j).col_pos.out + "], healing " + enemy_projectiles.at (j).damage.out + " damage." + "%N")
 							end
 
 							enemy_projectiles.at (j).set_col (99)

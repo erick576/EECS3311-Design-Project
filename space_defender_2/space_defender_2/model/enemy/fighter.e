@@ -160,7 +160,7 @@ feature -- Commands
 
 								-- Add to debug Output
 								if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemy_projectiles.at (j).row_pos, game_info.grid.enemy_projectiles.at (j).col_pos) then
-									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + "damage." + "%N")
+									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + " damage." + "%N")
 								end
 
 								game_info.grid.enemy_projectiles.at (j).set_col (99)
@@ -491,7 +491,7 @@ feature -- Commands
 
 								-- Add to debug Output
 								if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemy_projectiles.at (j).row_pos, game_info.grid.enemy_projectiles.at (j).col_pos) then
-									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + "damage." + "%N")
+									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + " damage." + "%N")
 								end
 
 								game_info.grid.enemy_projectiles.at (j).set_col (99)
@@ -816,7 +816,7 @@ feature -- Commands
 
 								-- Add to debug Output
 								if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemy_projectiles.at (j).row_pos, game_info.grid.enemy_projectiles.at (j).col_pos) then
-									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + "damage." + "%N")
+									enemy_action_info.append ("      The " + name + " collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], healing " + game_info.grid.enemy_projectiles.at (j).damage.out + " damage." + "%N")
 								end
 
 								game_info.grid.enemy_projectiles.at (j).set_col (99)
