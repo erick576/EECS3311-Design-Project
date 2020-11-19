@@ -43,8 +43,6 @@ feature -- command
 					model.grid.friendly_projectile_movements
 				end
 
-				model.grid.clear_all
-
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
 					model.game_info.set_is_alive (false)
@@ -54,8 +52,6 @@ feature -- command
 				if model.game_info.is_alive = true then
 					model.grid.enemy_projectile_movements
 				end
-
-				model.grid.clear_all
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -71,8 +67,6 @@ feature -- command
 						model.game_info.append_starfighter_action_info ("    The Starfighter(id:0) passes at location [" + model.grid.grid_char_rows.at (model.starfighter.row_pos).out + "," + model.starfighter.col_pos.out + "], doubling regen rate." + "%N")
 					end
 				end
-
-				model.grid.clear_all
 
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
@@ -94,8 +88,6 @@ feature -- command
 					model.grid.enemy_preemptive_action ('P')
 				end
 
-				model.grid.clear_all
-
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
 					model.game_info.set_is_alive (false)
@@ -105,8 +97,6 @@ feature -- command
 					model.grid.enemy_action
 				end
 
-				model.grid.clear_all
-				
 				-- Check if Died
 				if model.starfighter.curr_health = 0 then
 					model.game_info.set_is_alive (false)

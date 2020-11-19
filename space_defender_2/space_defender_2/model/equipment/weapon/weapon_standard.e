@@ -66,7 +66,7 @@ feature -- Deferred Commands
 				if game_info.grid.enemy_projectiles.at (i).row_pos = (game_info.starfighter.row_pos) and game_info.grid.enemy_projectiles.at (i).col_pos = (game_info.starfighter.col_pos + 1) then
 
 					-- Add to debug output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemy_projectiles.at (i).row_pos, game_info.grid.enemy_projectiles.at (i).col_pos) then
 						game_info.append_starfighter_action_info ("      The projectile collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (i).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (i).row_pos).out + "," + game_info.grid.enemy_projectiles.at (i).col_pos.out + "], negating damage." + "%N")
 					end
 
@@ -105,7 +105,7 @@ feature -- Deferred Commands
 					game_info.grid.friendly_projectiles.at (game_info.grid.friendly_projectiles.count).set_damage (game_info.grid.friendly_projectiles.at (game_info.grid.friendly_projectiles.count).damage + game_info.grid.friendly_projectiles.at (i).damage)
 
 					-- Add to debug output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.friendly_projectiles.at (i).row_pos, game_info.grid.friendly_projectiles.at (i).col_pos) then
 						game_info.append_starfighter_action_info ("      The projectile collides with friendly projectile(id:" + game_info.grid.friendly_projectiles.at (i).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.friendly_projectiles.at (i).row_pos).out + "," + game_info.grid.friendly_projectiles.at (i).col_pos.out + "], combining damage." + "%N")
 					end
 
@@ -137,7 +137,7 @@ feature -- Deferred Commands
 					end
 
 					-- Add to debug output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemies.at (i).row_pos, game_info.grid.enemies.at (i).col_pos) then
 						game_info.append_starfighter_action_info ("      The projectile collides with " + game_info.grid.enemies.at (i).name + "(id:" + game_info.grid.enemies.at (i).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (i).row_pos).out + "," + game_info.grid.enemies.at (i).col_pos.out + "], dealing " + damage_with_armour.out + " damage." + "%N")
 					end
 
@@ -150,7 +150,7 @@ feature -- Deferred Commands
 						end
 
 						-- Add to debug output
-						if not game_info.in_normal_mode then
+						if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemies.at (i).row_pos, game_info.grid.enemies.at (i).col_pos) then
 							game_info.append_friendly_projectile_action_info ("      The " + game_info.grid.enemies.at (i).name + " at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (i).row_pos).out + "," + game_info.grid.enemies.at (i).col_pos.out + "] has been destroyed." + "%N")
 						end
 

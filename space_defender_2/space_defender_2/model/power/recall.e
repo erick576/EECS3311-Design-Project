@@ -60,7 +60,7 @@ feature -- Commands
 					end
 
 					-- Add to debug output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.friendly_projectiles.at (j).row_pos, game_info.grid.friendly_projectiles.at (j).col_pos) then
 						game_info.append_starfighter_action_info ("      The Starfighter collides with friendly projectile(id:" + game_info.grid.friendly_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.friendly_projectiles.at (j).row_pos).out + "," + game_info.grid.friendly_projectiles.at (j).col_pos.out + "], taking " + damage_with_armour.out + " damage." + "%N")
 					end
 
@@ -99,7 +99,7 @@ feature -- Commands
 					end
 
 					-- Add to debug output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemy_projectiles.at (j).row_pos, game_info.grid.enemy_projectiles.at (j).col_pos) then
 						game_info.append_starfighter_action_info ("      The Starfighter collides with enemy projectile(id:" + game_info.grid.enemy_projectiles.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemy_projectiles.at (j).row_pos).out + "," + game_info.grid.enemy_projectiles.at (j).col_pos.out + "], taking " + damage_with_armour.out + " damage." + "%N")
 					end
 
@@ -138,7 +138,7 @@ feature -- Commands
 					end
 
 					-- Add to debug output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemies.at (j).row_pos, game_info.grid.enemies.at (j).col_pos) then
 						game_info.append_starfighter_action_info ("      The Starfighter collides with " + game_info.grid.enemies.at (j).name + "(id:" + game_info.grid.enemies.at (j).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "], trading "+ game_info.grid.enemies.at (j).curr_health.out + " damage." + "%N")
 						game_info.append_starfighter_action_info ("      The " + game_info.grid.enemies.at (j).name + " at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (j).row_pos).out + "," + game_info.grid.enemies.at (j).col_pos.out + "] has been destroyed." + "%N")
 					end

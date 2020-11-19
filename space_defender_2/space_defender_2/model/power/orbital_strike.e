@@ -53,7 +53,7 @@ feature -- Commands
 					end
 
 					-- Debug Mode Output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemies.at (i).row_pos, game_info.grid.enemies.at (i).col_pos) then
 						game_info.append_starfighter_action_info ("      A " + game_info.grid.enemies.at (i).name + "(id:" + game_info.grid.enemies.at (i).id.out + ") at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (i).row_pos).out + "," + game_info.grid.enemies.at (i).col_pos.out + "] takes " + damage_with_armour.out + " damage." + "%N")
 					end
 				end
@@ -64,7 +64,7 @@ feature -- Commands
 					end
 
 					-- Debug Mode Output
-					if not game_info.in_normal_mode then
+					if not game_info.in_normal_mode and game_info.grid.is_in_bounds (game_info.grid.enemies.at (i).row_pos, game_info.grid.enemies.at (i).col_pos) then
 						game_info.append_starfighter_action_info ("      The " + game_info.grid.enemies.at (i).name + " at location [" + game_info.grid.grid_char_rows.at (game_info.grid.enemies.at (i).row_pos).out + "," + game_info.grid.enemies.at (i).col_pos.out + "] has been destroyed." + "%N")
 					end
 
