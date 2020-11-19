@@ -75,6 +75,7 @@ feature -- command
 			-- Phase 3
 				if model.game_info.is_alive = true then
 					model.starfighter.regenerate
+					model.grid.clear_all
 					model.starfighter.special
 				end
 
