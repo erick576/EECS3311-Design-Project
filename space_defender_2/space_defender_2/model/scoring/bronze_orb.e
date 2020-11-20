@@ -8,7 +8,7 @@ class
 	BRONZE_ORB
 
 inherit
-	ORB
+	SCORING_ITEM
 
 create
 	make
@@ -16,7 +16,11 @@ create
 feature -- Initialization
 	make
 		do
-			value := 1
 		end
 
+feature
+	value : INTEGER
+		do
+			Result := 1
+		end
 end

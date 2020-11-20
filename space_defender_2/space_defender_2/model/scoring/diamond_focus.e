@@ -8,42 +8,37 @@ class
 	DIAMOND_FOCUS
 
 inherit
-	FOCUS
+	COMPOSITE_SCORING_ITEM
+		redefine
+			value ,
+			has_capacity ,
+			capacity
+		end
 
 create
 	make
 
-feature -- Initialization
-	make
+feature
+	value : INTEGER
+		local
+			base : INTEGER
 		do
-			holder := create {ARRAYED_LIST[ORB]}.make (4)
-			holder.force( create {GOLD_ORB}.make )
-			curr_size := 1
-			capacity := 4
+			base := Precursor
+			if children.count = 4 then
+				Result := base * 3
+			else
+				Result := base
+			end
 		end
 
-feature -- Command
-
-	return_total_score : INTEGER
-		local
-			i , sum : INTEGER
+	has_capacity : BOOLEAN
 		do
-			sum := 0
+			Result := true
+		end
 
-			from
-				i := 1
-			until
-				i > curr_size
-			loop
-				sum := sum + holder.at (i).value
-				i := i + 1
-			end
-
-			if curr_size = capacity then
-				Result := sum * 3
-			else
-				Result := sum
-			end
+	capacity : INTEGER
+		do
+			Result := 4
 		end
 
 end

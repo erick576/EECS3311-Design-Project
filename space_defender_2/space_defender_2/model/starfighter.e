@@ -33,7 +33,8 @@ feature -- Initialization
 			projectile_cost := 0
 
 			score := 0
-			focus := create {ARRAYED_LIST[FOCUS]}.make (0)
+			player_focus := create {PLAYER_FOCUS}.make
+			focuses := create {ARRAYED_LIST[COMPOSITE_SCORING_ITEM]}.make (0)
 
 			weapon_selected := create {WEAPON_STANDARD}.make
 			armour_selected := create {ARMOUR_NONE}.make
@@ -63,7 +64,8 @@ feature -- Attributes
 	projectile_cost : INTEGER
 
 	score : INTEGER
-	focus : LIST[FOCUS]
+	player_focus : COMPOSITE_SCORING_ITEM
+	focuses : LIST[COMPOSITE_SCORING_ITEM]
 
 	weapon_selected : WEAPON
 	armour_selected : ARMOUR
@@ -1881,34 +1883,35 @@ feature -- Commands
 		end
 
 	update_score
-		local
-			i : INTEGER
 		do
-			score := 0
-
-			from
-				i := 1
-			until
-				i > focus.count
-			loop
-				score := score + focus.at (i).return_total_score
-				i := i + 1
-			end
+			score := player_focus.value
 		end
 
 	add_diamond_focus
+		local
+			focus : COMPOSITE_SCORING_ITEM
 		do
-			focus.force (create {DIAMOND_FOCUS}.make)
+			create {DIAMOND_FOCUS} focus.make
+			focus.add (create {GOLD_ORB}.make)
+
+			focuses.force (focus)
+			player_focus.add (focus)
 		end
 
 	add_platinum_focus
+		local
+			focus : COMPOSITE_SCORING_ITEM
 		do
-			focus.force (create {PLATINUM_FOCUS}.make)
+			create {PLATINUM_FOCUS} focus.make
+			focus.add (create {BRONZE_ORB}.make)
+
+			focuses.force (focus)
+			player_focus.add (focus)
 		end
 
 	add_bronze_orb
 		local
-			i , j : INTEGER
+			i : INTEGER
 			did_add : BOOLEAN
 		do
 			did_add := false
@@ -1916,36 +1919,24 @@ feature -- Commands
 			from
 				i := 1
 			until
-				i > focus.count
+				i > focuses.count
 			loop
-				from
-					j := 1
-				until
-					j > focus.at (i).capacity
-				loop
-					if focus.at (i).curr_size < focus.at (i).capacity then
-						focus.at (i).holder.force (create {BRONZE_ORB}.make)
-						focus.at (i).increment_curr_size
-						j := focus.at (i).capacity + 1
-						did_add := true
-					end
-					j := j + 1
-				end
-				if did_add = true then
-					i := focus.count + 1
+				if focuses.at (i).has_capacity and focuses.at (i).children.count < focuses.at (i).capacity then
+					focuses.at (i).add (create {BRONZE_ORB}.make)
+					did_add := true
+					i := focuses.count + 1
 				end
 				i := i + 1
 			end
 
 			if did_add = false then
-				focus.force (create {SINGLE_FOCUS}.make)
-				focus.at (focus.count).holder.force (create {BRONZE_ORB}.make)
+				player_focus.add (create {BRONZE_ORB}.make)
 			end
 		end
 
 	add_silver_orb
 		local
-			i , j : INTEGER
+			i : INTEGER
 			did_add : BOOLEAN
 		do
 			did_add := false
@@ -1953,37 +1944,23 @@ feature -- Commands
 			from
 				i := 1
 			until
-				i > focus.count
+				i > focuses.count
 			loop
-				from
-					j := 1
-				until
-					j > focus.at (i).capacity
-				loop
-					if focus.at (i).curr_size < focus.at (i).capacity then
-						focus.at (i).holder.force (create {SILVER_ORB}.make)
-						focus.at (i).increment_curr_size
-						j := focus.at (i).capacity + 1
-						did_add := true
-					end
-					j := j + 1
-				end
-				if did_add = true then
-					i := focus.count + 1
+				if focuses.at (i).has_capacity and focuses.at (i).children.count < focuses.at (i).capacity then
+					focuses.at (i).add (create {SILVER_ORB}.make)
+					did_add := true
 				end
 				i := i + 1
 			end
 
 			if did_add = false then
-				focus.force (create {SINGLE_FOCUS}.make)
-				focus.at (focus.count).holder.force (create {SILVER_ORB}.make)
+				player_focus.add (create {SILVER_ORB}.make)
 			end
 		end
-
 
 	add_gold_orb
 		local
-			i , j : INTEGER
+			i : INTEGER
 			did_add : BOOLEAN
 		do
 			did_add := false
@@ -1991,33 +1968,19 @@ feature -- Commands
 			from
 				i := 1
 			until
-				i > focus.count
+				i > focuses.count
 			loop
-				from
-					j := 1
-				until
-					j > focus.at (i).capacity
-				loop
-					if focus.at (i).curr_size < focus.at (i).capacity then
-						focus.at (i).holder.force (create {GOLD_ORB}.make)
-						focus.at (i).increment_curr_size
-						j := focus.at (i).capacity + 1
-						did_add := true
-					end
-					j := j + 1
-				end
-				if did_add = true then
-					i := focus.count + 1
+				if focuses.at (i).has_capacity and focuses.at (i).children.count < focuses.at (i).capacity then
+					focuses.at (i).add (create {GOLD_ORB}.make)
+					did_add := true
 				end
 				i := i + 1
 			end
 
 			if did_add = false then
-				focus.force (create {SINGLE_FOCUS}.make)
-				focus.at (focus.count).holder.force (create {GOLD_ORB}.make)
+				player_focus.add (create {GOLD_ORB}.make)
 			end
 		end
-
 
 feature -- Setters for Setting State
 
@@ -2085,7 +2048,8 @@ feature -- Exit Game
 			projectile_cost :=  weapon_selected.projectile_cost + armour_selected.projectile_cost + engine_selected.projectile_cost
 
 			score := 0
-			focus := create {ARRAYED_LIST[FOCUS]}.make (0)
+			player_focus := create {PLAYER_FOCUS}.make
+			focuses := create {ARRAYED_LIST[COMPOSITE_SCORING_ITEM]}.make (0)
 		end
 
 end

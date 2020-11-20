@@ -8,42 +8,37 @@ class
 	PLATINUM_FOCUS
 
 inherit
-	FOCUS
+	COMPOSITE_SCORING_ITEM
+		redefine
+			value ,
+			has_capacity ,
+			capacity
+		end
 
 create
 	make
 
-feature -- Initialization
-	make
+feature
+	value : INTEGER
+		local
+			base : INTEGER
 		do
-			holder := create {ARRAYED_LIST[ORB]}.make (3)
-			holder.force( create {BRONZE_ORB}.make )
-			curr_size := 1
-			capacity := 3
+			base := Precursor
+			if children.count = 3 then
+				Result := base * 2
+			else
+				Result := base
+			end
 		end
 
-feature -- Command
-
-	return_total_score : INTEGER
-		local
-			i , sum : INTEGER
+	has_capacity : BOOLEAN
 		do
-			sum := 0
+			Result := true
+		end
 
-			from
-				i := 1
-			until
-				i > curr_size
-			loop
-				sum := sum + holder.at (i).value
-				i := i + 1
-			end
-
-			if curr_size = capacity then
-				Result := sum * 2
-			else
-				Result := sum
-			end
+	capacity : INTEGER
+		do
+			Result := 3
 		end
 
 end

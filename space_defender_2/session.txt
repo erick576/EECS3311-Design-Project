@@ -1,98 +1,10 @@
-toggle_debug_mode
-play(5, 10, 101, 101,101,101, 101)
-setup_next(3)
-setup_select(1)
-setup_next(5)
-move(B, 3)
-pass
-pass
-pass
-pass
-pass
-special
-play(5, 10, 101, 101, 101, 101,101)
-setup_next(5)
-move(E, 3)
-pass
-pass
-pass
-special
-fire
-move(D, 1)
-pass
-move(E, 1)
-pass
-pass
-pass
-pass
-pass
-pass
-pass
-pass
-pass
-pass
-
-pass
-special
-fire
-pass
-play(5, 10, 101, 101, 101, 101,101)
-setup_next(3)
+play(5, 10, 101, 101, 101, 101, 101)
 setup_select(2)
 setup_next(5)
-fire
-fire
-move(B, 1)
-fire
-special
-move(A, 1)
+pass
 pass
 pass
 pass
 pass
 fire
-play(5, 10, 101, 101, 101, 101,101)
-setup_next(5)
-special
-move(D, 1)
-pass
-pass
-pass
-play(5, 10, 101, 101, 101, 101,101)
-setup_next(3)
-setup_select(3)
-setup_next(5)
-special
-special
-special
-special
-special
 fire
-play(5, 10, 101, 101, 101, 101,101)
-setup_select(3)
-setup_next(3)
-setup_back(3)
-setup_select(1)
-setup_next(3)
-setup_select(4)
-setup_next(5)
-pass
-pass
-pass
-pass
-fire
-special
-pass
-pass
-fire
-abort
-play(5,10, 101, 101, 101, 101, 101)
-setup_next(1)
-setup_next(1)
-setup_select(3)
-setup_next(4)
-pass
-pass
-pass
-fire
-special

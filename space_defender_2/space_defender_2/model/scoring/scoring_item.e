@@ -1,14 +1,13 @@
 note
-	description: "Summary description for {ORB}."
+	description: "Summary description for {SCORING_ITEM}."
 	author: ""
 	date: "$Date$"
 	revision: "$Revision$"
 
 deferred class
-	ORB
+	SCORING_ITEM
 
-feature -- Attributes
-
+feature
 	value : INTEGER
-
+		deferred end
 end
