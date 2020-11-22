@@ -2076,6 +2076,6 @@ feature -- Exit Game
 		end
 
 invariant
-	in_bounds : game_info.is_alive implies game_info.grid.is_in_bounds (row_pos, col_pos)
+	in_bounds : game_info.in_game implies game_info.grid.is_in_bounds (row_pos, col_pos)
 
 end
