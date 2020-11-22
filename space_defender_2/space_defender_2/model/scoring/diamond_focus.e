@@ -34,11 +34,15 @@ feature
 	has_capacity : BOOLEAN
 		do
 			Result := true
+		ensure then
+			has_capacity : Result = true
 		end
 
 	capacity : INTEGER
 		do
 			Result := 4
+		ensure then
+			correct_capacity : Result = 4
 		end
 
 end

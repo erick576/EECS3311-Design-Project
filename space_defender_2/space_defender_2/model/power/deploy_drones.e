@@ -57,6 +57,9 @@ feature -- Commands
 			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy - cost)
 			game_info.grid.friendly_projectiles.wipe_out
 			game_info.grid.enemy_projectiles.wipe_out
+
+		ensure then
+			cost_paid : old game_info.starfighter.curr_energy - cost = game_info.starfighter.curr_energy
 		end
 
 end

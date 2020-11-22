@@ -39,15 +39,21 @@ feature -- Setters
 	set_row (row : INTEGER)
 		do
 			row_pos := row
+		ensure
+			value_set_correctly : row_pos = row
 		end
 
 	set_col (col : INTEGER)
 		do
 			col_pos := col
+		ensure
+			value_set_correctly : col_pos = col
 		end
 
 	set_damage (dam : INTEGER)
 		do
 			damage := dam
+		ensure
+			value_set_correctly : damage = dam
 		end
 end

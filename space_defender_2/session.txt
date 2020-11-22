@@ -1,10 +1,7 @@
-play(5, 10, 101, 101, 101, 101, 101)
-setup_select(2)
+play(5, 10, 1, 1,1 ,1, 1)
+setup_select(4)
 setup_next(5)
 pass
-pass
-pass
-pass
-pass
-fire
-fire
+abort
+play(5, 10, 1, 1,1 ,1 , 1)
+setup_select(3)

@@ -22,5 +22,7 @@ feature
 	value : INTEGER
 		do
 			Result := 3
+		ensure then
+			correct_value : Result = 3
 		end
 end

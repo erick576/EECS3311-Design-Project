@@ -9,5 +9,9 @@ deferred class
 
 feature
 	value : INTEGER
-		deferred end
+		deferred
+		ensure
+			non_negative_value : Result >= 0
+		end
+
 end

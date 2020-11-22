@@ -74,6 +74,9 @@ feature -- Commands
 
 				i := i + 1
 			end
+
+			ensure then
+				cost_paid : old game_info.starfighter.curr_energy - cost = game_info.starfighter.curr_energy
 		end
 
 end

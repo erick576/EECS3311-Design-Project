@@ -43,5 +43,10 @@ feature -- Commands
 
 			game_info.starfighter.set_curr_health (game_info.starfighter.curr_health - val)
 			game_info.starfighter.set_curr_energy (game_info.starfighter.curr_energy + val_energy)
+
+			ensure then
+				cost_paid : (old game_info.starfighter.curr_health - (old game_info.starfighter.curr_health - 1) = game_info.starfighter.curr_health)
+							or
+							(old game_info.starfighter.curr_health - (50) = game_info.starfighter.curr_health)
 		end
 end

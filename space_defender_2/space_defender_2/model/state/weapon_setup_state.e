@@ -24,18 +24,24 @@ feature
   	  	-- Is this state in_game or not?
   		do
 			Result := false
+		ensure then
+			correct_output : Result = false
 		end
 
     in_setup : BOOLEAN
         -- Is this state in setup or not?
   		do
 			Result := true
+		ensure then
+			correct_output : Result = true
 		end
 
 	in_setup_select : BOOLEAN
   	    -- Is this state eligible for state setup?
   		do
 			Result := true
+		ensure then
+			correct_output : Result = true
 		end
 
 	in_bounds (i : INTEGER) : BOOLEAN

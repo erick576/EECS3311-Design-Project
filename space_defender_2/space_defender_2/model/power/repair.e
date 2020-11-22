@@ -33,6 +33,9 @@ feature -- Commands
 			if not game_info.in_normal_mode then
 				game_info.append_starfighter_action_info ("    The Starfighter(id:0) uses special, gaining 50 health." + "%N")
 			end
+
+			ensure then
+				cost_paid : old game_info.starfighter.curr_energy - cost = game_info.starfighter.curr_energy
 		end
 
 end

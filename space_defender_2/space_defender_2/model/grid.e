@@ -139,6 +139,8 @@ feature -- Helper Methods
 	is_in_bounds (row : INTEGER ; column : INTEGER) : BOOLEAN
 		do
 			Result := not (row > row_size or row < 1 or column > col_size or column < 1)
+		ensure
+			in_bounds : (Result = true and (not (row > row_size or row < 1 or column > col_size or column < 1))) or  (Result = false and ((row > row_size or row < 1 or column > col_size or column < 1)))
 		end
 
 feature -- Setters
@@ -146,66 +148,78 @@ feature -- Setters
 	add_friendly_projectile_standard (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
 			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_STANDARD}.make (row, col, i, t))
+		ensure
+			size_incremented : friendly_projectiles.count = old friendly_projectiles.count + 1
 		end
 
 	add_friendly_projectile_spread (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
 			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_SPREAD}.make (row, col, i, t))
+		ensure
+			size_incremented : friendly_projectiles.count = old friendly_projectiles.count + 1
 		end
 
 	add_friendly_projectile_snipe (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
 			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_SNIPE}.make (row, col, i, t))
+		ensure
+			size_incremented : friendly_projectiles.count = old friendly_projectiles.count + 1
 		end
 
 	add_friendly_projectile_rocket (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
 			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_ROCKET}.make (row, col, i, t))
+		ensure
+			size_incremented : friendly_projectiles.count = old friendly_projectiles.count + 1
 		end
 
 	add_friendly_projectile_splitter (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
 			friendly_projectiles.force (create {FRIENDLY_PROJECTILE_SPLITTER}.make (row, col, i, t))
+		ensure
+			size_incremented : friendly_projectiles.count = old friendly_projectiles.count + 1
 		end
 
 	add_enemy_projectile_grunt (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
 		do
 			enemy_projectiles.force (create {ENEMY_PROJECTILE_GRUNT}.make (row, col, i, t, d))
+		ensure
+			size_incremented : enemy_projectiles.count = old enemy_projectiles.count + 1
 		end
 
 	add_enemy_projectile_fighter (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER ; m : INTEGER)
 		do
 			enemy_projectiles.force (create {ENEMY_PROJECTILE_FIGHTER}.make (row, col, i, t, d, m))
-		end
-
-	add_enemy_projectile_carrier (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
-		do
-			enemy_projectiles.force (create {ENEMY_PROJECTILE_CARRIER}.make (row, col, i, t, d))
-		end
-
-	add_enemy_projectile_interceptor (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
-		do
-			enemy_projectiles.force (create {ENEMY_PROJECTILE_INTERCEPTOR}.make (row, col, i, t, d))
+		ensure
+			size_incremented : enemy_projectiles.count = old enemy_projectiles.count + 1
 		end
 
 	add_enemy_projectile_pylon (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER ; d : INTEGER)
 		do
 			enemy_projectiles.force (create {ENEMY_PROJECTILE_PYLON}.make (row, col, i, t, d))
+		ensure
+			size_incremented : enemy_projectiles.count = old enemy_projectiles.count + 1
 		end
 
 	increment_projectile_id_counter
 		do
 			projectile_id_counter := projectile_id_counter - 1
+		ensure
+			counter_updated : projectile_id_counter = old projectile_id_counter - 1
 		end
 
 	increment_enemy_id_counter
 		do
 			enemy_id_counter := enemy_id_counter + 1
+		ensure
+			counter_updated : enemy_id_counter = old enemy_id_counter + 1
 		end
 
 feature -- Commands
 
 	fire
+		require
+			is_alive : game_info.is_alive = true
 		do
 			-- Add to debug output
 			if not game_info.in_normal_mode then
@@ -216,6 +230,8 @@ feature -- Commands
 		end
 
 	friendly_projectile_movements
+		require
+			is_alive : game_info.is_alive = true
 		local
 			index_curr : INTEGER
 		do
@@ -235,6 +251,8 @@ feature -- Commands
 		end
 
 	enemy_projectile_movements
+		require
+			is_alive : game_info.is_alive = true
 		local
 			index_curr : INTEGER
 		do
@@ -254,6 +272,8 @@ feature -- Commands
 		end
 
 	update_enemy_vision
+		require
+			is_alive : game_info.is_alive = true
 		local
 			index_curr : INTEGER
 		do
@@ -276,6 +296,8 @@ feature -- Commands
 		end
 
 	enemy_spawn
+		require
+			is_alive : game_info.is_alive = true
 		local
 			random : RANDOM_GENERATOR_ACCESS
 			j , damage_with_armour: INTEGER
@@ -452,6 +474,8 @@ feature -- Commands
 		end
 
 	spawn_interceptor (row : INTEGER ; column : INTEGER)
+		require
+			is_alive : game_info.is_alive = true
 		local
 			i , j, damage_with_armour: INTEGER
 			do_spawn : BOOLEAN
@@ -595,6 +619,8 @@ feature -- Commands
 		end
 
 	enemy_preemptive_action (type : CHARACTER)
+		require
+			is_alive : game_info.is_alive = true
 		local
 			i : INTEGER
 		do
@@ -616,6 +642,8 @@ feature -- Commands
 		end
 
 	enemy_action
+		require
+			is_alive : game_info.is_alive = true
 		local
 			i : INTEGER
 		do

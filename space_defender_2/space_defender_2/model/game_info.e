@@ -240,71 +240,99 @@ feature -- Setters for messages
 	set_error_message (s : STRING)
 		do
 			error_message := s
+		ensure
+			value_set_correctly : error_message ~ s
 		end
 
 	set_state_message (s : STRING)
 		do
 			state_message := s
+		ensure
+			value_set_correctly : state_message ~ s
 		end
 
 	set_mode_mesage (s : STRING)
 		do
 			mode_message := s
+		ensure
+			value_set_correctly : mode_message ~ s
 		end
 
 	set_status_message (s : STRING)
 		do
 			status_message := s
+		ensure
+			value_set_correctly : status_message ~ s
 		end
 
 	set_state_specific_message (s : STRING)
 		do
 			state_specific_message := s
+		ensure
+			value_set_correctly : state_specific_message ~ s
 		end
 
 	set_operation_message (s : STRING)
 		do
 			operation_message := s
+		ensure
+			value_set_correctly : operation_message ~ s
 		end
 
 	set_game_over_message (s : STRING)
 		do
 			game_over_message := s
+		ensure
+			value_set_correctly : game_over_message ~ s
 		end
 
 	set_enemy_info (s : STRING)
 		do
 			enemy_info := s
+		ensure
+			value_set_correctly : enemy_info ~ s
 		end
 
 	set_projectile_info (s : STRING)
 		do
 			projectile_info := s
+		ensure
+			value_set_correctly : projectile_info ~ s
 		end
 
 	set_friendly_projectile_action_info (s : STRING)
 		do
 			friendly_projectile_action_info := s
+		ensure
+			value_set_correctly : friendly_projectile_action_info ~ s
 		end
 
     set_enemy_projectile_action_info (s : STRING)
     	do
 			enemy_projectile_action_info := s
+		ensure
+			value_set_correctly : enemy_projectile_action_info ~ s
     	end
 
 	set_starfighter_action_info (s : STRING)
 		do
 			starfighter_action_info := s
+		ensure
+			value_set_correctly : starfighter_action_info ~ s
 		end
 
     set_enemy_action_info (s : STRING)
     	do
 			enemy_action_info := s
+		ensure
+			value_set_correctly : enemy_action_info ~ s
     	end
 
 	set_natural_enemy_spawn_info (s : STRING)
 		do
 			natural_enemy_spawn_info := s
+		ensure
+			value_set_correctly : natural_enemy_spawn_info ~ s
 		end
 
 	append_enemy_info (s : STRING)
@@ -350,35 +378,49 @@ feature -- Setters for boolean queries
 	set_in_normal_mode (b : BOOLEAN)
 		do
 			in_normal_mode := b
+		ensure
+			value_set_correctly : in_normal_mode = b
 		end
 
 	set_is_alive (b : BOOLEAN)
 		do
 			is_alive := b
+		ensure
+			value_set_correctly : is_alive = b
 		end
 
 	set_is_error (b : BOOLEAN)
 		do
 			is_error := b
+		ensure
+			value_set_correctly : is_error = b
 		end
 
 	set_in_game (b : BOOLEAN)
 		do
 			in_game := b
+		ensure
+			value_set_correctly : in_game = b
 		end
 
 	set_is_valid_operation (b : BOOLEAN)
 		do
 			is_valid_operation := b
+		ensure
+			value_set_correctly : is_valid_operation = b
 		end
 
 	set_valid_operation_count (i : INTEGER)
 		do
 			valid_operation_count := i
+		ensure
+			value_set_correctly : valid_operation_count = i
 		end
 	set_error_count (i : INTEGER)
 		do
 			error_count := i
+		ensure
+			value_set_correctly : error_count = i
 		end
 
 feature -- Getters

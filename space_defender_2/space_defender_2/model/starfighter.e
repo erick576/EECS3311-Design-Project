@@ -82,6 +82,8 @@ feature -- Attributes
 feature -- Commands
 
 	regenerate
+		require
+			is_alive : game_info.is_alive = true
 		do
 			if curr_health > health then
 				-- Do Nothing (Only Can Occur From using Repair)
@@ -105,6 +107,8 @@ feature -- Commands
 		end
 
 	move_starfighter (row: INTEGER_32 ; column: INTEGER_32)
+		require
+			is_alive : game_info.is_alive = true
 		local
 			i , j , damage_with_armour: INTEGER
 			stop_starfighter : BOOLEAN
@@ -1875,9 +1879,15 @@ feature -- Commands
 			else
 				curr_energy := curr_energy - projectile_cost
 			end
+		ensure
+			cost_applied : (weapon_selected.is_projectile_cost_health and curr_health = old curr_health - projectile_cost)
+							or
+						   (not weapon_selected.is_projectile_cost_health and curr_energy = old curr_energy - projectile_cost)
 		end
 
 	special
+		require
+			is_alive : game_info.is_alive = true
 		do
 			power_selected.special_move
 		end
@@ -1885,6 +1895,8 @@ feature -- Commands
 	update_score
 		do
 			score := player_focus.value
+		ensure
+			value_assigned : score = player_focus.value
 		end
 
 	add_diamond_focus
@@ -1987,46 +1999,57 @@ feature -- Setters for Setting State
 	set_col_pos (col : INTEGER)
 		do
 			col_pos := col
+		ensure
+			value_set_correctly : col_pos = col
 		end
 
 	set_row_pos (row :INTEGER)
 		do
 			row_pos := row
+		ensure
+			value_set_correctly : row_pos = row
 		end
 
 	set_weapon (weapon : WEAPON)
 		do
 			weapon_selected := weapon
+		ensure
+			value_set_correctly : weapon_selected = weapon
 		end
 
 	set_armour (armour_val : ARMOUR)
 		do
 			armour_selected := armour_val
+		ensure
+			value_set_correctly : armour_selected = armour_val
 		end
 
 	set_engine (engine : ENGINE)
 		do
 			engine_selected := engine
+		ensure
+			value_set_correctly : engine_selected = engine
 		end
 
 	set_power (power : POWER)
 		do
 			power_selected := power
+		ensure
+			value_set_correctly : power_selected = power
 		end
 
 	set_curr_health (curr : INTEGER)
 		do
 			curr_health := curr
+		ensure
+			value_set_correctly : curr_health = curr
 		end
 
 	set_curr_energy (curr : INTEGER)
 		do
 			curr_energy := curr
-		end
-
-	set_score (s : INTEGER)
-		do
-			score := s
+		ensure
+			value_set_correctly : curr_energy = curr
 		end
 
 feature -- Exit Game
@@ -2051,5 +2074,8 @@ feature -- Exit Game
 			player_focus := create {PLAYER_FOCUS}.make
 			focuses := create {ARRAYED_LIST[COMPOSITE_SCORING_ITEM]}.make (0)
 		end
+
+invariant
+	in_bounds : game_info.is_alive implies game_info.grid.is_in_bounds (row_pos, col_pos)
 
 end

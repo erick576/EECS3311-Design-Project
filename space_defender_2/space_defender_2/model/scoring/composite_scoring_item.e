@@ -38,5 +38,7 @@ feature
 	capacity : INTEGER
 		do
 			Result := 0
+		ensure
+			non_negative_value : Result >= 0
 		end
 end

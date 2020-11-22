@@ -33,7 +33,10 @@ feature -- features
 
   set_choice (i : INTEGER)
   	-- Set choice value
-  	deferred end
+  	deferred
+  	ensure then
+		value_set_correctly : choice = i
+  	end
 
   display : STRING
     -- Display current state
