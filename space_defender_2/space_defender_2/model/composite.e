@@ -7,7 +7,7 @@ note
 deferred class
 	COMPOSITE[T -> attached ANY]
 
-feature
+feature {NONE}
 	children : LINKED_LIST[T]
 
 feature -- Abstraction function of a stack

@@ -1933,7 +1933,7 @@ feature -- Commands
 			until
 				i > focuses.count
 			loop
-				if focuses.at (i).has_capacity and focuses.at (i).children.count < focuses.at (i).capacity then
+				if focuses.at (i).has_capacity and focuses.at (i).model.count < focuses.at (i).capacity then
 					focuses.at (i).add (create {BRONZE_ORB}.make)
 					did_add := true
 					i := focuses.count + 1
@@ -1958,7 +1958,7 @@ feature -- Commands
 			until
 				i > focuses.count
 			loop
-				if focuses.at (i).has_capacity and focuses.at (i).children.count < focuses.at (i).capacity then
+				if focuses.at (i).has_capacity and focuses.at (i).model.count < focuses.at (i).capacity then
 					focuses.at (i).add (create {SILVER_ORB}.make)
 					did_add := true
 				end
@@ -1982,7 +1982,7 @@ feature -- Commands
 			until
 				i > focuses.count
 			loop
-				if focuses.at (i).has_capacity and focuses.at (i).children.count < focuses.at (i).capacity then
+				if focuses.at (i).has_capacity and focuses.at (i).model.count < focuses.at (i).capacity then
 					focuses.at (i).add (create {GOLD_ORB}.make)
 					did_add := true
 				end
