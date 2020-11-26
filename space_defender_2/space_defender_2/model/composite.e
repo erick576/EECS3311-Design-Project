@@ -34,6 +34,6 @@ feature -- Abstraction function of a stack
 		do
 			children.extend (c)
 		ensure
-			element_added : model ~ (old model.deep_twin).appended (c)
+			model.count ~ (old model.deep_twin).appended (c).count
 		end
 end

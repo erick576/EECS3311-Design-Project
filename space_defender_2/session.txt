@@ -1,15 +1,40 @@
-play(5, 10, 10, 30, 50, 70, 100)
-setup_select(2)
+play(5, 28, 10, 30, 50, 70, 90)
+setup_select(3)
 setup_next(5)
 fire
 fire
+pass
+move(E, 3)
 fire
+fire
+move(A, 3)
+pass
+fire
+fire
+pass
+play(5, 28, 10, 30, 50, 70, 90)
+setup_select(4)
+setup_next(1)
+setup_select(2)
+setup_select(3)
+setup_next(5)
+fire
+fire
+pass
+move(C, 3)
+fire
+fire
+fire
+pass
+move(A, 3)
+pass
+move(B, 2)
 fire
 pass
 pass
 pass
 fire
+move(B, 1)
 fire
+move(A, 1)
 fire
-pass
-pass
