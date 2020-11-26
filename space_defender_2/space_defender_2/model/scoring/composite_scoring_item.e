@@ -24,7 +24,7 @@ feature
 	value : INTEGER
 		do
 			across
-				model as cursor
+				Current.model as cursor
 			loop
 				Result := Result + cursor.item.value
 			end

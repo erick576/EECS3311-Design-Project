@@ -26,7 +26,7 @@ feature -- Abstraction function of a stack
 				across
 					1 |..| Result.count as i
 				all
-					Result[i.item] ~ children[children.count - i.item + 1]
+					Result[i.item] ~ children[i.item]
 				end
 		end
 
