@@ -24,7 +24,7 @@ feature
 			base : INTEGER
 		do
 			base := Precursor
-			if children.count = 3 then
+			if children.count = capacity then
 				Result := base * 2
 			else
 				Result := base

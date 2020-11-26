@@ -22,7 +22,7 @@ feature -- Abstraction function of a stack
 		ensure
 			consistent_counts:
 				children.count = Result.count
-			consistent_countens:
+			consistent_items:
 				across
 					1 |..| Result.count as i
 				all
