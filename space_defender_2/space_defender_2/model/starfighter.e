@@ -164,7 +164,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -207,7 +207,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -250,7 +250,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -309,7 +309,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -352,7 +352,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -395,7 +395,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -457,7 +457,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -500,7 +500,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -543,7 +543,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -603,7 +603,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -646,7 +646,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -689,7 +689,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -751,7 +751,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -794,7 +794,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -837,7 +837,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -893,7 +893,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -936,7 +936,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -979,7 +979,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1039,7 +1039,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1082,7 +1082,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1125,7 +1125,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1181,7 +1181,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1224,7 +1224,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1267,7 +1267,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1327,7 +1327,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1370,7 +1370,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1413,7 +1413,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1469,7 +1469,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1512,7 +1512,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1555,7 +1555,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1616,7 +1616,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1659,7 +1659,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1702,7 +1702,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1759,7 +1759,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1802,7 +1802,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
@@ -1845,7 +1845,7 @@ feature -- Commands
 
 								if curr_health = 0 then
 									-- Add to debug output
-									if not game_info.in_normal_mode then
+									if not game_info.in_normal_mode and not destination_assigned then
 										destination_assigned := true
 										starfighter_action.append ("[" + game_info.grid.grid_char_rows.at (row_pos).out +"," + col_pos.out + "]" + "%N")
 										starfighter_action_info.append ("      The Starfighter at location [" + game_info.grid.grid_char_rows.at (row_pos).out + "," + col_pos.out + "] has been destroyed." + "%N")
