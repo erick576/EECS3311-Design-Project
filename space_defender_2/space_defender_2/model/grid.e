@@ -143,7 +143,7 @@ feature -- Helper Methods
 			in_bounds : (Result = true and (not (row > row_size or row < 1 or column > col_size or column < 1))) or  (Result = false and ((row > row_size or row < 1 or column > col_size or column < 1)))
 		end
 
-feature -- Setters
+feature -- Commands
 
 	add_friendly_projectile_standard (row : INTEGER ; col : INTEGER ; i : INTEGER ; t : INTEGER)
 		do
@@ -215,7 +215,7 @@ feature -- Setters
 			counter_updated : enemy_id_counter = old enemy_id_counter + 1
 		end
 
-feature -- Commands
+feature -- Turn Commands
 
 	fire
 		require

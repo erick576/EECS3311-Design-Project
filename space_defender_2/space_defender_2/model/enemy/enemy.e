@@ -23,8 +23,6 @@ feature -- Attributes
 	can_see_starfighter : BOOLEAN
 	seen_by_starfighter : BOOLEAN
 
-	is_turn_over : BOOLEAN
-
 	symbol : CHARACTER
 	name : STRING
 
@@ -34,6 +32,9 @@ feature -- Attributes
 	do
 		Result := ma.m.game_info
 	end
+
+feature {NONE}
+	is_turn_over : BOOLEAN
 
 feature -- Commands
 
@@ -120,7 +121,7 @@ feature -- Output Helpers
 				Result.append ("F")
 			end
 		ensure
-			correct_output : Result ~ "T" or Result ~ "F"
+			correct_output : (can_see_starfighter = true and Result ~ "T") or (can_see_starfighter = false and Result ~ "F")
 		end
 
 	seen_by_starfighter_output : STRING
@@ -132,6 +133,6 @@ feature -- Output Helpers
 				Result.append ("F")
 			end
 		ensure
-			correct_output : Result ~ "T" or Result ~ "F"
+			correct_output : (seen_by_starfighter = true and Result ~ "T") or (seen_by_starfighter = false and Result ~ "F")
 		end
 end
