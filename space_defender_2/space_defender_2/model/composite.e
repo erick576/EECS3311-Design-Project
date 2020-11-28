@@ -10,7 +10,7 @@ deferred class
 feature {NONE}
 	children : LINKED_LIST[T]
 
-feature -- Abstraction function of a stack
+feature -- Abstraction function
 	model : SEQ[T]
 		do
 			create Result.make_empty

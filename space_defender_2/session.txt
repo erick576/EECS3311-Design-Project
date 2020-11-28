@@ -1,44 +1,40 @@
-play(5, 10, 10, 40, 90, 91, 101)
-setup_select(4)
-setup_next(1)
-setup_select(3)
-setup_next(1)
-setup_select(3)
-setup_next(1)
-setup_select(5)
-setup_next(3)
-pass
-pass
-pass
-pass
+play(5, 10, 1, 1, 1, 1, 1)
+setup_next(5)
 fire
 fire
 fire
-move(D, 2)
+fire
+fire
+fire
+fire
+fire
+fire
 fire
 fire
 pass
-pass
+special
 fire
 fire
-fire
-fire
+move(B, 1)
+move(B, 3)
 move(B, 2)
-fire
-fire
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+pass
 special
 pass
-toggle_debug_mode
-play(5, 10,10,  40, 90, 91, 101)
-setup_next(5)
 pass
 pass
 pass
 pass
-move(C, 1)
-move(C, 2)
+pass
+pass
+special
+pass
 fire
-fire
-fire
-fire
-move(D, 2)
+special

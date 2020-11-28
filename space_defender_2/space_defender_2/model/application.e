@@ -10,11 +10,10 @@ class
 create
 	make
 
-feature {NONE} -- Implementation of Transition Graph
+feature {NONE} -- Attributes
+
   transition: ARRAY2[INTEGER]
-    -- State transitions: transition[state, choice]
   states: ARRAY[STATE]
-    -- State for each index, constrained by size of `transition'
 
 feature
   curr_index: INTEGER
