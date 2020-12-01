@@ -1901,8 +1901,8 @@ feature -- Commands
 
 	add_diamond_focus
 		local
-			i : INTEGER
-			focus : COMPOSITE_SCORING_ITEM
+			i , j: INTEGER
+			focus , focus_holder : COMPOSITE_SCORING_ITEM
 			did_add : BOOLEAN
 		do
 			create {DIAMOND_FOCUS} focus.make
@@ -1917,23 +1917,34 @@ feature -- Commands
 			loop
 				if focuses.at (i).has_capacity and focuses.at (i).model.count < focuses.at (i).capacity then
 					focuses.at (i).add (focus)
+					focuses.force (focus)
 					did_add := true
 					i := focuses.count + 1
+
+					from
+						j := focuses.count
+					until
+						j < 2
+					loop
+						focus_holder := focuses.at (j)
+						focuses.put_i_th (focuses.at (j - 1), j)
+						focuses.put_i_th (focus_holder, j - 1)
+						j := j - 1
+					end
 				end
 				i := i + 1
 			end
 
-			focuses.force (focus)
-
 			if did_add = false then
+				focuses.force (focus)
 				player_focus.add (focus)
 			end
 		end
 
 	add_platinum_focus
 		local
-			i : INTEGER
-			focus : COMPOSITE_SCORING_ITEM
+			i , j: INTEGER
+			focus , focus_holder : COMPOSITE_SCORING_ITEM
 			did_add : BOOLEAN
 		do
 			create {PLATINUM_FOCUS} focus.make
@@ -1948,19 +1959,29 @@ feature -- Commands
 			loop
 				if focuses.at (i).has_capacity and focuses.at (i).model.count < focuses.at (i).capacity then
 					focuses.at (i).add (focus)
+					focuses.force (focus)
 					did_add := true
 					i := focuses.count + 1
+
+					from
+						j := focuses.count
+					until
+						j < 2
+					loop
+						focus_holder := focuses.at (j)
+						focuses.put_i_th (focuses.at (j - 1), j)
+						focuses.put_i_th (focus_holder, j - 1)
+						j := j - 1
+					end
 				end
 				i := i + 1
 			end
 
-			focuses.force (focus)
-
 			if did_add = false then
+				focuses.force (focus)
 				player_focus.add (focus)
 			end
 		end
-
 
 	add_bronze_orb
 		local
