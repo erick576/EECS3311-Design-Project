@@ -1901,25 +1901,66 @@ feature -- Commands
 
 	add_diamond_focus
 		local
+			i : INTEGER
 			focus : COMPOSITE_SCORING_ITEM
+			did_add : BOOLEAN
 		do
 			create {DIAMOND_FOCUS} focus.make
 			focus.add (create {GOLD_ORB}.make)
 
+			did_add := false
+
+			from
+				i := 1
+			until
+				i > focuses.count
+			loop
+				if focuses.at (i).has_capacity and focuses.at (i).model.count < focuses.at (i).capacity then
+					focuses.at (i).add (focus)
+					did_add := true
+					i := focuses.count + 1
+				end
+				i := i + 1
+			end
+
 			focuses.force (focus)
-			player_focus.add (focus)
+
+			if did_add = false then
+				player_focus.add (focus)
+			end
 		end
 
 	add_platinum_focus
 		local
+			i : INTEGER
 			focus : COMPOSITE_SCORING_ITEM
+			did_add : BOOLEAN
 		do
 			create {PLATINUM_FOCUS} focus.make
 			focus.add (create {BRONZE_ORB}.make)
 
+			did_add := false
+
+			from
+				i := 1
+			until
+				i > focuses.count
+			loop
+				if focuses.at (i).has_capacity and focuses.at (i).model.count < focuses.at (i).capacity then
+					focuses.at (i).add (focus)
+					did_add := true
+					i := focuses.count + 1
+				end
+				i := i + 1
+			end
+
 			focuses.force (focus)
-			player_focus.add (focus)
+
+			if did_add = false then
+				player_focus.add (focus)
+			end
 		end
+
 
 	add_bronze_orb
 		local
